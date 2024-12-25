@@ -45,18 +45,17 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin-password
-
-  redis:
-    image: redis:latest
-    container_name: redis
-    restart: always
-    networks:
-      - smarthome
+ 
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
     ports:
-      - "6379:6379"
+      - "27017:27017"
     volumes:
-      - redis:/data
-      - ./redis/init-redis.sh:/docker-entrypoint-initdb.d/init-redis.sh 
+      - mongodb:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: public
 
 networks:
   smarthome:
@@ -66,4 +65,4 @@ volumes:
   rabbitmq:
   grafana:
   prometheus:
-  redis:
+  mongodb:
