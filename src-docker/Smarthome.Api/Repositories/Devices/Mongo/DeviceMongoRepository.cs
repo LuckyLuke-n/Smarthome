@@ -1,15 +1,26 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using Smarthome.Core.DomainObjects;
 
 namespace Smarthome.Api.Repositories.Devices.Mongo
 {
 	public class DeviceMongoRepository : IDeviceRepository
 	{
-		private IMongoClient Client { get; set; }
+		private IMongoClient? Client { get; set; }
+		private ILogger Logger { get; }
 
-		public DeviceMongoRepository()
+		public DeviceMongoRepository( IOptions<MongoDbConfiguration> options, ILogger logger )
 		{
-			Client = new MongoClient();
+			Logger = logger;
+
+			try
+			{
+				Client = new MongoClient( options.Value.ConnectionString );
+			}
+			catch ( MongoException ex )
+			{
+				Logger.LogCritical( ex, "Mongo client cannot be created." );
+			}
 		}
 
 		public Task<RepositoryResponse<DeviceRepositorySuccessResponse, DeviceRepositoryFailResponse>> CreateAsync( Device device, CancellationToken cancellationToken = default )

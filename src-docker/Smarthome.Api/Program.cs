@@ -2,7 +2,10 @@ using Smarthome.Api;
 
 var builder = WebApplication.CreateBuilder( args );
 
-builder.Services.AddMyServices();
+// Environment varaibles into configuration provider
+builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
+
+builder.Services.AddMyServices( builder.Configuration );
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

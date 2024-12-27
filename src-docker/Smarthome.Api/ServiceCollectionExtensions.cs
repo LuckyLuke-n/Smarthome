@@ -4,9 +4,9 @@ namespace Smarthome.Api
 {
 	public static class ServiceCollectionExtensions
 	{
-		public static IServiceCollection AddMyServices( this IServiceCollection services )
+		public static IServiceCollection AddMyServices( this IServiceCollection services, IConfiguration configuration )
 		{
-			services.AddRepositoryServices();
+			services.AddRepositoryServices( configuration );
 
 
 			return services;

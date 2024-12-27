@@ -14,8 +14,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SMARTHOME_MongoDb__Host": "localhost",
         "SMARTHOME_MonogDb__Port": "27017",
-        "SMARTHOME_MongoDb__Username": "admin",
-        "SMARTHOME_MongoDb__Password": "public"
+        "SMARTHOME_MongoDb__Username": "user",
+        "SMARTHOME_MongoDb__Password": "pw"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7073;http://localhost:5214"
