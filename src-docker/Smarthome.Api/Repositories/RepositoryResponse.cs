@@ -1,10 +1,20 @@
 ﻿namespace Smarthome.Api.Repositories
 {
-	public class RepositoryResponse<TSuccess, TFail> where TSuccess : new() where TFail : new()
+	public class RepositoryResponse<TFail> where TFail : new()
 	{
 		public bool IsSuccess { get; private set; }
-		private TSuccess ValueSuccess { get; set; } = new();
-		private TFail ValueFail { get; set; } = new();
+		public TFail ValueFail { get; private set; } = new();
+
+		public static RepositoryResponse<TFail> CreateSuccess() => new() { IsSuccess = true };
+
+		public static RepositoryResponse<TFail> CreateFail( TFail fail ) => new() { IsSuccess = false, ValueFail = fail };
+	}
+
+	public class RepositoryResponse<TSuccess, TFail> where TSuccess : class where TFail : new()
+	{
+		public bool IsSuccess { get; private set; }
+		public TSuccess? ValueSuccess { get; private set; }
+		public TFail ValueFail { get; private set; } = new();
 
 		public static RepositoryResponse<TSuccess, TFail> CreateSuccess( TSuccess success )
 		{
@@ -26,14 +36,6 @@
 			};
 
 			return result;
-		}
-
-		public void Resolve( Action<TSuccess> actionSuccess, Action<TFail> actionFail )
-		{
-			if ( IsSuccess )
-				actionSuccess.Invoke( ValueSuccess );
-			else
-				actionFail.Invoke( ValueFail );
 		}
 	}
 }

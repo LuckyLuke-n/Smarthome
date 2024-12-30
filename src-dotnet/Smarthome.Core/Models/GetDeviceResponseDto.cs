@@ -9,5 +9,6 @@ namespace Smarthome.Core.Models
 		public Hardware Hardware { get; set; } = new();
 		public string Location { get; set; } = string.Empty;
 		public string DataSource { get; set; } = string.Empty;
+		public State State { get; set; }
 	}
 }

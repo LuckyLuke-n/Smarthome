@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Smarthome.Core.Models
 {
-	internal class UpdateDeviceRequestDto
+	public class UpdateDeviceRequestDto
 	{
 		[Required]
 		public string Hostname { get; set; } = string.Empty;
