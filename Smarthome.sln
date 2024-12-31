@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.Api", "src-docker\Smarthome.Api\Smarthome.Api.csproj", "{8ED210EE-128D-479A-A40E-632E5546B2F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.Core", "src-dotnet\Smarthome.Core\Smarthome.Core.csproj", "{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Abstractions", "src-dotnet\LSoftware.Communication.Abstractions\LSoftware.Communication.Abstractions.csproj", "{D096A01B-49D0-4AD6-9D79-58C648E32C17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Mqtt", "src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj", "{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +27,20 @@ Global
 		{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
 	EndGlobalSection
 EndGlobal

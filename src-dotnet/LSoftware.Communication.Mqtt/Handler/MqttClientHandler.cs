@@ -1,0 +1,149 @@
+﻿using LSoftware.Communication.Abstractions.MessageBus;
+using LSoftware.Communication.Mqtt.Configuration;
+using Microsoft.Extensions.Logging;
+using MQTTnet;
+using MQTTnet.Formatter;
+
+namespace LSoftware.Communication.Mqtt.Handler
+{
+	internal class MqttClientHandler : ISubscriber
+	{
+		public IMqttClient? MqttClient { get; set; }
+		public string Topic { get; private set; } = string.Empty;
+
+
+		private MqttConfiguration MqttConfiguration { get; }
+		private ILogger<MqttClientHandler> Logger { get; }
+		private bool IsConnected { get; set; }
+		private MqttClientFactory MqttFactory { get; }
+		private CancellationTokenSource CancellationTokenSource { get; } = new();
+
+		private Action<byte[]>? MessageReceived { get; set; }
+
+		private int _usageCount;
+		private bool _disposedValue;
+
+
+		public MqttClientHandler( MqttConfiguration config, ILogger<MqttClientHandler> logger )
+		{
+			MqttConfiguration = config;
+			Logger = logger;
+
+			MqttFactory = new MqttClientFactory();
+		}
+
+		internal void IncreaseCount() => Interlocked.Increment( ref _usageCount );
+
+		internal void DecreaseCount() => Interlocked.Decrement( ref _usageCount );
+
+		/// <summary>
+		/// Connects the client to the broker. Creates the <see cref="CancellationTokenSource"/>.
+		/// </summary>
+		public async Task ConnectAsync()
+		{
+			CancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+			MqttClient = MqttFactory.CreateMqttClient();
+
+			// Create MQTT client options
+			var mqttClientOptions = new MqttClientOptionsBuilder()
+				.WithTcpServer( MqttConfiguration.Host, int.Parse( MqttConfiguration.Port ) )
+				.WithCredentials( MqttConfiguration.Username, MqttConfiguration.Password ) // Set username and password
+				.WithClientId( $"Smarthome.Api-{Guid.NewGuid()}" )
+				.WithProtocolVersion( MqttProtocolVersion.V311 )
+				.WithCleanSession();
+
+			if ( MqttConfiguration.TlsEnabled )
+				mqttClientOptions.WithTlsOptions( o =>
+				{
+					o.UseTls();
+				} );
+
+
+			CancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+			MqttClient.DisconnectedAsync += MqttClient_DisconnectedAsync;
+			var result = await MqttClient.ConnectAsync( mqttClientOptions.Build(), CancellationTokenSource.Token ).ConfigureAwait( false );
+
+			if ( result.ResultCode != MqttClientConnectResultCode.Success )
+				Logger.LogError( "No connection made to mqtt broker {Host}.", MqttConfiguration.Host );
+			else
+				IsConnected = true;
+		}
+
+		public void RegisterCallback( Action<byte[]> callback ) => MessageReceived = callback;
+
+		internal async Task SubscribeAsync( string topic )
+		{
+			if ( !IsConnected || MqttClient is null )
+			{
+				Logger.LogWarning( "Cannot subscribe to {Topic}. Client not connected.", topic );
+				return;
+			}
+
+			Topic = topic;
+
+			var mqttSubscribeOptions = MqttFactory.CreateSubscribeOptionsBuilder()
+				.WithTopicFilter( Topic )
+				.Build();
+
+			await MqttClient.SubscribeAsync( mqttSubscribeOptions, CancellationTokenSource.Token ).ConfigureAwait( false );
+			MqttClient.ApplicationMessageReceivedAsync += MqttClient_ApplicationMessageReceivedAsync;
+
+		}
+
+		private async Task MqttClient_DisconnectedAsync( MqttClientDisconnectedEventArgs arg )
+		{
+			if ( arg.ClientWasConnected )
+			{
+				await ConnectAsync().ConfigureAwait( false );
+			}
+		}
+
+		private async Task MqttClient_ApplicationMessageReceivedAsync( MqttApplicationMessageReceivedEventArgs arg )
+		{
+			if ( _disposedValue )
+				return;
+
+			var payload = arg.ApplicationMessage.Payload;
+
+			if ( payload.Length == 0 )
+			{
+				await Task.CompletedTask.ConfigureAwait( false );
+				return;
+			}
+
+			var totalLength = payload.Length;
+			byte[] result = new byte[ totalLength ];
+
+			int offset = 0;
+			foreach ( var segment in payload )
+			{
+				segment.Span.CopyTo( result.AsSpan( offset ) );
+				offset += segment.Length;
+			}
+
+			MessageReceived?.Invoke( result );
+		}
+
+		public bool TryDispose()
+		{
+			if ( _disposedValue )
+				return false;
+
+			if ( _usageCount > 0 )
+				return false;
+
+			CancellationTokenSource.Cancel();
+
+			if ( MqttClient is not null )
+			{
+				MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
+				MqttClient.DisconnectAsync();
+			}
+
+			_disposedValue = true;
+			return true;
+		}
+	}
+}
