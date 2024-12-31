@@ -3,8 +3,8 @@
 	public enum State
 	{
 		Unknwon,
+		Ready,
 		Sending,
 		Stopped,
-		Idle
 	}
 }
