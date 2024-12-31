@@ -6,7 +6,7 @@ using MQTTnet.Formatter;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
-	internal class MqttClientHandler : ISubscriber
+	internal class MqttClientHandler : ISubscriber, IDisposable
 	{
 		public IMqttClient? MqttClient { get; set; }
 		public string Topic { get; private set; } = string.Empty;
@@ -22,7 +22,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 		private int _usageCount;
 		private bool _disposedValue;
-
+		private bool disposedValue;
 
 		public MqttClientHandler( MqttConfiguration config, ILogger<MqttClientHandler> logger )
 		{
@@ -126,6 +126,10 @@ namespace LSoftware.Communication.Mqtt.Handler
 			MessageReceived?.Invoke( result );
 		}
 
+		/// <summary>
+		/// If the <see cref="_usageCount"/> is 0 the client will be disposed.
+		/// </summary>
+		/// <returns></returns>
 		public bool TryDispose()
 		{
 			if ( _disposedValue )
@@ -134,16 +138,35 @@ namespace LSoftware.Communication.Mqtt.Handler
 			if ( _usageCount > 0 )
 				return false;
 
-			CancellationTokenSource.Cancel();
-
-			if ( MqttClient is not null )
-			{
-				MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
-				MqttClient.DisconnectAsync();
-			}
-
-			_disposedValue = true;
+			Dispose();
 			return true;
+		}
+
+		protected virtual void Dispose( bool disposing )
+		{
+			if ( !_disposedValue )
+			{
+				if ( disposing )
+				{
+					CancellationTokenSource.Cancel();
+
+					if ( MqttClient is not null )
+					{
+						MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
+						MqttClient.UnsubscribeAsync( Topic, CancellationTokenSource.Token ).GetAwaiter().GetResult();
+						MqttClient.DisconnectAsync();
+					}
+				}
+
+				_disposedValue = true;
+			}
+		}
+
+		public void Dispose()
+		{
+			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+			Dispose( disposing: true );
+			GC.SuppressFinalize( this );
 		}
 	}
 }

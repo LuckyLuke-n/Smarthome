@@ -69,7 +69,8 @@ namespace LSoftware.Communication.Mqtt.Handler
 			{
 				if ( disposing )
 				{
-					// TODO dispose all connections
+					foreach ( var client in Clients.Values )
+						client.Dispose();
 				}
 
 				disposedValue = true;
