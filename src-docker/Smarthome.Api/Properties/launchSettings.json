@@ -2,7 +2,7 @@
   "profiles": {
     "Smarthome.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SMARTHOME_MongoDb__ConnectionString": "mongodb://admin:public@localhost:27017",

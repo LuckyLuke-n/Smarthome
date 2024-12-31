@@ -1,6 +1,7 @@
 ﻿using LSoftware.Communication.Abstractions.MessageBus;
+using System.Text.Json;
 
-namespace Smarthome.Api.Monitoring
+namespace Smarthome.Api.Monitoring.MessageBus
 {
 	public class DeviceMonitor : IHostedService
 	{
@@ -19,10 +20,9 @@ namespace Smarthome.Api.Monitoring
 
 		}
 
-		private void Received( byte[] data )
-		{
-			if ( data.Length > 0 )
-				Console.WriteLine( $"received {data.Length} bytes." );
+		private void Received( string data )
+		{		
+			var payload = JsonSerializer.Deserialize<Payload>( data );
 		}
 
 		public async Task StopAsync( CancellationToken cancellationToken )

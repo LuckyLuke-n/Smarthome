@@ -3,6 +3,6 @@
 	public interface ISubscriber
 	{
 		string Topic { get; }
-		void RegisterCallback( Action<byte[]> callback );
+		void RegisterCallback( Action<string> callback );
 	}
 }

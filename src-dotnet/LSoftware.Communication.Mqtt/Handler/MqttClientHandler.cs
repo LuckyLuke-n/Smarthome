@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Formatter;
+using System.Text;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
@@ -19,7 +20,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 		private MqttClientFactory MqttFactory { get; }
 		private CancellationTokenSource CancellationTokenSource { get; } = new();
 
-		private Action<byte[]>? MessageReceived { get; set; }
+		private Action<string>? MessageReceived { get; set; }
 
 		private int _usageCount;
 		private bool _disposedValue;
@@ -71,7 +72,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 				IsConnected = true;
 		}
 
-		public void RegisterCallback( Action<byte[]> callback ) => MessageReceived = callback;
+		public void RegisterCallback( Action<string> callback ) => MessageReceived = callback;
 
 		internal async Task SubscribeAsync( string topic )
 		{
@@ -113,17 +114,11 @@ namespace LSoftware.Communication.Mqtt.Handler
 				return;
 			}
 
-			var totalLength = payload.Length;
-			byte[] result = new byte[ totalLength ];
-
-			int offset = 0;
+			StringBuilder sb = new();
 			foreach ( var segment in payload )
-			{
-				segment.Span.CopyTo( result.AsSpan( offset ) );
-				offset += segment.Length;
-			}
+				sb.Append( Encoding.UTF8.GetString( segment.Span ) );
 
-			MessageReceived?.Invoke( result );
+			MessageReceived?.Invoke( sb.ToString() );
 		}
 
 		/// <summary>

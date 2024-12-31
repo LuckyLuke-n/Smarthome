@@ -1,7 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
-using Smarthome.Api.Monitoring;
+using Smarthome.Api.Monitoring.MessageBus;
 
 var builder = WebApplication.CreateBuilder( args );
 
