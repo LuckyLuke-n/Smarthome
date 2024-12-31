@@ -1,5 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using LSoftware.Communication.Mqtt;
+using MongoDB.Driver;
 using Smarthome.Api.Repositories;
+using Smarthome.Api.Repositories.Devices.Mongo;
 
 namespace Smarthome.Api
 {
@@ -9,11 +11,12 @@ namespace Smarthome.Api
 		{
 			services.AddSingleton<IMongoClient, MongoClient>( sp =>
 			{
-				var settings = MongoClientSettings.FromConnectionString( Environment.GetEnvironmentVariable( "SMARTHOME_MongoDb_ConnectionString" ) );
+				var settings = MongoClientSettings.FromConnectionString( Environment.GetEnvironmentVariable( MongoDbConfiguration.ConnectionStringEnvVar ) );
 				return new MongoClient( settings );
 			} );
 
 			services.AddRepositoryServices( configuration );
+			services.AddMqttCommunication( configuration );
 
 
 			return services;

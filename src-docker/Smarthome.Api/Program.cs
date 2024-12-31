@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
+using Smarthome.Api.Monitoring.MessageBus;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -10,6 +11,8 @@ builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 builder.Services.AddAutoMapper( typeof( DeviceMappingProfile) )
 	.AddLogging( logging => logging.AddConsole() )
 	.AddMyServices( builder.Configuration );
+
+builder.Services.AddHostedService<DeviceMonitor>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
