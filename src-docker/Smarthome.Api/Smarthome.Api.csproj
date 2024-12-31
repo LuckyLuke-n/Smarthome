@@ -10,10 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Properties\launchSetting.json" />
     <Content Remove="Properties\launchSetting.template.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Properties\launchSetting.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
     <None Include="Properties\launchSetting.template.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
