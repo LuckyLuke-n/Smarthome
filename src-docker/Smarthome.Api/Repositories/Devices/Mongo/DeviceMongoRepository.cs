@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using Smarthome.Core.DomainObjects;
 using System.Net;
 
@@ -10,14 +9,13 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 		private IMongoCollection<Device>? Collection { get; set; }
 		private ILogger<DeviceMongoRepository> Logger { get; }
 
-		public DeviceMongoRepository( IOptions<MongoDbConfiguration> options, ILogger<DeviceMongoRepository> logger )
+		public DeviceMongoRepository( IMongoClient mongoClient, ILogger<DeviceMongoRepository> logger )
 		{
 			Logger = logger;
 
 			try
 			{
-				var client = new MongoClient( options.Value.ConnectionString );
-				var database = client.GetDatabase( "Smarthome" );
+				var database = mongoClient.GetDatabase( "Smarthome" );
 				Collection = database.GetCollection<Device>( nameof( Device ) );
 			}
 			catch ( MongoException ex )
@@ -85,7 +83,7 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 				return RepositoryResponse<DeviceRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "No connection to the mongo collection." } );
 
 			var filter = Builders<Device>.Filter
-				.Eq( d => d.Key, id.ToString() );
+				.Eq( d => d.Id, id.ToString() );
 
 			try
 			{
@@ -117,7 +115,7 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 				return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "No connection to the mongo collection." } );
 
 			var filter = Builders<Device>.Filter
-				.Eq( d => d.Key, id.ToString() );
+				.Eq( d => d.Id, id.ToString() );
 
 			try
 			{
@@ -150,7 +148,7 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 				return NotConnectedFailedResponse();
 
 			var filter = Builders<Device>.Filter
-				.Eq( d => d.Key, device.Key );
+				.Eq( d => d.Id, device.Id );
 
 			var update = Builders<Device>.Update
 				.Set( d => d.Hostname, device.Hostname )

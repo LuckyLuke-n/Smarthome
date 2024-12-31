@@ -11,7 +11,7 @@ namespace Smarthome.Api.Configuration
 			CreateMap<GetDeviceResponseDto, Device>().ReverseMap();
 
 			CreateMap<CreateDeviceRequestDto, Device>()
-				.ForMember( m => m.Key, o => o.Ignore() )
+				.ForMember( m => m.Id, o => o.Ignore() )
 				.ForMember( m => m.DataSource, o => o.Ignore() )
 				.ForMember( m => m.State, o => o.Ignore() )
 				.ForMember( m => m.Hardware, o => o.MapFrom( src => new Hardware()
@@ -21,7 +21,7 @@ namespace Smarthome.Api.Configuration
 				} ) );
 
 			CreateMap<UpdateDeviceRequestDto, Device>()
-				.ForMember( m => m.Key, o => o.Ignore() )
+				.ForMember( m => m.Id, o => o.Ignore() )
 				.ForMember( m => m.DataSource, o => o.Ignore() )
 				.ForMember( m => m.State, o => o.Ignore() )
 				.ForMember( m => m.Hardware, o => o.MapFrom( src => new Hardware()

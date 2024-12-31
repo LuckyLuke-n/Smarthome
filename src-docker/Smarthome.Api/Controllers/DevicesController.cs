@@ -33,7 +33,7 @@ namespace Smarthome.Api.Controllers
 			var response = await DeviceRepository.CreateAsync( device, cancellationToken );
 
 			if ( response.IsSuccess )
-				return CreatedAtAction( nameof( GetDevice ), new { id = response.ValueSuccess!.Key } );
+				return CreatedAtAction( nameof( GetDevice ), new { id = response.ValueSuccess!.Id }, response.ValueSuccess );
 			else
 			{
 				var failedResponse = response.ValueFail;
@@ -104,7 +104,7 @@ namespace Smarthome.Api.Controllers
 		public async Task<IActionResult> UpdateDevice( [FromRoute] Guid id, [FromBody] CreateDeviceRequestDto dto, CancellationToken cancellationToken )
 		{
 			var device = Mapper.Map<Device>( dto );
-			device.Key = id.ToString();
+			device.Id = id.ToString();
 
 			var response = await DeviceRepository.UpdateAsync( device, cancellationToken );
 

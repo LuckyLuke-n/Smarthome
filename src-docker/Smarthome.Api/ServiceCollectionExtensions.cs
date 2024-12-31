@@ -1,4 +1,5 @@
-﻿using Smarthome.Api.Repositories;
+﻿using MongoDB.Driver;
+using Smarthome.Api.Repositories;
 
 namespace Smarthome.Api
 {
@@ -6,6 +7,12 @@ namespace Smarthome.Api
 	{
 		public static IServiceCollection AddMyServices( this IServiceCollection services, IConfiguration configuration )
 		{
+			services.AddSingleton<IMongoClient, MongoClient>( sp =>
+			{
+				var settings = MongoClientSettings.FromConnectionString( Environment.GetEnvironmentVariable( "SMARTHOME_MongoDb_ConnectionString" ) );
+				return new MongoClient( settings );
+			} );
+
 			services.AddRepositoryServices( configuration );
 
 
