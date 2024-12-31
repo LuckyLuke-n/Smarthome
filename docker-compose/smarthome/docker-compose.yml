@@ -49,13 +49,15 @@ services:
   mongodb:
     image: mongo:7
     container_name: mongodb
+    restart: always
     ports:
       - "27017:27017"
     volumes:
       - mongodb:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: public
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=public
+      - MONGO_INITDB_DATABASE=smarthome
 
 networks:
   smarthome:

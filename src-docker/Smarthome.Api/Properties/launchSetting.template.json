@@ -11,7 +11,8 @@
     "https": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SMARTHOME_MongoDb_ConnectionString": "mongodb://user:pw@localhost:27017"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7073;http://localhost:5214"

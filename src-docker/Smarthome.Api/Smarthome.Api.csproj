@@ -10,8 +10,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Properties\launchSetting.template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\launchSetting.template.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src-dotnet\Smarthome.Core\Smarthome.Core.csproj" />
   </ItemGroup>
 
 </Project>
