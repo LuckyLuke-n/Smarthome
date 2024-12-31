@@ -1,4 +1,5 @@
-﻿using LSoftware.Communication.Mqtt.Configuration;
+﻿using LSoftware.Communication.Abstractions.MessageBus;
+using LSoftware.Communication.Mqtt.Configuration;
 using LSoftware.Communication.Mqtt.Handler;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,7 @@ namespace LSoftware.Communication.Mqtt
 			services.AddTransient<Func<MqttClientHandler>>( serviceProvider =>
 				() => serviceProvider.GetService<MqttClientHandler>() );
 
-			services.AddSingleton<IMqttConnectionHandler, MqttConnectionHandler>();
+			services.AddSingleton<IConnectionHandler, MqttConnectionHandler>();
 
 			return services;
 		}

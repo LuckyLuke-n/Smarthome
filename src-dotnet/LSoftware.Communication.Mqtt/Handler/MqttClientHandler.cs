@@ -1,6 +1,7 @@
 ﻿using LSoftware.Communication.Abstractions.MessageBus;
 using LSoftware.Communication.Mqtt.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Formatter;
 
@@ -22,11 +23,10 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 		private int _usageCount;
 		private bool _disposedValue;
-		private bool disposedValue;
 
-		public MqttClientHandler( MqttConfiguration config, ILogger<MqttClientHandler> logger )
+		public MqttClientHandler( IOptions<MqttConfiguration> mqttOptions, ILogger<MqttClientHandler> logger )
 		{
-			MqttConfiguration = config;
+			MqttConfiguration = mqttOptions.Value;
 			Logger = logger;
 
 			MqttFactory = new MqttClientFactory();

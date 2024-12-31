@@ -1,14 +1,11 @@
-﻿using LSoftware.Communication.Abstractions.MessageBus;
-using MQTTnet;
-
-namespace LSoftware.Communication.Mqtt.Handler
+﻿namespace LSoftware.Communication.Abstractions.MessageBus
 {
-	internal interface IMqttConnectionHandler : IDisposable
+	public interface IConnectionHandler : IDisposable
 	{
 		/// <summary>
-		/// Creates a new mqtt client or returns the existing one for that connection.
+		/// Creates a new subscriber or returns the existing one for that connection.
 		/// </summary>
-		/// <returns>Returns the <see cref="MqttClient"/>.</returns>
+		/// <returns>Returns the <see cref="ISubscriber"/>.</returns>
 		Task<ISubscriber> GetSubscriber( string topic, CancellationToken cancellationToken = default );
 		/// <summary>
 		/// Disposes the actual client when all instances are stopped.

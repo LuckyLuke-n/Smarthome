@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using LSoftware.Communication.Mqtt;
+using MongoDB.Driver;
 using Smarthome.Api.Repositories;
 using Smarthome.Api.Repositories.Devices.Mongo;
 
@@ -15,6 +16,7 @@ namespace Smarthome.Api
 			} );
 
 			services.AddRepositoryServices( configuration );
+			services.AddMqttCommunication( configuration );
 
 
 			return services;

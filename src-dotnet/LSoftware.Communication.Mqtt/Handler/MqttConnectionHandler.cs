@@ -6,7 +6,7 @@ using System.Collections.Concurrent;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
-	internal class MqttConnectionHandler : IMqttConnectionHandler
+	internal class MqttConnectionHandler : IConnectionHandler
 	{
 		private bool disposedValue;
 
@@ -36,6 +36,8 @@ namespace LSoftware.Communication.Mqtt.Handler
 					return client;
 				}
 			}
+
+			cancellationToken.ThrowIfCancellationRequested();
 
 			var newClient = ClientFactory();
 			await newClient.ConnectAsync().ConfigureAwait( false );
