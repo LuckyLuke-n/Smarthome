@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "Smarthome.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SMARTHOME_MongoDb__ConnectionString": "mongodb://admin:public@localhost:27017"
+      },
+      "applicationUrl": "https://localhost:29983;http://localhost:29984"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORTS": "8081",
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "SMARTHOME_MongoDb__ConnectionString": "mongodb://admin:public@localhost:27017"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}
