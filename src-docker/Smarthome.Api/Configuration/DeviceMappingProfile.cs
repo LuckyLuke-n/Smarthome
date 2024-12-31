@@ -13,7 +13,6 @@ namespace Smarthome.Api.Configuration
 			CreateMap<CreateDeviceRequestDto, Device>()
 				.ForMember( m => m.Id, o => o.Ignore() )
 				.ForMember( m => m.DataSource, o => o.Ignore() )
-				.ForMember( m => m.State, o => o.Ignore() )
 				.ForMember( m => m.Hardware, o => o.MapFrom( src => new Hardware()
 				{
 					Model = src.Model,
@@ -23,7 +22,6 @@ namespace Smarthome.Api.Configuration
 			CreateMap<UpdateDeviceRequestDto, Device>()
 				.ForMember( m => m.Id, o => o.Ignore() )
 				.ForMember( m => m.DataSource, o => o.Ignore() )
-				.ForMember( m => m.State, o => o.Ignore() )
 				.ForMember( m => m.Hardware, o => o.MapFrom( src => new Hardware()
 				{
 					Model = src.Model,

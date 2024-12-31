@@ -16,6 +16,10 @@ namespace Smarthome.Core.Models
 		public HardwareType Type { get; set; }
 
 		[Required]
+		[EnumDataType( typeof( State ) )]
+		public State State { get; set; }
+
+		[Required]
 		[StringLength( maximumLength: 100, MinimumLength = 3, ErrorMessage = "Location name must have between 3 and 100 characters." )]
 		public string Location { get; set; } = string.Empty;
 	}

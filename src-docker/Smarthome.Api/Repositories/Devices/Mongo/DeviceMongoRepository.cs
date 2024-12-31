@@ -153,7 +153,8 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 			var update = Builders<Device>.Update
 				.Set( d => d.Hostname, device.Hostname )
 				.Set( d => d.Hardware, device.Hardware )
-				.Set( d => d.Location, device.Location );
+				.Set( d => d.Location, device.Location )
+				.Set( d => d.State, device.State );
 
 			try
 			{
