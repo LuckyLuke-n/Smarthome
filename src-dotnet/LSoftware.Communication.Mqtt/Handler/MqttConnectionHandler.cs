@@ -42,6 +42,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 			var newClient = ClientFactory();
 			await newClient.ConnectAsync().ConfigureAwait( false );
 			await newClient.SubscribeAsync( topic ).ConfigureAwait( false );
+			newClient.IncreaseCount();
 
 			lock ( Lock )
 				Clients.TryAdd( topic, newClient );

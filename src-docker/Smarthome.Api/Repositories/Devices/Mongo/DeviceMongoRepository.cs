@@ -54,27 +54,14 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 			return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateSuccess( device );
 		}
 
-		public async Task<RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>> ReadAllAsync( CancellationToken cancellationToken = default )
-		{
-			if ( Collection is null )
-				return RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "No connection to the mongo collection." } );
+		public async Task<RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>> ReadAllAsync( CancellationToken cancellationToken = default ) => await ReadMultipleAsync( FilterDefinition<Device>.Empty, cancellationToken ).ConfigureAwait( false );
 
-			try
-			{
-				var cursor = await Collection.FindAsync<Device>( FilterDefinition<Device>.Empty, null, cancellationToken ).ConfigureAwait( false );
-				var devices = await cursor.ToListAsync( cancellationToken ).ConfigureAwait( false );
-				return RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>.CreateSuccess( devices );
-			}
-			catch ( Exception ex )
-			{
-				Logger.LogCritical( ex, "Error reading from mongo." );
-				DeviceRepositoryFailResponse fail = new()
-				{
-					StatusCode = HttpStatusCode.InternalServerError,
-					Message = ex.Message,
-				};
-				return RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>.CreateFail( fail );
-			}
+		public async Task<RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>> ReadReadyAndSendingAsync( CancellationToken cancellationToken = default )
+		{
+			var filter = Builders<Device>.Filter
+				.In( d => d.State, [ State.Ready, State.Sending ] );
+
+			return await ReadMultipleAsync( filter, cancellationToken ).ConfigureAwait( false );
 		}
 
 		public async Task<RepositoryResponse<DeviceRepositoryFailResponse>> DeleteAsync( Guid id, CancellationToken cancellationToken = default )
@@ -88,7 +75,7 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 			try
 			{
 				var device = await Collection.FindOneAndDeleteAsync<Device>( filter, null, cancellationToken ).ConfigureAwait( false );
-				
+
 				if ( device is not null )
 				{
 					DeviceRepositoryFailResponse fail = new() { StatusCode = HttpStatusCode.NotFound, Message = "Document cannot be delted. Document not found." };
@@ -177,6 +164,29 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 					Message = ex.Message,
 				};
 				return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateFail( fail );
+			}
+		}
+
+		private async Task<RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>> ReadMultipleAsync( FilterDefinition<Device> filter, CancellationToken cancellationToken = default )
+		{
+			if ( Collection is null )
+				return RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "No connection to the mongo collection." } );
+
+			try
+			{
+				var cursor = await Collection.FindAsync<Device>( filter, null, cancellationToken ).ConfigureAwait( false );
+				var devices = await cursor.ToListAsync( cancellationToken ).ConfigureAwait( false );
+				return RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>.CreateSuccess( devices );
+			}
+			catch ( Exception ex )
+			{
+				Logger.LogCritical( ex, "Error reading from mongo." );
+				DeviceRepositoryFailResponse fail = new()
+				{
+					StatusCode = HttpStatusCode.InternalServerError,
+					Message = ex.Message,
+				};
+				return RepositoryResponse<IEnumerable<Device>, DeviceRepositoryFailResponse>.CreateFail( fail );
 			}
 		}
 	}

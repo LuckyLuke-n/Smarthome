@@ -10,7 +10,7 @@ namespace Smarthome.Api.Repositories
 			services.Configure<MongoDbConfiguration>( configuration.GetSection( MongoDbConfiguration.Section ) );
 
 			// services.AddTransient<IMyService, MyService>();
-			services.AddScoped<IDeviceRepository, DeviceMongoRepository>();
+			services.AddSingleton<IDeviceRepository, DeviceMongoRepository>();
 
 			return services;
 		}
