@@ -20,7 +20,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 		private MqttClientFactory MqttFactory { get; }
 		private CancellationTokenSource CancellationTokenSource { get; } = new();
 
-		private Action<string>? MessageReceived { get; set; }
+		private Action<string, string>? MessageReceived { get; set; }
 
 		private int _usageCount;
 		private bool _disposedValue;
@@ -72,7 +72,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 				IsConnected = true;
 		}
 
-		public void RegisterCallback( Action<string> callback ) => MessageReceived = callback;
+		public void RegisterCallback( Action<string, string> callback ) => MessageReceived = callback;
 
 		internal async Task SubscribeAsync( string topic )
 		{
@@ -118,7 +118,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 			foreach ( var segment in payload )
 				sb.Append( Encoding.UTF8.GetString( segment.Span ) );
 
-			MessageReceived?.Invoke( sb.ToString() );
+			MessageReceived?.Invoke( Topic, sb.ToString() );
 		}
 
 		/// <summary>
@@ -143,14 +143,14 @@ namespace LSoftware.Communication.Mqtt.Handler
 			{
 				if ( disposing )
 				{
-					CancellationTokenSource.Cancel();
-
 					if ( MqttClient is not null )
 					{
 						MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
 						MqttClient.UnsubscribeAsync( Topic, CancellationTokenSource.Token ).GetAwaiter().GetResult();
 						MqttClient.DisconnectAsync();
 					}
+
+					CancellationTokenSource.Cancel();
 				}
 
 				_disposedValue = true;
