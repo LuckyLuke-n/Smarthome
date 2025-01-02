@@ -47,7 +47,7 @@ else
 }
 
 # build the container
-docker build --platform=linux/arm64 -t luckyluke4411/pantrymanagerwebapi:$fullVersionString -f src-docker\Smarthome.Api\Dockerfile .
+docker build --platform=linux/arm64 -t luckyluke4411/smarthomeapi:$fullVersionString -f src-docker\Smarthome.Api\Dockerfile .
 
 # push if requested
 if ( $pushToDockerHub -eq "y" )
