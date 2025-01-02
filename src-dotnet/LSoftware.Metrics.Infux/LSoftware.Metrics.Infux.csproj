@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="MQTTnet" Version="5.0.0.1405" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LSoftware.Communication.Abstractions\LSoftware.Communication.Abstractions.csproj" />
+    <ProjectReference Include="..\LSoftware.Metrics.Abstractions\LSoftware.Metrics.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

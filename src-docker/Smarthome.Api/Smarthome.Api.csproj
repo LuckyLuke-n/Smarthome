@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Abstractions\LSoftware.Communication.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Extensions\LSoftware.Communication.Extensions.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj" />
     <ProjectReference Include="..\..\src-dotnet\Smarthome.Core\Smarthome.Core.csproj" />
   </ItemGroup>

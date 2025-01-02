@@ -1,4 +1,4 @@
-﻿using LSoftware.Communication.Mqtt;
+﻿using LSoftware.Communication.Extensions;
 using MongoDB.Driver;
 using Smarthome.Api.Repositories;
 using Smarthome.Api.Repositories.Devices.Mongo;

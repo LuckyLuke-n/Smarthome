@@ -20,6 +20,7 @@ services:
   influxdb:
     image: influxdb:2
     container_name: influxdb-smarthome
+    restart: always
     ports:
       - "8087:8086"
     volumes:

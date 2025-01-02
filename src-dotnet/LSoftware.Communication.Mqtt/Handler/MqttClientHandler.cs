@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
-	internal class MqttClientHandler : ISubscriber, IDisposable
+	public class MqttClientHandler : ISubscriber, IDisposable
 	{
 		public IMqttClient? MqttClient { get; set; }
 		public string Topic { get; private set; } = string.Empty;
