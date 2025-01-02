@@ -10,7 +10,9 @@
         "SMARTHOME_Mqtt__Port": "1883",
         "SMARTHOME_Mqtt__Username": "admin",
         "SMARTHOME_Mqtt__Password": "public",
-        "SMARTHOME_Mqtt__UseTls": " false"
+        "SMARTHOME_Mqtt__UseTls": "false",
+        "SMARTHOME_InfluxDb__Url": "http://localhost:8087?Org=LOCAL&Bucket=Smarthome",
+        "SMARTHOME_InfluxDb__Token": "oUPNc7U5rbyEm1a-XAuCesS6M7bw246kK12s-8YOiFeneMmltMbmb6j84OW35BFd1roaBon54eL5rMrXnn9LQg=="
       },
       "applicationUrl": "https://localhost:29983;http://localhost:29984"
     },
@@ -25,7 +27,9 @@
         "SMARTHOME_Mqtt__Port": "1883",
         "SMARTHOME_Mqtt__Username": "admin",
         "SMARTHOME_Mqtt__Password": "public",
-        "SMARTHOME_Mqtt__UseTls": " false"
+        "SMARTHOME_Mqtt__UseTls": "false",
+        "SMARTHOME_InfluxDb__Url": "http://localhost:8087?Org=LOCAL&Bucket=Smarthome",
+        "SMARTHOME_InfluxDb__Token": "oUPNc7U5rbyEm1a-XAuCesS6M7bw246kK12s-8YOiFeneMmltMbmb6j84OW35BFd1roaBon54eL5rMrXnn9LQg=="
       },
       "publishAllPorts": true,
       "useSSL": true

@@ -1,4 +1,7 @@
-﻿using LSoftware.Communication.Extensions;
+﻿using InfluxDB.Client;
+using LSoftware.Communication.Extensions;
+using LSoftware.Metrics.Extensions;
+using LSoftware.Metrics.Infux.Configuration;
 using MongoDB.Driver;
 using Smarthome.Api.Repositories;
 using Smarthome.Api.Repositories.Devices.Mongo;
@@ -15,8 +18,17 @@ namespace Smarthome.Api
 				return new MongoClient( settings );
 			} );
 
+			services.AddSingleton<InfluxDBClient>( sp =>
+			{
+				var url = Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar );
+				var token = Environment.GetEnvironmentVariable( InfluxDbConfiguration.TokenEnvVar );
+
+				return new( url, token );
+			} );
+
 			services.AddRepositoryServices( configuration );
 			services.AddMqttCommunication( configuration );
+			services.AddMetricsLogging( configuration );
 
 
 			return services;
