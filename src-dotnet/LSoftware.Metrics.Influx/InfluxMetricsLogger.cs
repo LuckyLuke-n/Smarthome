@@ -1,11 +1,11 @@
 ﻿using InfluxDB.Client;
 using InfluxDB.Client.Writes;
 using LSoftware.Metrics.Abstractions;
-using LSoftware.Metrics.Infux.Configuration;
+using LSoftware.Metrics.Influx.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace LSoftware.Metrics.Infux
+namespace LSoftware.Metrics.Influx
 {
 	public class InfluxMetricsLogger<T> : IMetricsLogger<T> where T : IMetricsObject
 	{

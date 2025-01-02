@@ -1,7 +1,7 @@
 ﻿using InfluxDB.Client;
 using LSoftware.Communication.Extensions;
 using LSoftware.Metrics.Extensions;
-using LSoftware.Metrics.Infux.Configuration;
+using LSoftware.Metrics.Influx.Configuration;
 using MongoDB.Driver;
 using Smarthome.Api.Repositories;
 using Smarthome.Api.Repositories.Devices.Mongo;

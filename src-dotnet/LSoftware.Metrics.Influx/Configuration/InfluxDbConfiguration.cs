@@ -1,4 +1,4 @@
-﻿namespace LSoftware.Metrics.Infux.Configuration
+﻿namespace LSoftware.Metrics.Influx.Configuration
 {
 	public class InfluxDbConfiguration
 	{

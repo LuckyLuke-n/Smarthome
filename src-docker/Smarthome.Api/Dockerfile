@@ -13,6 +13,14 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src-docker/Smarthome.Api/Smarthome.Api.csproj", "src-docker/Smarthome.Api/"]
+COPY ["src-dotnet/Smarthome.Core/Smarthome.Core.csproj", "src-dotnet/Smarthome.Core/"]
+COPY ["src-dotnet/LSoftware.Communication.Abstractions/LSoftware.Communication.Abstractions.csproj", "src-dotnet/LSoftware.Communication.Abstractions/"]
+COPY ["src-dotnet/LSoftware.Communication.Extensions/LSoftware.Communication.Extensions.csproj", "src-dotnet/LSoftware.Communication.Extensions/"]
+COPY ["src-dotnet/LSoftware.Communication.Mqtt/LSoftware.Communication.Mqtt.csproj", "src-dotnet/LSoftware.Communication.Mqtt/"]
+COPY ["src-dotnet/LSoftware.Metrics.Abstractions/LSoftware.Metrics.Abstractions.csproj", "src-dotnet/LSoftware.Metrics.Abstractions/"]
+COPY ["src-dotnet/LSoftware.Metrics.Extensions/LSoftware.Metrics.Extensions.csproj", "src-dotnet/LSoftware.Metrics.Extensions/"]
+COPY ["src-dotnet/LSoftware.Metrics.Influx/LSoftware.Metrics.Influx.csproj", "src-dotnet/LSoftware.Metrics.Influx/"]
+
 RUN dotnet restore "./src-docker/Smarthome.Api/Smarthome.Api.csproj"
 COPY . .
 WORKDIR "/src/src-docker/Smarthome.Api"

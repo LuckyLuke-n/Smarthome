@@ -23,7 +23,6 @@
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Extensions\LSoftware.Communication.Extensions.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Metrics.Extensions\LSoftware.Metrics.Extensions.csproj" />
-    <ProjectReference Include="..\..\src-dotnet\LSoftware.Metrics.Infux\LSoftware.Metrics.Infux.csproj" />
     <ProjectReference Include="..\..\src-dotnet\Smarthome.Core\Smarthome.Core.csproj" />
   </ItemGroup>
 
