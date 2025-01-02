@@ -1,6 +1,9 @@
 ﻿using InfluxDB.Client;
+using InfluxDB.Client.Writes;
 using LSoftware.Metrics.Abstractions;
+using LSoftware.Metrics.Infux.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace LSoftware.Metrics.Infux
 {
@@ -11,18 +14,28 @@ namespace LSoftware.Metrics.Infux
 		private InfluxDBClient Client { get; }
 		private ILogger<InfluxMetricsLogger<T>> Logger { get; }
 
-		public InfluxMetricsLogger( InfluxDBClient client, ILogger<InfluxMetricsLogger<T>> logger )
+		private int BufferSize { get; }
+		private Queue<PointData> WriteBuffer { get; } = [];
+
+		public InfluxMetricsLogger( InfluxDBClient client, ILogger<InfluxMetricsLogger<T>> logger, IOptions<InfluxDbConfiguration> influxOptions )
 		{
 			Client = client;
 			Logger = logger;
+			BufferSize = influxOptions.Value.CacheSize;
 		}
 
 		public void Send( T data )
 		{
+			WriteBuffer.Enqueue( data.ToInfluxDbDataPoint() );
+
+			if ( WriteBuffer.Count < BufferSize )
+				return;
+
 			try
 			{
 				using var writeApi = Client.GetWriteApi();
-				writeApi.WritePoint( data.ToInfluxDbDataPoint() );
+				writeApi.WritePoints( WriteBuffer.ToArray() );
+				WriteBuffer.Clear();
 			}
 			catch ( Exception ex )
 			{
