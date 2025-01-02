@@ -1,6 +1,6 @@
 ﻿using LSoftware.Metrics.Abstractions;
-using LSoftware.Metrics.Infux;
-using LSoftware.Metrics.Infux.Configuration;
+using LSoftware.Metrics.InfluxDb;
+using LSoftware.Metrics.InfluxDb.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

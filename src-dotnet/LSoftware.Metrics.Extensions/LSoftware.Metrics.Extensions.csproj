@@ -1,20 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
-	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
-	<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0">
+	  <TreatAsUsed>true</TreatAsUsed>
+	</PackageReference>
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0">
+	  <TreatAsUsed>true</TreatAsUsed>
+	</PackageReference>
+	<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0">
+	  <TreatAsUsed>true</TreatAsUsed>
+	</PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LSoftware.Metrics.Abstractions\LSoftware.Metrics.Abstractions.csproj" />
-    <ProjectReference Include="..\LSoftware.Metrics.Infux\LSoftware.Metrics.Infux.csproj" />
+    <ProjectReference Include="..\LSoftware.Metrics.InfluxDb\LSoftware.Metrics.InfluxDb.csproj" />
   </ItemGroup>
 
 </Project>
