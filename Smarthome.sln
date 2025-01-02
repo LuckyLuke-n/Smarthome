@@ -17,11 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metrics", "Metrics", "{DB37
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.Abstractions", "src-dotnet\LSoftware.Metrics.Abstractions\LSoftware.Metrics.Abstractions.csproj", "{C01A32C9-53EB-4682-B3E0-1BFEC5902322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.Influx", "src-dotnet\LSoftware.Metrics.Influx\LSoftware.Metrics.Influx.csproj", "{7EF7574B-B160-4E9A-95FC-F460FAEB1503}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.Extensions", "src-dotnet\LSoftware.Metrics.Extensions\LSoftware.Metrics.Extensions.csproj", "{E133078E-C4E1-4807-B4BE-E2BF3F890513}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Extensions", "src-dotnet\LSoftware.Communication.Extensions\LSoftware.Communication.Extensions.csproj", "{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.InfluxDb", "src-dotnet\LSoftware.Metrics.InfluxDb\LSoftware.Metrics.InfluxDb.csproj", "{EE4E8161-4F4C-4B4A-83BC-559C7692287F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,6 @@ Global
 		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EF7574B-B160-4E9A-95FC-F460FAEB1503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EF7574B-B160-4E9A-95FC-F460FAEB1503}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EF7574B-B160-4E9A-95FC-F460FAEB1503}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EF7574B-B160-4E9A-95FC-F460FAEB1503}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,6 +57,10 @@ Global
 		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,8 +69,8 @@ Global
 		{D096A01B-49D0-4AD6-9D79-58C648E32C17} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
 		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
 		{C01A32C9-53EB-4682-B3E0-1BFEC5902322} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
-		{7EF7574B-B160-4E9A-95FC-F460FAEB1503} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
 		{E133078E-C4E1-4807-B4BE-E2BF3F890513} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
 		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
 	EndGlobalSection
 EndGlobal

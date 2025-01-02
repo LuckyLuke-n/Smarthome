@@ -19,7 +19,7 @@ COPY ["src-dotnet/LSoftware.Communication.Extensions/LSoftware.Communication.Ext
 COPY ["src-dotnet/LSoftware.Communication.Mqtt/LSoftware.Communication.Mqtt.csproj", "src-dotnet/LSoftware.Communication.Mqtt/"]
 COPY ["src-dotnet/LSoftware.Metrics.Abstractions/LSoftware.Metrics.Abstractions.csproj", "src-dotnet/LSoftware.Metrics.Abstractions/"]
 COPY ["src-dotnet/LSoftware.Metrics.Extensions/LSoftware.Metrics.Extensions.csproj", "src-dotnet/LSoftware.Metrics.Extensions/"]
-COPY ["src-dotnet/LSoftware.Metrics.Influx/LSoftware.Metrics.Influx.csproj", "src-dotnet/LSoftware.Metrics.Influx/"]
+COPY ["src-dotnet/LSoftware.Metrics.InfluxDb/LSoftware.Metrics.InfluxDb.csproj", "src-dotnet/LSoftware.Metrics.InfluxDb/"]
 
 RUN dotnet restore "./src-docker/Smarthome.Api/Smarthome.Api.csproj"
 COPY . .
