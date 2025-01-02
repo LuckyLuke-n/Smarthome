@@ -1,7 +1,11 @@
 ﻿using LSoftware.Communication.Abstractions.MessageBus;
+using LSoftware.Metrics.Abstractions;
+using Smarthome.Api.Monitoring.MessageBus.Helpers;
 using Smarthome.Api.Repositories.Devices;
+using Smarthome.Core.DomainObjects;
 using System.Collections.Concurrent;
 using System.Text.Json;
+using System.Threading.Tasks.Dataflow;
 
 namespace Smarthome.Api.Monitoring.MessageBus
 {
@@ -9,16 +13,24 @@ namespace Smarthome.Api.Monitoring.MessageBus
 	{
 		private IConnectionHandler ConnectionHandler { get; }
 		private IDeviceRepository DeviceRepository { get; }
+		private IMetricsLogger<EnvironmentSensorData> SensorDataLogger { get; }
 		private ILogger<DeviceMonitor> Logger { get; }
+
+		private BufferBlock<PayloadContainer> MetricsBuffer { get; } = new();
+		private ConcurrentDictionary<string, DeviceCacheItem> DevicesCache { get; } = [];
 
 		private CancellationTokenSource CancellationTokenSource { get; } = new();
 		private Timer DevicesTimer { get; }
 		private ConcurrentDictionary<string, ISubscriber> Sources { get; } = [];
 
-		public DeviceMonitor( IConnectionHandler connectionHandler, IDeviceRepository deviceRepository, ILogger<DeviceMonitor> logger )
+		public DeviceMonitor( IConnectionHandler connectionHandler,
+			IDeviceRepository deviceRepository,
+			IMetricsLogger<EnvironmentSensorData> payloadLogger,
+			ILogger<DeviceMonitor> logger )
 		{
 			ConnectionHandler = connectionHandler;
 			DeviceRepository = deviceRepository;
+			SensorDataLogger = payloadLogger;
 			Logger = logger;
 			DevicesTimer = new( CrawlDeviceRepositoryAsync, null, int.MaxValue, int.MaxValue );
 		}
@@ -26,7 +38,42 @@ namespace Smarthome.Api.Monitoring.MessageBus
 		public async Task StartAsync( CancellationToken cancellationToken )
 		{
 			DevicesTimer.Change( TimeSpan.FromSeconds( 1 ), TimeSpan.FromSeconds( 30 ) );
-			await Task.CompletedTask.ConfigureAwait( false );
+			await Task.Run( WorkOnMetricsBufferAsync, cancellationToken ).ConfigureAwait( false );
+		}
+
+		private async void WorkOnMetricsBufferAsync()
+		{
+			while ( !CancellationTokenSource.IsCancellationRequested )
+			{
+				try
+				{				
+					var container = await MetricsBuffer.ReceiveAsync( CancellationTokenSource.Token ).ConfigureAwait( false );
+					if ( DevicesCache.TryGetValue( container.Topic, out var cacheItem ) && !cacheItem.IsExpired )
+					{
+						EnvironmentSensorData data = new( container.Payload, cacheItem.Value );
+						SensorDataLogger.Send( data );
+					}
+					else
+					{
+						var response = await DeviceRepository.ReadAsync( Device.DateSourceToHostname( container.Topic ), Device.DataSourceToHardwareType( container.Topic ), CancellationTokenSource.Token );
+
+						if ( !response.IsSuccess )
+						{
+							Logger.LogWarning( "Cannot retrieve device with {Topic} from repository.", container.Topic );
+							continue;
+						}
+
+						DeviceCacheItem newItem = new( response.ValueSuccess! );
+						DevicesCache.AddOrUpdate( container.Topic, newItem, ( key, value ) => newItem );
+						EnvironmentSensorData data = new( container.Payload, newItem.Value );
+						SensorDataLogger.Send( data );
+					}
+				}
+				catch ( Exception ex )
+				{
+					Logger.LogInformation( ex, "MetricsBuffer was cancelled." );
+				}
+			}
 		}
 
 		private async void CrawlDeviceRepositoryAsync( object? state )
@@ -44,14 +91,14 @@ namespace Smarthome.Api.Monitoring.MessageBus
 
 			var devices = response.ValueSuccess!;
 
-			foreach ( var device in devices )
+			foreach ( var datasource in devices.Select( d => d.DataSource ) )
 			{
-				if ( !Sources.ContainsKey( device.DataSource ) )
+				if ( !Sources.ContainsKey( datasource ) )
 				{
-					var subscriber = await ConnectionHandler.GetSubscriber( device.DataSource, CancellationTokenSource.Token ).ConfigureAwait( false );
+					var subscriber = await ConnectionHandler.GetSubscriber( datasource, CancellationTokenSource.Token ).ConfigureAwait( false );
 					subscriber.RegisterCallback( Received );
 
-					Sources.TryAdd( device.DataSource, subscriber );
+					Sources.TryAdd( datasource, subscriber );
 				}
 			}
 
@@ -63,8 +110,28 @@ namespace Smarthome.Api.Monitoring.MessageBus
 
 		private void Received( string topic, string data )
 		{
-			var top = topic;
-			var payload = JsonSerializer.Deserialize<Payload>( data );
+			try
+			{
+				var payload = JsonSerializer.Deserialize<Payload>( data );
+
+				if ( payload is null )
+				{
+					Logger.LogWarning( "Deserializing payload for {Topic} returned null.", topic );
+					return;
+				}
+
+				PayloadContainer container = new()
+				{
+					Topic = topic,
+					Payload = payload,
+				};
+
+				MetricsBuffer.Post( container );
+			}
+			catch ( JsonException ex )
+			{
+				Logger.LogWarning( ex, "Could not deserialize for {Topic}", topic );
+			}
 		}
 
 		public async Task StopAsync( CancellationToken cancellationToken )

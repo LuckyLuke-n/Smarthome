@@ -129,6 +129,40 @@ namespace Smarthome.Api.Repositories.Devices.Mongo
 			}
 		}
 
+		public async Task<RepositoryResponse<Device, DeviceRepositoryFailResponse>> ReadAsync( string hostname, HardwareType type, CancellationToken cancellationToken = default )
+		{
+			if ( Collection is null )
+				return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "No connection to the mongo collection." } );
+
+			var filter = Builders<Device>.Filter.And(
+				Builders<Device>.Filter.Eq( d => d.Hostname, hostname.ToLower() ),
+				Builders<Device>.Filter.Eq( d => d.Hardware.Type, type ) );
+
+			try
+			{
+				var cursor = await Collection.FindAsync<Device>( filter, null, cancellationToken ).ConfigureAwait( false );
+				var devices = await cursor.ToListAsync( cancellationToken ).ConfigureAwait( false );
+
+				if ( devices.Count == 0 )
+				{
+					DeviceRepositoryFailResponse fail = new() { StatusCode = HttpStatusCode.NotFound, Message = "Document cannot be delted. Document not found." };
+					return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateFail( fail );
+				}
+
+				return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateSuccess( devices[ 0 ] );
+			}
+			catch ( Exception ex )
+			{
+				Logger.LogCritical( ex, "Error reading from mongo." );
+				DeviceRepositoryFailResponse fail = new()
+				{
+					StatusCode = HttpStatusCode.InternalServerError,
+					Message = ex.Message,
+				};
+				return RepositoryResponse<Device, DeviceRepositoryFailResponse>.CreateFail( fail );
+			}
+		}
+
 		public async Task<RepositoryResponse<Device, DeviceRepositoryFailResponse>> UpdateAsync( Device device, CancellationToken cancellationToken = default )
 		{
 			if ( Collection is null )

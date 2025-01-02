@@ -6,7 +6,7 @@ using System.Collections.Concurrent;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
-	internal class MqttConnectionHandler : IConnectionHandler
+	public class MqttConnectionHandler : IConnectionHandler
 	{
 		private bool disposedValue;
 

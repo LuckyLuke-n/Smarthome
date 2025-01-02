@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Smarthome.Core.DomainObjects
 {
@@ -17,7 +16,16 @@ namespace Smarthome.Core.DomainObjects
 		public void SetAsNew()
 		{
 			Id = Guid.NewGuid().ToString();
-			////DataSource = $"{Hostname}/{Hardware.Type}".ToLower();
+		}
+
+		public static string DateSourceToHostname( string dataSource ) => dataSource.Split( '/' )[ 0 ];
+
+		public static HardwareType DataSourceToHardwareType( string dataSource )
+		{
+			if ( Enum.TryParse<HardwareType>( dataSource.Split( '/' )[ 1 ], true, out var value ) )
+				return value;
+			else
+				return HardwareType.Unknown;
 		}
 	}
 }
