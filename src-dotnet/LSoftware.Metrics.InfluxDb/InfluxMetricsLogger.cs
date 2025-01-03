@@ -22,6 +22,9 @@ namespace LSoftware.Metrics.InfluxDb
 			Client = client;
 			Logger = logger;
 			BufferSize = influxOptions.Value.CacheSize;
+
+			if ( !Client.PingAsync().GetAwaiter().GetResult() )
+				Logger.LogError( "No connection to the InfluxDb at {Host}", influxOptions.Value.Url );
 		}
 
 		public void Send( T data )
