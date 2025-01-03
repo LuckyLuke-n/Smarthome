@@ -14,7 +14,13 @@
         "SMARTHOME_Mqtt__UseTls": "false",
         "SMARTHOME_InfluxDb__Url": "http://localhost:8087?Org=LOCAL&Bucket=Smarthome",
         "SMARTHOME_InfluxDb__Token": "oUPNc7U5rbyEm1a-XAuCesS6M7bw246kK12s-8YOiFeneMmltMbmb6j84OW35BFd1roaBon54eL5rMrXnn9LQg==",
-        "SMARTHOME_InfluxDb__Buffer": "10"
+        "SMARTHOME_InfluxDb__Buffer": "10",
+        "SMARTHOME_WeatherApi__Endpoint": "https://api.tomorrow.io/v4/weather/realtime",
+        "SMARTHOME_WeatherApi__ApiKey": "key",
+        "SMARTHOME_WeatherApi__Latitude": "48.1375",
+        "SMARTHOME_WeatherApi__Longitude": "11.575",
+        "SMARTHOME_WeatherApi__Location": "munich germany",
+        "SMARTHOME_WeatherApi__RefreshIntervalInMinutes": "5"
       },
       "applicationUrl": "https://localhost:29983;http://localhost:29984"
     },
@@ -33,7 +39,13 @@
         "SMARTHOME_Mqtt__UseTls": "false",
         "SMARTHOME_InfluxDb__Url": "http://localhost:8087?Org=LOCAL&Bucket=Smarthome",
         "SMARTHOME_InfluxDb__Token": "oUPNc7U5rbyEm1a-XAuCesS6M7bw246kK12s-8YOiFeneMmltMbmb6j84OW35BFd1roaBon54eL5rMrXnn9LQg==",
-        "SMARTHOME_InfluxDb__Buffer": "10"
+        "SMARTHOME_InfluxDb__Buffer": "10",
+        "SMARTHOME_WeatherApi__Endpoint": "https://api.tomorrow.io/v4/weather/realtime",
+        "SMARTHOME_WeatherApi__ApiKey": "key",
+        "SMARTHOME_WeatherApi__Latitude": "48.1375",
+        "SMARTHOME_WeatherApi__Longitude": "11.575",
+        "SMARTHOME_WeatherApi__Location": "munich germany",
+        "SMARTHOME_WeatherApi__RefreshIntervalInMinutes": "5"
       },
       "publishAllPorts": true,
       "useSSL": true

@@ -3,6 +3,8 @@ using LSoftware.Communication.Extensions;
 using LSoftware.Metrics.Extensions;
 using LSoftware.Metrics.InfluxDb.Configuration;
 using MongoDB.Driver;
+using Smarthome.Api.Monitoring.MessageBus;
+using Smarthome.Api.Monitoring.WeatherData;
 using Smarthome.Api.Repositories;
 using Smarthome.Api.Repositories.Devices.Mongo;
 
@@ -27,9 +29,12 @@ namespace Smarthome.Api
 			} );
 
 			services.AddRepositoryServices( configuration );
+			services.AddWeatherRepositoryServices( configuration );
 			services.AddMqttCommunication( configuration );
 			services.AddMetricsLogging( configuration );
 
+			services.AddHostedService<DeviceMonitor>();
+			services.AddHostedService<WeatherMonitor>();
 
 			return services;
 		}
