@@ -1,11 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.Api", "src-docker\Smarthome.Api\Smarthome.Api.csproj", "{8ED210EE-128D-479A-A40E-632E5546B2F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.Core", "src-dotnet\Smarthome.Core\Smarthome.Core.csproj", "{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Abstractions", "src-dotnet\LSoftware.Communication.Abstractions\LSoftware.Communication.Abstractions.csproj", "{D096A01B-49D0-4AD6-9D79-58C648E32C17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Mqtt", "src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj", "{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metrics", "Metrics", "{DB37C53A-7E25-4FE8-AC25-E1BBC743685D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.Abstractions", "src-dotnet\LSoftware.Metrics.Abstractions\LSoftware.Metrics.Abstractions.csproj", "{C01A32C9-53EB-4682-B3E0-1BFEC5902322}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.Extensions", "src-dotnet\LSoftware.Metrics.Extensions\LSoftware.Metrics.Extensions.csproj", "{E133078E-C4E1-4807-B4BE-E2BF3F890513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Extensions", "src-dotnet\LSoftware.Communication.Extensions\LSoftware.Communication.Extensions.csproj", "{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Metrics.InfluxDb", "src-dotnet\LSoftware.Metrics.InfluxDb\LSoftware.Metrics.InfluxDb.csproj", "{EE4E8161-4F4C-4B4A-83BC-559C7692287F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +37,40 @@ Global
 		{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01A32C9-53EB-4682-B3E0-1BFEC5902322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E133078E-C4E1-4807-B4BE-E2BF3F890513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D096A01B-49D0-4AD6-9D79-58C648E32C17} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
+		{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
+		{C01A32C9-53EB-4682-B3E0-1BFEC5902322} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
+		{E133078E-C4E1-4807-B4BE-E2BF3F890513} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
+		{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912} = {17AA3A9E-703D-437C-AC95-C83CFCFC7F3D}
+		{EE4E8161-4F4C-4B4A-83BC-559C7692287F} = {DB37C53A-7E25-4FE8-AC25-E1BBC743685D}
 	EndGlobalSection
 EndGlobal
