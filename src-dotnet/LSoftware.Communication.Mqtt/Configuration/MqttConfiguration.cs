@@ -11,9 +11,9 @@
 
 		public bool TlsEnabled => bool.Parse( UseTls );
 
-		public bool IsConfigured => string.IsNullOrEmpty( Host ) ||
-			string.IsNullOrEmpty( Port ) ||
-			string.IsNullOrEmpty( Username ) ||
-			string.IsNullOrEmpty( Password );
+		public bool IsConfigured => !string.IsNullOrEmpty( Host ) ||
+			!string.IsNullOrEmpty( Port ) ||
+			!string.IsNullOrEmpty( Username ) ||
+			!string.IsNullOrEmpty( Password );
 	}
 }

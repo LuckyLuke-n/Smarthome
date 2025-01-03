@@ -2,7 +2,7 @@
 {
 	public class InfluxDbConfiguration
 	{
-		public static string Section => "InfluxDB";
+		public static string Section => "InfluxDb";
 		public string Url { get; set; } = string.Empty;
 		public string Token { get; set; } = string.Empty;
 		public string Buffer { get; set; } = string.Empty;
