@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
+using Smarthome.Api.Middleware;
 using Smarthome.Api.Monitoring.MessageBus;
 
 var builder = WebApplication.CreateBuilder( args );
@@ -37,6 +38,8 @@ builder.Services.AddSwaggerGen( options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ApiKeyMiddleware>();
+
 if ( app.Environment.IsDevelopment() )
 {
 	app.UseSwagger();
