@@ -46,6 +46,19 @@ namespace LSoftware.Metrics.InfluxDb
 			}
 		}
 
+		public void SendInstant( T data )
+		{
+			try
+			{
+				using var writeApi = Client.GetWriteApi();
+				writeApi.WritePoint( data.ToInfluxDbDataPoint() );
+			}
+			catch ( Exception ex )
+			{
+				Logger.LogWarning( ex, "Cannot write single point to influx db." );
+			}
+		}
+
 		protected virtual void Dispose( bool disposing )
 		{
 			if ( !_disposedValue )

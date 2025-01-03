@@ -1,18 +1,16 @@
 using Microsoft.OpenApi.Models;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
-using Smarthome.Api.Monitoring.MessageBus;
+using Smarthome.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder( args );
 
 // Environment varaibles into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 
-builder.Services.AddAutoMapper( typeof( DeviceMappingProfile) )
+builder.Services.AddAutoMapper( typeof( DeviceMappingProfile), typeof( WeatherReportMappingProfile ) )
 	.AddLogging( logging => logging.AddConsole() )
 	.AddMyServices( builder.Configuration );
-
-builder.Services.AddHostedService<DeviceMonitor>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -37,6 +35,8 @@ builder.Services.AddSwaggerGen( options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ApiKeyMiddleware>();
+
 if ( app.Environment.IsDevelopment() )
 {
 	app.UseSwagger();
