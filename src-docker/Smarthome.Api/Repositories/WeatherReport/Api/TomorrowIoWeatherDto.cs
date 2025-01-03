@@ -35,8 +35,8 @@
 	[Serializable]
 	public class Values
 	{
-		public float CloudBase { get; set; }
-		public float CloudCeiling { get; set; }
+		public float? CloudBase { get; set; }
+		public float? CloudCeiling { get; set; }
 		public int CloudCover { get; set; }
 		public float DewPoint { get; set; }
 		public int FreezingRainIntensity { get; set; }
@@ -54,7 +54,7 @@
 		public int UvIndex { get; set; }
 		public int Visibility { get; set; }
 		public int WeatherCode { get; set; }
-		public float WindDirection { get; set; }
+		public float? WindDirection { get; set; }
 		public float WindGust { get; set; }
 		public float WindSpeed { get; set; }
 	}
