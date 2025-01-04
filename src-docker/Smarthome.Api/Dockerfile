@@ -19,6 +19,9 @@ COPY ["src-dotnet/LSoftware.Communication.Abstractions/LSoftware.Communication.A
 COPY ["src-dotnet/LSoftware.Metrics.Abstractions/LSoftware.Metrics.Abstractions.csproj", "src-dotnet/LSoftware.Metrics.Abstractions/"]
 COPY ["src-dotnet/LSoftware.Metrics.Extensions/LSoftware.Metrics.Extensions.csproj", "src-dotnet/LSoftware.Metrics.Extensions/"]
 COPY ["src-dotnet/LSoftware.Metrics.InfluxDb/LSoftware.Metrics.InfluxDb.csproj", "src-dotnet/LSoftware.Metrics.InfluxDb/"]
+COPY ["src-dotnet/LSoftware.Repository.Abstractions/LSoftware.Repository.Abstractions.csproj", "src-dotnet/LSoftware.Repository.Abstractions/"]
+COPY ["src-dotnet/LSoftware.Repository.Extensions/LSoftware.Repository.Extensions.csproj", "src-dotnet/LSoftware.Repository.Extensions/"]
+COPY ["src-dotnet/LSoftware.Repository.MongoDb/LSoftware.Repository.MongoDb.csproj", "src-dotnet/LSoftware.Repository.MongoDb/"]
 COPY ["src-dotnet/Smarthome.Core/Smarthome.Core.csproj", "src-dotnet/Smarthome.Core/"]
 RUN dotnet restore "./src-docker/Smarthome.Api/Smarthome.Api.csproj"
 COPY . .

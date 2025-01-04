@@ -1,5 +1,4 @@
-﻿using LSoftware.Repository.Abstractions;
-using LSoftware.Repository.MongoDb;
+﻿using LSoftware.Repository.MongoDb;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
