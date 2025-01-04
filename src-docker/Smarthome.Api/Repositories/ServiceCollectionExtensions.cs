@@ -2,6 +2,7 @@
 using Smarthome.Api.Repositories.WeatherReport;
 using Smarthome.Api.Repositories.WeatherReport.Api;
 using LSoftware.Repository.Extensions;
+using Smarthome.Api.Repositories.Locations;
 
 namespace Smarthome.Api.Repositories
 {
@@ -11,6 +12,7 @@ namespace Smarthome.Api.Repositories
 		{
 			services.AddMongoDbRepositoryServices( configuration );
 			services.AddSingleton<IDeviceRepository, DeviceMongoRepository>();
+			services.AddSingleton<ILocationRepository, LocationMongoRepository>();
 
 			return services;
 		}

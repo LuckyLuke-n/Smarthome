@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Smarthome.Api.Repositories.Devices;
+using Smarthome.Api.Repositories.Locations;
 using Smarthome.Core.DomainObjects;
 using Smarthome.Core.Models;
 using System.Net;
@@ -9,31 +9,30 @@ namespace Smarthome.Api.Controllers
 {
 	[Route( "api/[controller]" )]
 	[ApiController]
-	public class DevicesController : ControllerBase
+	public class LocationsController : ControllerBase
 	{
 		private IMapper Mapper { get; }
-		private ILogger<DevicesController> Logger { get; }
-		private IDeviceRepository DeviceRepository { get; }
+		private ILogger<LocationsController> Logger { get; }
+		private ILocationRepository LocationRepository { get; }
 
-		public DevicesController( IMapper mapper, ILogger<DevicesController> logger, IDeviceRepository deviceRepository  )
+		public LocationsController( IMapper mapper, ILogger<LocationsController> logger, ILocationRepository locationRepository  )
 		{
 			Mapper = mapper;
 			Logger = logger;
-			DeviceRepository = deviceRepository;
+			LocationRepository = locationRepository;
 		}
 
 		[HttpPost()]
-		//[AutoValidateAntiforgeryToken]
 		[ProducesResponseType( StatusCodes.Status201Created )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status400BadRequest )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status409Conflict )]
-		public async Task<IActionResult> AddDevice( [FromBody] CreateDeviceRequestDto dto, CancellationToken cancellationToken )
+		public async Task<IActionResult> AddLocation( [FromBody] CreateLocationRequestDto dto, CancellationToken cancellationToken )
 		{
-			var device = Mapper.Map<Device>( dto );
-			var response = await DeviceRepository.CreateAsync( device, cancellationToken );
+			var location = Mapper.Map<Location>( dto );
+			var response = await LocationRepository.CreateAsync( location, cancellationToken );
 
 			if ( response.IsSuccess )
-				return CreatedAtAction( nameof( GetDevice ), new { id = response.ValueSuccess!.Id }, response.ValueSuccess );
+				return CreatedAtAction( nameof( GetLocation ), new { id = response.ValueSuccess!.Id }, response.ValueSuccess );
 			else
 			{
 				var failedResponse = response.ValueFail;
@@ -50,13 +49,12 @@ namespace Smarthome.Api.Controllers
 		}
 
 		[HttpGet( "{id}" )]
-		//[AutoValidateAntiforgeryToken]
-		[ProducesResponseType( typeof( GetDeviceResponseDto ), StatusCodes.Status200OK )]
+		[ProducesResponseType( typeof( GetLocationResponseDto ), StatusCodes.Status200OK )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status400BadRequest )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status404NotFound )]
-		public async Task<IActionResult> GetDevice( [FromRoute] Guid id, CancellationToken cancellationToken )
+		public async Task<IActionResult> GetLocation( [FromRoute] Guid id, CancellationToken cancellationToken )
 		{
-			var response = await DeviceRepository.ReadAsync( id, cancellationToken );
+			var response = await LocationRepository.ReadAsync( id, cancellationToken );
 
 			if ( response.IsSuccess )
 				return Ok( response.ValueSuccess );
@@ -74,12 +72,11 @@ namespace Smarthome.Api.Controllers
 		}
 
 		[HttpGet()]
-		//[AutoValidateAntiforgeryToken]
-		[ProducesResponseType( typeof( IEnumerable<GetDeviceResponseDto> ), StatusCodes.Status200OK )]
+		[ProducesResponseType( typeof( IEnumerable<GetLocationResponseDto> ), StatusCodes.Status200OK )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status400BadRequest )]
-		public async Task<IActionResult> GetDevices( CancellationToken cancellationToken )
+		public async Task<IActionResult> GetLocations( CancellationToken cancellationToken )
 		{
-			var response = await DeviceRepository.ReadAllAsync( cancellationToken );
+			var response = await LocationRepository.ReadAllAsync( cancellationToken );
 
 			if ( response.IsSuccess )
 				return Ok( response.ValueSuccess );
@@ -97,16 +94,15 @@ namespace Smarthome.Api.Controllers
 		}
 
 		[HttpPut( "{id}" )]
-		//[AutoValidateAntiforgeryToken]
 		[ProducesResponseType( StatusCodes.Status200OK )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status400BadRequest )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status404NotFound )]
-		public async Task<IActionResult> UpdateDevice( [FromRoute] Guid id, [FromBody] UpdateDeviceRequestDto dto, CancellationToken cancellationToken )
+		public async Task<IActionResult> UpdateLocation( [FromRoute] Guid id, [FromBody] UpdateLocationRequestDto dto, CancellationToken cancellationToken )
 		{
-			var device = Mapper.Map<Device>( dto );
-			device.Id = id.ToString();
+			var location = Mapper.Map<Location>( dto );
+			location.Id = id.ToString();
 
-			var response = await DeviceRepository.UpdateAsync( device, cancellationToken );
+			var response = await LocationRepository.UpdateAsync( location, cancellationToken );
 
 			if ( response.IsSuccess )
 				return Ok();
@@ -124,12 +120,11 @@ namespace Smarthome.Api.Controllers
 		}
 
 		[HttpDelete( "{id}" )]
-		//[AutoValidateAntiforgeryToken]
 		[ProducesResponseType( StatusCodes.Status200OK )]
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status404NotFound )]
-		public async Task<IActionResult> DeleteDevice( [FromRoute] Guid id, CancellationToken cancellationToken )
+		public async Task<IActionResult> DeleteLocation( [FromRoute] Guid id, CancellationToken cancellationToken )
 		{
-			var response = await DeviceRepository.DeleteAsync( id, cancellationToken );
+			var response = await LocationRepository.DeleteAsync( id, cancellationToken );
 
 			if ( response.IsSuccess )
 				return Ok();

@@ -6,9 +6,6 @@
 
 		public string Endpoint { get; set; } = string.Empty;
 		public string ApiKey { get; set; } = string.Empty;
-		public string Latitude { get; set; } = string.Empty;
-		public string Longitude { get; set; } = string.Empty;
-		public string Location { get; set; } = string.Empty;
 		public string RefreshIntervalInMinutes {  get; set; } = string.Empty;
 
 		public int IntervalInMinutes => int.Parse( RefreshIntervalInMinutes );
