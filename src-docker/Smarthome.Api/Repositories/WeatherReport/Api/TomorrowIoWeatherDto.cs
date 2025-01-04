@@ -35,35 +35,35 @@
 	[Serializable]
 	public class Values
 	{
-		public float? CloudBase { get; set; }
-		public float? CloudCeiling { get; set; }
+		public double? CloudBase { get; set; }
+		public double? CloudCeiling { get; set; }
 		public int CloudCover { get; set; }
-		public float DewPoint { get; set; }
+		public double DewPoint { get; set; }
 		public int FreezingRainIntensity { get; set; }
-		public float HailProbability { get; set; }
-		public float HailSize { get; set; }
+		public double HailProbability { get; set; }
+		public double HailSize { get; set; }
 		public int Humidity { get; set; }
 		public int PrecipitationProbability { get; set; }
-		public float PressureSurfaceLevel { get; set; }
+		public double PressureSurfaceLevel { get; set; }
 		public int RainIntensity { get; set; }
 		public int SleetIntensity { get; set; }
 		public int SnowIntensity { get; set; }
-		public float Temperature { get; set; }
-		public float TemperatureApparent { get; set; }
+		public double Temperature { get; set; }
+		public double TemperatureApparent { get; set; }
 		public int UvHealthConcern { get; set; }
 		public int UvIndex { get; set; }
-		public int Visibility { get; set; }
+		public double Visibility { get; set; }
 		public int WeatherCode { get; set; }
-		public float? WindDirection { get; set; }
-		public float WindGust { get; set; }
-		public float WindSpeed { get; set; }
+		public double? WindDirection { get; set; }
+		public double WindGust { get; set; }
+		public double WindSpeed { get; set; }
 	}
 
 	[Serializable]
 	public class Location
 	{
-		public float Lat { get; set; }
-		public float Lon { get; set; }
+		public double Lat { get; set; }
+		public double Lon { get; set; }
 		public string Name { get; set; } = string.Empty;
 		public string Type { get; set; } = string.Empty;
 	}

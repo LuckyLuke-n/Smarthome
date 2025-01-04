@@ -6,4 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage( "Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "<Pending>", Scope = "member", Target = "~M:Smarthome.Api.Monitoring.MessageBus.DeviceMonitor.CrawlDeviceRepositoryAsync(System.Object)" )]
-[assembly: SuppressMessage( "Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "<Pending>", Scope = "member", Target = "~M:Smarthome.Api.Monitoring.WeatherData.WeatherMonitor.GetWeatherDataAsync(System.Object)" )]
+[assembly: SuppressMessage( "Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "<Pending>", Scope = "member", Target = "~M:Smarthome.Api.Monitoring.WeatherData.WeatherMonitor.TriggerWeatherTimerActionsAsync(System.Object)" )]

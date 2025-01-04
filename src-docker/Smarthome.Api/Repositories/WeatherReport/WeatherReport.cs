@@ -6,11 +6,11 @@
 		public double Latitude { get; set; }
 		public double Longitude { get; set; }
 
-		public float Temperature { get; set; }
-		public float TemperatureApparent { get; set; }
+		public double Temperature { get; set; }
+		public double TemperatureApparent { get; set; }
 		public int Humidity { get; set; }
 		public int PrecipitationProbability { get; set; }
-		public float PressureSurfaceLevel { get; set; }
-		public float WindSpeed { get; set; }
+		public double PressureSurfaceLevel { get; set; }
+		public double WindSpeed { get; set; }
 	}
 }
