@@ -24,7 +24,7 @@ namespace Smarthome.Api.Monitoring.WeatherData
 			IOptions<WeatherApiConfiguration> weatherApiOptions,
 			ILogger<WeatherMonitor> logger )
 		{
-			WeatherApiTimer = new( GetWeatherDataAsync, null, int.MaxValue, int.MaxValue );
+			WeatherApiTimer = new( TriggerWeatherTimerActionsAsync, null, int.MaxValue, int.MaxValue );
 			WeatherLogger = weatherLogger;
 			WeatherRepository = weatherRepository;
 			Mapper = mapper;
@@ -32,11 +32,16 @@ namespace Smarthome.Api.Monitoring.WeatherData
 			ApiRefreshRateInMinutes = weatherApiOptions.Value.IntervalInMinutes;
 		}
 
-		private async void GetWeatherDataAsync( object? state )
+		private async void TriggerWeatherTimerActionsAsync( object? state )
 		{
 			if ( CancellationTokenSource.IsCancellationRequested )
 				return;
 
+			await GetWeatherDataAsync().ConfigureAwait( false );
+		}
+
+		private async Task GetWeatherDataAsync()
+		{
 			var response = await WeatherRepository.GetWeatherDataAsync( CancellationTokenSource.Token ).ConfigureAwait( false );
 
 			if ( !response.IsSuccess )
@@ -54,6 +59,7 @@ namespace Smarthome.Api.Monitoring.WeatherData
 
 		public async Task StartAsync( CancellationToken cancellationToken )
 		{
+			await GetWeatherDataAsync().ConfigureAwait( false );
 			WeatherApiTimer.Change( TimeSpan.FromSeconds( 1 ), TimeSpan.FromMinutes( ApiRefreshRateInMinutes ) );
 			await Task.CompletedTask.ConfigureAwait( false );
 		}
