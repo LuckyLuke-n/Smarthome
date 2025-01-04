@@ -1,7 +1,7 @@
 ﻿using Smarthome.Api.Repositories.Devices;
-using Smarthome.Api.Repositories.Devices.Mongo;
 using Smarthome.Api.Repositories.WeatherReport;
 using Smarthome.Api.Repositories.WeatherReport.Api;
+using LSoftware.Repository.Extensions;
 
 namespace Smarthome.Api.Repositories
 {
@@ -9,7 +9,7 @@ namespace Smarthome.Api.Repositories
 	{
 		public static IServiceCollection AddRepositoryServices( this IServiceCollection services, IConfiguration configuration )
 		{
-			services.Configure<MongoDbConfiguration>( configuration.GetSection( MongoDbConfiguration.Section ) );
+			services.AddMongoDbRepositoryServices( configuration );
 			services.AddSingleton<IDeviceRepository, DeviceMongoRepository>();
 
 			return services;

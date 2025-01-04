@@ -1,4 +1,4 @@
-﻿namespace Smarthome.Api.Repositories.Devices.Mongo
+﻿namespace LSoftware.Repository.MongoDb
 {
 	public class MongoDbConfiguration
 	{

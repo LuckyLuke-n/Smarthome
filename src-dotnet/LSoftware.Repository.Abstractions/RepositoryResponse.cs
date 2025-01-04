@@ -1,4 +1,4 @@
-﻿namespace Smarthome.Api.Repositories
+﻿namespace LSoftware.Repository.Abstractions
 {
 	public class RepositoryResponse<TFail> where TFail : new()
 	{

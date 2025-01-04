@@ -20,7 +20,7 @@ namespace Smarthome.Api.Repositories.WeatherReport.Api
 				Logger.LogWarning( "Weather api confguration url not set." );
 		}
 
-		public async Task<RepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( CancellationToken cancellationToken )
+		public async Task<WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( CancellationToken cancellationToken )
 		{
 			var client = HttpClientFactory.CreateClient();
 			client.BaseAddress = new Uri( WeatherApiConfiguration.Endpoint );
@@ -35,7 +35,7 @@ namespace Smarthome.Api.Repositories.WeatherReport.Api
 				else
 					errorContent = await response.Content.ReadAsStringAsync( cancellationToken ).ConfigureAwait( false );
 
-				return RepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateFail( new() { StatusCode = response?.StatusCode ?? HttpStatusCode.InternalServerError, Message = errorContent } );
+				return WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateFail( new() { StatusCode = response?.StatusCode ?? HttpStatusCode.InternalServerError, Message = errorContent } );
 			}
 
 			var content = await response.Content.ReadAsStringAsync( cancellationToken ).ConfigureAwait( false );
@@ -55,11 +55,11 @@ namespace Smarthome.Api.Repositories.WeatherReport.Api
 			}
 
 			if ( dto is null )
-				return RepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "Could no deserialize result from tomorrow.io api." } );
+				return WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = "Could no deserialize result from tomorrow.io api." } );
 
 			var weatherReport = dto.ToWeatherReport();
 
-			return RepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateSuccess( weatherReport );
+			return WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateSuccess( weatherReport );
 		}
 	}
 }
