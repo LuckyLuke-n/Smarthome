@@ -2,11 +2,11 @@
 using LSoftware.Communication.Extensions;
 using LSoftware.Metrics.Extensions;
 using LSoftware.Metrics.InfluxDb.Configuration;
+using LSoftware.Repository.MongoDb;
 using MongoDB.Driver;
 using Smarthome.Api.Monitoring.MessageBus;
 using Smarthome.Api.Monitoring.WeatherData;
 using Smarthome.Api.Repositories;
-using Smarthome.Api.Repositories.Devices.Mongo;
 
 namespace Smarthome.Api
 {

@@ -2,6 +2,6 @@
 {
 	public interface IWeatherRepository
 	{
-		Task<RepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( CancellationToken cancellationToken = default );
+		Task<WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( CancellationToken cancellationToken = default );
 	}
 }
