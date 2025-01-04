@@ -20,12 +20,12 @@ namespace Smarthome.Api.Repositories.WeatherReport.Api
 				Logger.LogWarning( "Weather api confguration url not set." );
 		}
 
-		public async Task<WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( CancellationToken cancellationToken )
+		public async Task<WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( Core.DomainObjects.Location location, CancellationToken cancellationToken )
 		{
 			var client = HttpClientFactory.CreateClient();
 			client.BaseAddress = new Uri( WeatherApiConfiguration.Endpoint );
 
-			var response = await client.GetAsync( $"?location={WeatherApiConfiguration.Location}&apikey={WeatherApiConfiguration.ApiKey}", cancellationToken ).ConfigureAwait( false );
+			var response = await client.GetAsync( $"?location={location.City}&apikey={WeatherApiConfiguration.ApiKey}", cancellationToken ).ConfigureAwait( false );
 
 			if ( response is null || !response.IsSuccessStatusCode )
 			{
