@@ -144,7 +144,13 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$room$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -240,7 +246,13 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$room$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -336,7 +348,13 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$room$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -433,7 +451,13 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -473,10 +497,16 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ]
         }
       ],
-      "title": "Outside temperature",
+      "title": "Temperature in $geographic_location",
       "type": "gauge"
     },
     {
@@ -557,7 +587,7 @@
       "pluginVersion": "11.4.0",
       "targets": [
         {
-          "alias": "inside",
+          "alias": "$room",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -595,10 +625,16 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$room$/"
+            }
+          ]
         },
         {
-          "alias": "outside",
+          "alias": "$geographic_location",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -637,7 +673,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ]
         }
       ],
       "title": "Temperature",
@@ -721,7 +763,7 @@
       "pluginVersion": "11.4.0",
       "targets": [
         {
-          "alias": "inside",
+          "alias": "$room",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -759,10 +801,16 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$room$/"
+            }
+          ]
         },
         {
-          "alias": "outside",
+          "alias": "$geographic_location",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -801,7 +849,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ]
         }
       ],
       "title": "Humidity",
@@ -893,14 +947,20 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
           }
         }
       ],
-      "title": "Humidity",
+      "title": "Humidity in $geographic_location",
       "type": "gauge"
     },
     {
@@ -989,14 +1049,20 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
           }
         }
       ],
-      "title": "Pressure",
+      "title": "Pressure in $geographic_location",
       "type": "gauge"
     },
     {
@@ -1089,31 +1155,69 @@
               }
             ]
           ],
-          "tags": [],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ],
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
           }
         }
       ],
-      "title": "Wind speed",
+      "title": "Wind speed in $geographic_location",
       "type": "gauge"
     }
   ],
-  "refresh": "5m",
+  "refresh": "15m",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {},
+        "definition": "SHOW TAG VALUES FROM \"environement_sensor\" WITH KEY = \"Location\"",
+        "description": "The room where the environment sensor is placed.",
+        "label": "Room",
+        "name": "room",
+        "options": [],
+        "query": {
+          "query": "SHOW TAG VALUES FROM \"environement_sensor\" WITH KEY = \"Location\"",
+          "refId": "InfluxVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "definition": "SHOW TAG VALUES FROM \"weather_report\" WITH KEY = \"Location\"",
+        "description": "The place for outside weather data.",
+        "label": "Location",
+        "name": "geographic_location",
+        "options": [],
+        "query": {
+          "query": "SHOW TAG VALUES FROM \"weather_report\" WITH KEY = \"Location\"",
+          "refId": "InfluxVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      }
+    ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Smarthome",
   "uid": "fe8vn5iund69se",
-  "version": 17,
+  "version": 19,
   "weekStart": ""
 }
