@@ -1,9 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using LSoftware.Repository.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace Smarthome.Core.DomainObjects
 {
 	[Serializable]
-	public class Device
+	public class Device : IEntity
 	{
 		public string Id { get; set; } = string.Empty;
 		public string Hostname { get; set; } = string.Empty;

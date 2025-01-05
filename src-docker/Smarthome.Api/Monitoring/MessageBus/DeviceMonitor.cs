@@ -51,7 +51,7 @@ namespace Smarthome.Api.Monitoring.MessageBus
 					if ( DevicesCache.TryGetValue( container.Topic, out var cacheItem ) && !cacheItem.IsExpired )
 					{
 						EnvironmentSensorData data = new( container.Payload, cacheItem.Value );
-						SensorDataLogger.Send( data );
+						SensorDataLogger.SendBuffered( data );
 					}
 					else
 					{
@@ -66,7 +66,7 @@ namespace Smarthome.Api.Monitoring.MessageBus
 						DeviceCacheItem newItem = new( response.ValueSuccess! );
 						DevicesCache.AddOrUpdate( container.Topic, newItem, ( key, value ) => newItem );
 						EnvironmentSensorData data = new( container.Payload, newItem.Value );
-						SensorDataLogger.Send( data );
+						SensorDataLogger.SendBuffered( data );
 					}
 				}
 				catch ( Exception ex )

@@ -3,6 +3,7 @@ using AutoMapper;
 using LSoftware.Metrics.Abstractions;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.Extensions.Options;
+using Smarthome.Api.Repositories.Locations;
 using Smarthome.Api.Repositories.WeatherReport;
 using Smarthome.Api.Repositories.WeatherReport.Api;
 
@@ -14,12 +15,14 @@ namespace Smarthome.Api.Monitoring.WeatherData
 		private Timer WeatherApiTimer { get; }
 		private IMetricsLogger<WeatherReportData> WeatherLogger { get; }
 		private IWeatherRepository WeatherRepository { get; }
+		private ILocationRepository LocationRepository { get; }
 		private IMapper Mapper { get; }
 		private ILogger<WeatherMonitor> Logger { get; }
-		private int ApiRefreshRateInMinutes;
+		private int ApiRefreshRateInMinutes { get; }
 
 		public WeatherMonitor( IMetricsLogger<WeatherReportData> weatherLogger,
 			IWeatherRepository weatherRepository,
+			ILocationRepository locationRepository,
 			IMapper mapper,
 			IOptions<WeatherApiConfiguration> weatherApiOptions,
 			ILogger<WeatherMonitor> logger )
@@ -27,6 +30,7 @@ namespace Smarthome.Api.Monitoring.WeatherData
 			WeatherApiTimer = new( TriggerWeatherTimerActionsAsync, null, int.MaxValue, int.MaxValue );
 			WeatherLogger = weatherLogger;
 			WeatherRepository = weatherRepository;
+			LocationRepository = locationRepository;
 			Mapper = mapper;
 			Logger = logger;
 			ApiRefreshRateInMinutes = weatherApiOptions.Value.IntervalInMinutes;
@@ -42,19 +46,32 @@ namespace Smarthome.Api.Monitoring.WeatherData
 
 		private async Task GetWeatherDataAsync()
 		{
-			var response = await WeatherRepository.GetWeatherDataAsync( CancellationTokenSource.Token ).ConfigureAwait( false );
+			var repositoryResponse = await LocationRepository.ReadAllAsync().ConfigureAwait( false );
 
-			if ( !response.IsSuccess )
+			if ( !repositoryResponse.IsSuccess )
 			{
-				Logger.LogWarning( "Could not retrieve weather data from WeatherRepository" );
+				Logger.LogWarning( "Could not retrieve locations from repository." );
 				return;
 			}
 
-			if ( CancellationTokenSource.IsCancellationRequested )
-				return;
+			var locations = repositoryResponse.ValueSuccess!;
 
-			var weatherReportData = Mapper.Map<WeatherReportData>( response.ValueSuccess! );
-			WeatherLogger.SendInstant( weatherReportData );
+			foreach ( var location in locations )
+			{
+				var response = await WeatherRepository.GetWeatherDataAsync( location, CancellationTokenSource.Token ).ConfigureAwait( false );
+
+				if ( !response.IsSuccess )
+				{
+					Logger.LogWarning( "Could not retrieve weather data from WeatherRepository" );
+					return;
+				}
+
+				if ( CancellationTokenSource.IsCancellationRequested )
+					return;
+
+				var weatherReportData = Mapper.Map<WeatherReportData>( response.ValueSuccess! );
+				WeatherLogger.SendInstant( weatherReportData );
+			}
 		}
 
 		public async Task StartAsync( CancellationToken cancellationToken )

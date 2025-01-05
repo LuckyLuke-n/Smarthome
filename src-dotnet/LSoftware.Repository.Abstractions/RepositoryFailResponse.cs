@@ -1,22 +1,22 @@
 ﻿using System.Net;
 
-namespace Smarthome.Api.Repositories.Devices
+namespace LSoftware.Repository.Abstractions
 {
-	public class DeviceRepositoryFailResponse
+	public class RepositoryFailResponse
 	{
 		public HttpStatusCode StatusCode { get; set; }
 		public string Message { get; set; }
 
-		public DeviceRepositoryFailResponse()
+		public RepositoryFailResponse()
 		{
 			StatusCode = HttpStatusCode.InternalServerError;
 			Message = string.Empty;
 		}
 
-		public DeviceRepositoryFailResponse( HttpStatusCode statusCode, string error )
+		public RepositoryFailResponse( HttpStatusCode statusCode, string error )
 		{
 			StatusCode = statusCode;
-			Message = error;		
+			Message = error;
 		}
 	}
 }

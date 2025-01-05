@@ -35,27 +35,27 @@
 	[Serializable]
 	public class Values
 	{
-		public double? CloudBase { get; set; }
-		public double? CloudCeiling { get; set; }
-		public int CloudCover { get; set; }
-		public double DewPoint { get; set; }
-		public double FreezingRainIntensity { get; set; }
-		public double HailProbability { get; set; }
-		public double HailSize { get; set; }
+		//public double? CloudBase { get; set; }
+		//public double? CloudCeiling { get; set; }
+		//public int CloudCover { get; set; }
+		//public double DewPoint { get; set; }
+		//public double FreezingRainIntensity { get; set; }
+		//public double HailProbability { get; set; }
+		//public double HailSize { get; set; }
 		public int Humidity { get; set; }
 		public int PrecipitationProbability { get; set; }
 		public double PressureSurfaceLevel { get; set; }
-		public double RainIntensity { get; set; }
-		public double SleetIntensity { get; set; }
-		public double SnowIntensity { get; set; }
+		//public double RainIntensity { get; set; }
+		//public double SleetIntensity { get; set; }
+		//public double SnowIntensity { get; set; }
 		public double Temperature { get; set; }
 		public double TemperatureApparent { get; set; }
-		public double UvHealthConcern { get; set; }
-		public double UvIndex { get; set; }
-		public double Visibility { get; set; }
-		public int WeatherCode { get; set; }
-		public double? WindDirection { get; set; }
-		public double WindGust { get; set; }
+		//public double UvHealthConcern { get; set; }
+		//public double UvIndex { get; set; }
+		//public double Visibility { get; set; }
+		//public int WeatherCode { get; set; }
+		//public double? WindDirection { get; set; }
+		//public double WindGust { get; set; }
 		public double WindSpeed { get; set; }
 	}
 
