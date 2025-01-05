@@ -125,7 +125,7 @@
               "type": "time"
             }
           ],
-          "measurement": "environement_sensor",
+          "measurement": "environment_sensor",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "temp",
@@ -227,7 +227,7 @@
               "type": "time"
             }
           ],
-          "measurement": "environement_sensor",
+          "measurement": "environment_sensor",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "temp",
@@ -329,7 +329,7 @@
               "type": "time"
             }
           ],
-          "measurement": "environement_sensor",
+          "measurement": "environment_sensor",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "temp",
@@ -606,7 +606,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "environement_sensor",
+          "measurement": "environment_sensor",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "temperature",
@@ -782,7 +782,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "environement_sensor",
+          "measurement": "environment_sensor",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "temperature",
@@ -1218,6 +1218,6 @@
   "timezone": "browser",
   "title": "Smarthome",
   "uid": "fe8vn5iund69se",
-  "version": 19,
+  "version": 20,
   "weekStart": ""
 }
