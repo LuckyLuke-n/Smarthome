@@ -8,7 +8,7 @@ namespace Smarthome.Api.Monitoring.MessageBus
 {
 	public class EnvironmentSensorData : IMetricsObject
 	{
-		public string MeasurementName { get; } = "environement_sensor";
+		public string MeasurementName { get; } = "environment_sensor";
 
 		public DateTime Timestamp { get; }
 		public double Temperature { get; }
