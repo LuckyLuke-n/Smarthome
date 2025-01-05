@@ -66,8 +66,7 @@ namespace Smarthome.Api.Repositories.Devices
 				.Set( d => d.Hostname, device.Hostname )
 				.Set( d => d.Hardware, device.Hardware )
 				.Set( d => d.Location, device.Location )
-				.Set( d => d.State, device.State )
-				.Set( d => d.OutputFrequencyInHz, device.OutputFrequencyInHz );
+				.Set( d => d.State, device.State );
 
 			try
 			{
