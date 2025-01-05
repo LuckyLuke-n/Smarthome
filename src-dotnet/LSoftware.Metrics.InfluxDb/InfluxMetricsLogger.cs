@@ -27,7 +27,7 @@ namespace LSoftware.Metrics.InfluxDb
 				Logger.LogError( "No connection to the InfluxDb at {Host}", influxOptions.Value.Url );
 		}
 
-		public void Send( T data )
+		public void SendBuffered( T data )
 		{
 			WriteBuffer.Enqueue( data.ToInfluxDbDataPoint() );
 
