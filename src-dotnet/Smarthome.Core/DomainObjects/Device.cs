@@ -13,6 +13,7 @@ namespace Smarthome.Core.DomainObjects
 		public string DataSource => $"{Hostname}/{Hardware.Type}".ToLower();
 		[JsonConverter( typeof( JsonStringEnumConverter ) )]
 		public State State { get; set; }
+		public int OutputFrequencyInHz { get; set; }
 
 		public void SetAsNew()
 		{

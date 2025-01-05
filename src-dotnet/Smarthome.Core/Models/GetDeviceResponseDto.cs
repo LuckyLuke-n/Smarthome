@@ -10,5 +10,6 @@ namespace Smarthome.Core.Models
 		public string Location { get; set; } = string.Empty;
 		public string DataSource { get; set; } = string.Empty;
 		public State State { get; set; }
+		public int OutputFrequencyInHz { get; set; }
 	}
 }

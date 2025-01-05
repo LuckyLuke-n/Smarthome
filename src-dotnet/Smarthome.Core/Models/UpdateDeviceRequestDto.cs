@@ -22,5 +22,9 @@ namespace Smarthome.Core.Models
 		[Required]
 		[StringLength( maximumLength: 100, MinimumLength = 3, ErrorMessage = "Location name must have between 3 and 100 characters." )]
 		public string Location { get; set; } = string.Empty;
+
+		[Required]
+		[Range( 1, int.MaxValue, ErrorMessage = "The integer must be greater than 0." )]
+		public int OutputFrequencyInHz { get; set; }
 	}
 }
