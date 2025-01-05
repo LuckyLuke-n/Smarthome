@@ -39,19 +39,19 @@
 		public double? CloudCeiling { get; set; }
 		public int CloudCover { get; set; }
 		public double DewPoint { get; set; }
-		public int FreezingRainIntensity { get; set; }
+		public double FreezingRainIntensity { get; set; }
 		public double HailProbability { get; set; }
 		public double HailSize { get; set; }
 		public int Humidity { get; set; }
 		public int PrecipitationProbability { get; set; }
 		public double PressureSurfaceLevel { get; set; }
-		public int RainIntensity { get; set; }
-		public int SleetIntensity { get; set; }
-		public int SnowIntensity { get; set; }
+		public double RainIntensity { get; set; }
+		public double SleetIntensity { get; set; }
+		public double SnowIntensity { get; set; }
 		public double Temperature { get; set; }
 		public double TemperatureApparent { get; set; }
-		public int UvHealthConcern { get; set; }
-		public int UvIndex { get; set; }
+		public double UvHealthConcern { get; set; }
+		public double UvIndex { get; set; }
 		public double Visibility { get; set; }
 		public int WeatherCode { get; set; }
 		public double? WindDirection { get; set; }
