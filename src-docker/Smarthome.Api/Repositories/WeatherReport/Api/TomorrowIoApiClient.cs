@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Net;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Smarthome.Api.Repositories.WeatherReport.Api
 {
@@ -46,6 +47,7 @@ namespace Smarthome.Api.Repositories.WeatherReport.Api
 				JsonSerializerOptions options = new()
 				{
 					PropertyNameCaseInsensitive = true,
+					UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip
 				};
 				dto = JsonSerializer.Deserialize<TomorrowIoWeatherDto>( content, options );
 			}
