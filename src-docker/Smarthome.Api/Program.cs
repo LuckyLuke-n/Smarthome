@@ -8,8 +8,15 @@ var builder = WebApplication.CreateBuilder( args );
 // Environment varaibles into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 
-builder.Services.AddAutoMapper( typeof( DeviceMappingProfile), typeof( WeatherReportMappingProfile ) )
-	.AddLogging( logging => logging.AddConsole() )
+// logging settings
+builder.Services.AddLogging( loggingBuilder =>
+	{
+		loggingBuilder.AddConsole();
+		loggingBuilder.SetMinimumLevel( LogLevel.Warning );
+	} );
+builder.Logging.AddFilter( "System.Net.Http.HttpClient", LogLevel.Warning );
+
+builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ), typeof( WeatherReportMappingProfile ) )
 	.AddMyServices( builder.Configuration );
 
 builder.Services.AddControllers();
