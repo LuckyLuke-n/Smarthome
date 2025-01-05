@@ -9,12 +9,16 @@ var builder = WebApplication.CreateBuilder( args );
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 
 // logging settings
+LogLevel logLevel = LogLevel.Warning;
+if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Logging__Level" ) ) )
+	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Logging__Level" )! );
+
 builder.Services.AddLogging( loggingBuilder =>
 	{
 		loggingBuilder.AddConsole();
-		loggingBuilder.SetMinimumLevel( LogLevel.Warning );
+		loggingBuilder.SetMinimumLevel( logLevel );
 	} );
-builder.Logging.AddFilter( "System.Net.Http.HttpClient", LogLevel.Warning );
+builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
 
 builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ), typeof( WeatherReportMappingProfile ) )
 	.AddMyServices( builder.Configuration );

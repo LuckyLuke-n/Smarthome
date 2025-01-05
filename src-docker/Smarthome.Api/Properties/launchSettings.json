@@ -5,6 +5,7 @@
       "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "SMARTHOME_Logging__Level": "3",
         "SMARTHOME_Api__Key": "secret",
         "SMARTHOME_MongoDb__ConnectionString": "mongodb://admin:public@localhost:27017",
         "SMARTHOME_Mqtt__Host": "localhost",
@@ -27,6 +28,7 @@
       "environmentVariables": {
         "ASPNETCORE_HTTPS_PORTS": "8081",
         "ASPNETCORE_HTTP_PORTS": "8080",
+        "SMARTHOME_Logging__Level": "3",
         "SMARTHOME_Api__Key": "secret",
         "SMARTHOME_MongoDb__ConnectionString": "mongodb://admin:public@localhost:27017",
         "SMARTHOME_Mqtt__Host": "localhost",
