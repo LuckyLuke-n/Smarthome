@@ -10,8 +10,8 @@ builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 
 // logging settings
 LogLevel logLevel = LogLevel.Warning;
-if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Logging__Level" ) ) )
-	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Logging__Level" )! );
+if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" ) ) )
+	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" )! );
 
 builder.Services.AddLogging( loggingBuilder =>
 	{
