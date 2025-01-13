@@ -3,8 +3,8 @@
 	public class DiagnosticsConfiguration
 	{
 		public static string Section => "Diagnostics";
-		public bool IsEnabled { get; set; }
+		public bool TracingEnabled { get; set; }
 		public string ConnectionString { get; set; } = string.Empty;
-		public static string IsEnabledEnvVar => $"SMARTHOME_{Section}__{nameof( IsEnabled )}";
+		public static string TracingEnabledEnvVar => $"SMARTHOME_{Section}__{nameof( TracingEnabled )}";
 	}
 }

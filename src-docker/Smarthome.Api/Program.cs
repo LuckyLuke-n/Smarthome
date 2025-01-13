@@ -47,8 +47,7 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
-if ( bool.TryParse( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.IsEnabledEnvVar ), out _ ) )
-	builder.AddOpenTelemetry();
+builder.AddOpenTelemetry();
 
 var app = builder.Build();
 

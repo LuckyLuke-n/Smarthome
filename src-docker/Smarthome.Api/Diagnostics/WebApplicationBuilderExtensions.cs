@@ -19,15 +19,20 @@ namespace Smarthome.Api.Diagnostics
 						[
 							new KeyValuePair<string, object>("service.hostname", Environment.MachineName )
 						] );
-				} )				
+				} );
+
+			if ( bool.TryParse( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.TracingEnabledEnvVar ), out _ ) )
+			{
+				builder.Services.AddOpenTelemetry()
 				.WithTracing( tracing =>
 					tracing
 						.AddAspNetCoreInstrumentation()
 						.AddHttpClientInstrumentation()
 						.AddConsoleExporter()
-						.AddOtlpExporter( options => 
-							options.Endpoint = new Uri( Environment.GetEnvironmentVariable("SMARTHOME_Diagnostics__JaegerUrl")! ) )
+						.AddOtlpExporter( options =>
+							options.Endpoint = new Uri( Environment.GetEnvironmentVariable( "SMARTHOME_Diagnostics__JaegerUrl" )! ) )
 						);
+			}
 
 			return builder;
 		}
