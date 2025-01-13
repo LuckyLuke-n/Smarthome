@@ -1,16 +1,15 @@
+using LSoftware.Repository.MongoDb;
 using Microsoft.OpenApi.Models;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
 using Smarthome.Api.Diagnostics;
 using Smarthome.Api.Middleware;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder( args );
 
 // Environment varaibles into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
+builder.Services.Configure<MongoDbConfiguration>( builder.Configuration.GetSection( DiagnosticsConfiguration.Section ) );
 
 #region Logging
 LogLevel logLevel = LogLevel.Warning;
@@ -48,7 +47,8 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
-builder.AddOpenTelemetry();
+if ( bool.TryParse( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.IsEnabledEnvVar ), out _ ) )
+	builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
