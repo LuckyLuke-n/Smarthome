@@ -72,11 +72,11 @@ namespace Smarthome.Api.Monitoring.Health
 					{
 						case ServiceType.RabbitMq:
 							var rabbit = JsonSerializer.Deserialize<RabbitMqHealthDto>( content, options );
-							status.RabbitMq = rabbit?.Status ?? "unknown";
+							status.MessageBus = rabbit?.Status ?? "unknown";
 							break;
 						case ServiceType.Influx:
 							var influx = JsonSerializer.Deserialize<InfluxDbHealthDto>( content, options );
-							status.InfluxDb = influx?.Status ?? "unknown";
+							status.Database = influx?.Status ?? "unknown";
 							break;
 						case ServiceType.Grafana:
 							var grafana = JsonSerializer.Deserialize<GrafanaHealthDtocs>( content, options );

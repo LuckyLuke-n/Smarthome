@@ -8,19 +8,21 @@ namespace Smarthome.Api.Monitoring.Health.Dtos
 	{
 		public string MeasurementName => "api_health";
 
-		public string InfluxDb { get; set; } = string.Empty;
+		public string Database { get; set; } = string.Empty;
 		public string Grafana { get; set; } = string.Empty;
-		public string RabbitMq { get; set; } = string.Empty;
+		public string MessageBus { get; set; } = string.Empty;
 
+		private string ApiVersion { get; } = ServiceConstants.Version;
 		private DateTime Timestamp { get; } = DateTime.UtcNow;
 
 		public PointData ToInfluxDbDataPoint()
 		{
 			var point = PointData
 				.Measurement( MeasurementName )
-				.Field( nameof( InfluxDb ), InfluxDb )
+				.Field( nameof( Database ), Database )
 				.Field( nameof( Grafana ), Grafana )
-				.Field( nameof( RabbitMq ), RabbitMq )
+				.Field( nameof( MessageBus ), MessageBus )
+				.Field( nameof( ApiVersion ), ApiVersion )
 				.Timestamp( Timestamp, WritePrecision.Ns );
 
 			return point;
