@@ -112,13 +112,17 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false,
+        "showThresholdMarkers": true,
         "sizing": "auto"
       },
       "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "living room",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -152,11 +156,7 @@
               "operator": "=",
               "value": "Living room"
             }
-          ],
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          }
+          ]
         },
         {
           "alias": "bathroom",
@@ -307,6 +307,10 @@
       "targets": [
         {
           "alias": "actual",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -340,11 +344,7 @@
               "operator": "=~",
               "value": "/^$geographic_location$/"
             }
-          ],
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          }
+          ]
         },
         {
           "alias": "apparent",
@@ -446,13 +446,17 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false,
+        "showThresholdMarkers": true,
         "sizing": "auto"
       },
       "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "living room",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -486,11 +490,7 @@
               "operator": "=",
               "value": "Living room"
             }
-          ],
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          }
+          ]
         },
         {
           "alias": "bathroom",
@@ -633,12 +633,16 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false,
+        "showThresholdMarkers": true,
         "sizing": "auto"
       },
       "pluginVersion": "11.4.0",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -672,11 +676,7 @@
               "operator": "=~",
               "value": "/^$geographic_location$/"
             }
-          ],
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          }
+          ]
         }
       ],
       "title": "Humidity in $geographic_location",
@@ -692,27 +692,32 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "mappings": [],
-          "max": 1084,
-          "min": 870,
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "green",
-                "value": 950
+                "color": "yellow",
+                "value": 2.6
+              },
+              {
+                "color": "orange",
+                "value": 7.6
               },
               {
                 "color": "red",
-                "value": 1020
+                "value": 50
               }
             ]
           },
-          "unit": "pressurehpa"
+          "unit": "mm/h"
         },
         "overrides": []
       },
@@ -735,12 +740,16 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false,
+        "showThresholdMarkers": true,
         "sizing": "auto"
       },
       "pluginVersion": "11.4.0",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -758,7 +767,7 @@
             [
               {
                 "params": [
-                  "PressureSurfaceLevel"
+                  "RainIntensity"
                 ],
                 "type": "field"
               },
@@ -774,14 +783,10 @@
               "operator": "=~",
               "value": "/^$geographic_location$/"
             }
-          ],
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          }
+          ]
         }
       ],
-      "title": "Pressure in $geographic_location",
+      "title": "Rain intensity in $geographic_location",
       "type": "gauge"
     },
     {
@@ -841,12 +846,16 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false,
+        "showThresholdMarkers": true,
         "sizing": "auto"
       },
       "pluginVersion": "11.4.0",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -880,11 +889,7 @@
               "operator": "=~",
               "value": "/^$geographic_location$/"
             }
-          ],
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          }
+          ]
         }
       ],
       "title": "Wind speed in $geographic_location",
@@ -1466,6 +1471,6 @@
   "timezone": "browser",
   "title": "Smarthome",
   "uid": "fe8vn5iund69se",
-  "version": 25,
+  "version": 2,
   "weekStart": ""
 }
