@@ -1,9 +1,9 @@
-using DnsClient;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
+using Smarthome.Api.Diagnostics;
 using Smarthome.Api.Middleware;
 using System.Reflection;
 
@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder( args );
 // Environment varaibles into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 
-// logging settings
+#region Logging
 LogLevel logLevel = LogLevel.Warning;
 if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" ) ) )
 	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" )! );
@@ -23,6 +23,7 @@ builder.Services.AddLogging( loggingBuilder =>
 		loggingBuilder.SetMinimumLevel( logLevel );
 	} );
 builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
+#endregion
 
 builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ), typeof( WeatherReportMappingProfile ) )
 	.AddMyServices( builder.Configuration );
@@ -47,18 +48,7 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
-// open telemetry
-builder.Services.AddOpenTelemetry()
-	.ConfigureResource( resource => resource
-		.AddService( "Smarthome.Api",
-			serviceVersion: Assembly.GetExecutingAssembly().GetName().Version!.ToString(),
-			serviceNamespace: "Smarthome" )
-		.AddAttributes( new[]
-		{
-			new KeyValuePair<string, object>("service.hostname", Environment.MachineName )
-		} )
-	)
-	.WithTracing( provider => provider.AddAspNetCoreInstrumentation().AddConsoleExporter() );
+builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
