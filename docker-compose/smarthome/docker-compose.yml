@@ -4,8 +4,6 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     restart: always
-    networks:
-      - smarthome
     ports:
       - 5672:5672
       - 15672:15672
@@ -36,8 +34,6 @@ services:
     image: grafana/grafana:latest
     container_name: grafana-smarthome
     restart: always
-    networks:
-      - smarthome
     ports:
      - '3001:3000'
     volumes:
@@ -54,14 +50,6 @@ services:
       - "27017:27017"
     volumes:
       - mongodb:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=public
-      - MONGO_INITDB_DATABASE=smarthome
-
-networks:
-  smarthome:
-    driver: bridge  
 
 volumes:
   rabbitmq:
