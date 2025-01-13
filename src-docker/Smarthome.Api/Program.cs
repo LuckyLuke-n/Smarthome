@@ -1,7 +1,11 @@
+using DnsClient;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
 using Smarthome.Api.Middleware;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -42,6 +46,19 @@ builder.Services.AddSwaggerGen( options =>
 		}
 	} );
 } );
+
+// open telemetry
+builder.Services.AddOpenTelemetry()
+	.ConfigureResource( resource => resource
+		.AddService( "Smarthome.Api",
+			serviceVersion: Assembly.GetExecutingAssembly().GetName().Version!.ToString(),
+			serviceNamespace: "Smarthome" )
+		.AddAttributes( new[]
+		{
+			new KeyValuePair<string, object>("service.hostname", Environment.MachineName )
+		} )
+	)
+	.WithTracing( provider => provider.AddAspNetCoreInstrumentation().AddConsoleExporter() );
 
 var app = builder.Build();
 
