@@ -1,5 +1,6 @@
 ﻿using LSoftware.Communication.Abstractions.MessageBus;
 using LSoftware.Metrics.Abstractions;
+using Smarthome.Api.Diagnostics.Meters;
 using Smarthome.Api.Monitoring.MessageBus.Helpers;
 using Smarthome.Api.Repositories.Devices;
 using Smarthome.Core.DomainObjects;
@@ -43,6 +44,8 @@ namespace Smarthome.Api.Monitoring.MessageBus
 
 		private async void WorkOnMetricsBufferAsync()
 		{
+			EnvironmentMetrics metrics = new();
+
 			while ( !CancellationTokenSource.IsCancellationRequested )
 			{
 				try
@@ -66,7 +69,9 @@ namespace Smarthome.Api.Monitoring.MessageBus
 						DeviceCacheItem newItem = new( response.ValueSuccess! );
 						DevicesCache.AddOrUpdate( container.Topic, newItem, ( key, value ) => newItem );
 						EnvironmentSensorData data = new( container.Payload, newItem.Value );
-						SensorDataLogger.SendBuffered( data );
+						//SensorDataLogger.SendBuffered( data );
+
+						metrics.Update( data.Temperature, data.Humidity, newItem.Value.Location, newItem.Value.Hardware.Model );
 					}
 				}
 				catch ( Exception ex )

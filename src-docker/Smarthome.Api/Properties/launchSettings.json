@@ -19,7 +19,7 @@
         "SMARTHOME_WeatherApi__Endpoint": "https://api.tomorrow.io/v4/weather/realtime",
         "SMARTHOME_WeatherApi__ApiKey": "key",
         "SMARTHOME_WeatherApi__RefreshIntervalInMinutes": "5",
-        "SMARTHOME_Diagnostics__TracingEnabled": "true",
+        "SMARTHOME_Diagnostics__TracingEnabled": "false",
         "SMARTHOME_Diagnostics__JaegerUrl": "http://localhost:4317/api/traces"
       },
       "applicationUrl": "https://localhost:29983;http://localhost:29984"
