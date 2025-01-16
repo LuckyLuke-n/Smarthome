@@ -18,7 +18,7 @@ Welcome to the SmartHome application! This application allows you to monitor and
 - Outdoor Data: Enter your desired location (city name or coordinates) to fetch the latest outdoor weather data.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](/LICENSE.txt) file for details.
 
 ## Acknowledgments
 Thanks to the developers of the third-party weather API for providing valuable data.
