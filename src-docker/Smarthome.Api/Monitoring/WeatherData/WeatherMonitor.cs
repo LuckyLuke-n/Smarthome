@@ -1,7 +1,6 @@
 ﻿
 using AutoMapper;
 using LSoftware.Metrics.Abstractions;
-using Microsoft.AspNetCore.Connections;
 using Microsoft.Extensions.Options;
 using Smarthome.Api.Repositories.Locations;
 using Smarthome.Api.Repositories.WeatherReport;
