@@ -1,7 +1,8 @@
 global:
+  evaluation_interval: 30s
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: 'smarthome.api'
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['smarthome.api:8080']
