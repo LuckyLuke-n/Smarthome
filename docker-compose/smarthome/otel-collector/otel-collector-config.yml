@@ -1,0 +1,43 @@
+extensions:
+  health_check:
+  z-pages:
+      endpoint: :55679
+
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317/api/traces"
+      http:
+
+processors:
+  batch:
+
+exporters:
+  debug:
+  otlp:
+    endpoint: $"{JAEGER_ENDPOINT}"
+    tls:
+      insecure: true
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+
+service:
+  pipelines:
+    traces:
+      receivers:
+        - otlp
+      processors: [batch]
+      exporters:
+        - debug
+        - otlp
+    metrics:
+      receivers:
+        - otlp
+      processors: [batch]
+      exporters:
+        - debug
+        - prometheus
+      

@@ -61,11 +61,27 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
 
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    volumes:
+      - ./otel-collector/otel-collector-config.yml:/etc/otel/config.yml
+    environment:
+      - JAEGER_ENDPOINT=http://jaeger:4317/api/traces
+    ports:
+      - "8889:8889"
+      - "13133:13133"
+      - "55679:55679"
+      - "4317:4317" # OTLP endpoint for Jaeger
+    depends_on:
+      - jaeger
+      - prometheus
+
   jaeger:
     image: jaegertracing/all-in-one:latest
     container_name: jaeger
     ports:
-      - "16686:16686"
+      - "16686:16686" # web ui
 
 volumes:
   rabbitmq:

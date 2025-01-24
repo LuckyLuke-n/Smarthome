@@ -5,4 +5,4 @@ global:
 scrape_configs:
   - job_name: 'smarthome.api'
     static_configs:
-      - targets: ['smarthome.api:8080']
+      - targets: ['otel-collector:8889']

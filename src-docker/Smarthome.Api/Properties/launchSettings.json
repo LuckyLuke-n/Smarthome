@@ -29,7 +29,7 @@
         "SMARTHOME_WeatherApi__ApiKey": "key",
         "SMARTHOME_WeatherApi__RefreshIntervalInMinutes": "5",
         "SMARTHOME_Diagnostics__TracingEnabled": "true",
-        "SMARTHOME_Diagnostics__JaegerUrl": "http://localhost:4317/api/traces"
+        "SMARTHOME_Diagnostics__OtlpEndpoint": "http://localhost:4317"
       },
       "applicationUrl": "https://localhost:29983;http://localhost:29984"
     },

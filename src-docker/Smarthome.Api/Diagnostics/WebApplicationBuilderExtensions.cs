@@ -1,10 +1,7 @@
-﻿using OpenTelemetry.Resources;
+﻿using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System.Reflection;
-using OpenTelemetry.Exporter.InfluxDB;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Exporter;
-using LSoftware.Metrics.InfluxDb.Configuration;
 
 namespace Smarthome.Api.Diagnostics
 {
@@ -25,12 +22,20 @@ namespace Smarthome.Api.Diagnostics
 						] );
 				} )
 				.WithMetrics( metrics => metrics
-					.AddInfluxDBMetricsExporter( options =>
-					{
-						options.Endpoint = new( Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar )! );
-						options.Token = Environment.GetEnvironmentVariable( InfluxDbConfiguration.TokenEnvVar )!;
-						options.MetricExportIntervalMilliseconds = 20000;
-					} )
+					.AddAspNetCoreInstrumentation()
+					.AddHttpClientInstrumentation()
+					// metrics provided by ASP.NET
+					.AddMeter("Microsoft.AspNetCore.Hosting")
+					.AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+
+					.AddOtlpExporter( options =>
+						options.Endpoint = new Uri( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.OtlpEndpointEnvVar )! ) )
+					//.AddInfluxDBMetricsExporter( options =>
+					//{
+					//	options.Endpoint = new( Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar )! );
+					//	options.Token = Environment.GetEnvironmentVariable( InfluxDbConfiguration.TokenEnvVar )!;
+					//	options.MetricExportIntervalMilliseconds = 20000;
+					//} )
 				);
 
 			if ( bool.TryParse( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.TracingEnabledEnvVar ), out bool enabled ) && enabled )
@@ -44,7 +49,7 @@ namespace Smarthome.Api.Diagnostics
 						.AddConsoleExporter()
 						
 						.AddOtlpExporter( options =>
-							options.Endpoint = new Uri( Environment.GetEnvironmentVariable( "SMARTHOME_Diagnostics__JaegerUrl" )! ) )
+							options.Endpoint = new Uri( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.OtlpEndpointEnvVar )! ) )
 						);
 			}
 
