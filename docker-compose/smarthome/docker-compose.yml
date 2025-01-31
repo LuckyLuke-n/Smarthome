@@ -65,9 +65,10 @@ services:
     image: otel/opentelemetry-collector-contrib:latest
     container_name: otel-collector
     volumes:
-      - ./otel-collector/otel-collector-config.yml:/etc/otel/config.yml
+      - ./otel-collector/otel-collector-config.yml:/etc/otel/config.yaml
+    command: "--config /etc/otel/config.yaml"
     environment:
-      - JAEGER_ENDPOINT=http://jaeger:4317/api/traces
+      - JAEGER_ENDPOINT=jaeger:4317
     ports:
       - "8889:8889"
       - "13133:13133"
