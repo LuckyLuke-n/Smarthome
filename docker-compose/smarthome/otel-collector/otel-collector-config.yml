@@ -1,15 +1,10 @@
-extensions:
-  health_check:
-  z-pages:
-      endpoint: :55679
-
-
 receivers:
   otlp:
     protocols:
       grpc:
-        endpoint: "0.0.0.0:4317/api/traces"
+        endpoint: "0.0.0.0:4317"
       http:
+        endpoint: "0.0.0.0:4318"
 
 processors:
   memory_limiter:
@@ -21,7 +16,7 @@ processors:
 exporters:
   debug:
   otlp:
-    endpoint: $"{JAEGER_ENDPOINT}"
+    endpoint: "${JAEGER_ENDPOINT}"
     tls:
       insecure: true
   prometheus:
