@@ -3,6 +3,6 @@
 	public static class ServiceConstants
 	{
 		public static string Name => "Smarthome.Api";
-		public static string Version => "1.0.0";
+		public static string Version => "1.0.1";
 	}
 }
