@@ -1,19 +1,14 @@
 services:
 
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    restart: always
+  emqx:
+    image: emqx/emqx:latest
+    container_name: emqx
     ports:
-      - 5672:5672
-      - 15672:15672
-      - 1883:1883
+      - "1883:1883"
+      - "18083:18083"
     volumes:
-      - ./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
-      - rabbitmq:/var/lib/rabbitmq
-    environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=public
+      - emqx_data:/opt/emqx/data
+      - emqx_logs:/opt/emqx/logs
 
   influxdb:
     image: influxdb:2
@@ -52,7 +47,8 @@ services:
       - mongodb:/data/db
 
 volumes:
-  rabbitmq:
+  emqx_data:
+  emqx_logs:
   grafana:
   influxdb:
   mongodb:
