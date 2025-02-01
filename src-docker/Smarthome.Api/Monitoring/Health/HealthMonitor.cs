@@ -6,6 +6,7 @@ using Smarthome.Api.Configuration;
 using Smarthome.Api.Monitoring.Health.Dtos;
 using Smarthome.Api.Monitoring.WeatherData;
 using Smarthome.Api.Repositories.WeatherReport.Api;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -81,6 +82,12 @@ namespace Smarthome.Api.Monitoring.Health
 						case ServiceType.Grafana:
 							var grafana = JsonSerializer.Deserialize<GrafanaHealthDtocs>( content, options );
 							status.Grafana = grafana?.Database ?? "unknown";
+							break;
+						case ServiceType.Emqx:
+							if ( result.IsSuccessStatusCode )
+								status.MessageBus = "running";
+							else
+								status.MessageBus = "stopped";
 							break;
 						default:
 							break;
