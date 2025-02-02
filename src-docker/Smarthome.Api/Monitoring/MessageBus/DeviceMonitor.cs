@@ -5,6 +5,7 @@ using Smarthome.Api.Monitoring.MessageBus.Helpers;
 using Smarthome.Api.Repositories.Devices;
 using Smarthome.Core.DomainObjects;
 using System.Collections.Concurrent;
+using System.Diagnostics.Metrics;
 using System.Text.Json;
 using System.Threading.Tasks.Dataflow;
 
@@ -44,8 +45,6 @@ namespace Smarthome.Api.Monitoring.MessageBus
 
 		private async void WorkOnMetricsBufferAsync()
 		{
-			EnvironmentMetrics metrics = new();
-
 			while ( !CancellationTokenSource.IsCancellationRequested )
 			{
 				try
@@ -55,6 +54,7 @@ namespace Smarthome.Api.Monitoring.MessageBus
 					{
 						EnvironmentSensorData data = new( container.Payload, cacheItem.Value );
 						SensorDataLogger.SendBuffered( data );
+						EnvironmentMeter.Update( data.Temperature, data.Humidity, data.Pressure, cacheItem.Value.Location, cacheItem.Value.Hardware.Model );
 					}
 					else
 					{
@@ -71,7 +71,7 @@ namespace Smarthome.Api.Monitoring.MessageBus
 						EnvironmentSensorData data = new( container.Payload, newItem.Value );
 						//SensorDataLogger.SendBuffered( data );
 
-						metrics.Update( data.Temperature, data.Humidity, newItem.Value.Location, newItem.Value.Hardware.Model );
+						EnvironmentMeter.Update( data.Temperature, data.Humidity, data.Pressure, newItem.Value.Location, newItem.Value.Hardware.Model );
 					}
 				}
 				catch ( Exception ex )

@@ -1,6 +1,7 @@
 ﻿using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Smarthome.Api.Diagnostics.Meters;
 using System.Reflection;
 
 namespace Smarthome.Api.Diagnostics
@@ -24,12 +25,18 @@ namespace Smarthome.Api.Diagnostics
 				.WithMetrics( metrics => metrics
 					.AddAspNetCoreInstrumentation()
 					.AddHttpClientInstrumentation()
+
 					// metrics provided by ASP.NET
 					.AddMeter("Microsoft.AspNetCore.Hosting")
-					.AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+					.AddMeter("Microsoft.AspNetCore.Server.Kestrel")	
 
-					.AddOtlpExporter( options =>
-						options.Endpoint = new Uri( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.OtlpEndpointEnvVar )! ) )
+					// custom metrics
+					.AddMeter( EnvironmentMeter.Name )
+					
+					.AddPrometheusExporter()
+
+					//.AddOtlpExporter( options =>
+					//	options.Endpoint = new Uri( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.OtlpEndpointEnvVar )! ) )
 					//.AddInfluxDBMetricsExporter( options =>
 					//{
 					//	options.Endpoint = new( Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar )! );

@@ -51,8 +51,7 @@ builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseMiddleware<ApiKeyMiddleware>();
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 if ( app.Environment.IsDevelopment() )
 {
@@ -62,6 +61,9 @@ if ( app.Environment.IsDevelopment() )
 
 app.UseHttpsRedirection();
 
+
+// Configure the HTTP request pipeline.
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

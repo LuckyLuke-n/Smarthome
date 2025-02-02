@@ -1,8 +1,8 @@
 global:
   evaluation_interval: 30s
-  scrape_interval: 15s
+  scrape_interval: 5s
 
 scrape_configs:
   - job_name: 'smarthome.api'
     static_configs:
-      - targets: ['otel-collector:8889']
+      - targets: ['host.docker.internal:29984']
