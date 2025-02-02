@@ -10,7 +10,8 @@
 	{
 		Influx,
 		Grafana,
-		RabbitMq
+		RabbitMq,
+		Emqx
 	}
 
 	public class ApiConfiguration
