@@ -5,7 +5,6 @@ using LSoftware.Metrics.InfluxDb.Configuration;
 using LSoftware.Repository.MongoDb;
 using MongoDB.Driver;
 using Smarthome.Api.Configuration;
-using Smarthome.Api.Monitoring.Health;
 using Smarthome.Api.Monitoring.MessageBus;
 using Smarthome.Api.Monitoring.WeatherData;
 using Smarthome.Api.Repositories;
@@ -39,7 +38,6 @@ namespace Smarthome.Api
 
 			services.AddHostedService<DeviceMonitor>();
 			services.AddHostedService<WeatherMonitor>();
-			services.AddHostedService<HealthMonitor>();
 
 			return services;
 		}

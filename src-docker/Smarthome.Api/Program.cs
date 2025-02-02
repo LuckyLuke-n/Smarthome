@@ -47,6 +47,7 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
+builder.Services.AddHealthChecks();
 builder.AddOpenTelemetry();
 
 var app = builder.Build();
@@ -60,7 +61,7 @@ if ( app.Environment.IsDevelopment() )
 }
 
 app.UseHttpsRedirection();
-
+app.UseHealthChecks( "/health" );
 
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ApiKeyMiddleware>();

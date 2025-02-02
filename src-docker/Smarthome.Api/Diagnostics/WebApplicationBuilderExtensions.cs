@@ -27,22 +27,23 @@ namespace Smarthome.Api.Diagnostics
 					.AddHttpClientInstrumentation()
 
 					// metrics provided by ASP.NET
-					.AddMeter("Microsoft.AspNetCore.Hosting")
-					.AddMeter("Microsoft.AspNetCore.Server.Kestrel")	
+					.AddMeter( "Microsoft.AspNetCore.Hosting" )
+					.AddMeter( "Microsoft.AspNetCore.Server.Kestrel" )
 
 					// custom metrics
 					.AddMeter( EnvironmentMeter.Name )
-					
+					.AddMeter( WeatherMeter.Name )
+
 					.AddPrometheusExporter()
 
-					//.AddOtlpExporter( options =>
-					//	options.Endpoint = new Uri( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.OtlpEndpointEnvVar )! ) )
-					//.AddInfluxDBMetricsExporter( options =>
-					//{
-					//	options.Endpoint = new( Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar )! );
-					//	options.Token = Environment.GetEnvironmentVariable( InfluxDbConfiguration.TokenEnvVar )!;
-					//	options.MetricExportIntervalMilliseconds = 20000;
-					//} )
+				//.AddOtlpExporter( options =>
+				//	options.Endpoint = new Uri( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.OtlpEndpointEnvVar )! ) )
+				//.AddInfluxDBMetricsExporter( options =>
+				//{
+				//	options.Endpoint = new( Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar )! );
+				//	options.Token = Environment.GetEnvironmentVariable( InfluxDbConfiguration.TokenEnvVar )!;
+				//	options.MetricExportIntervalMilliseconds = 20000;
+				//} )
 				);
 
 			if ( bool.TryParse( Environment.GetEnvironmentVariable( DiagnosticsConfiguration.TracingEnabledEnvVar ), out bool enabled ) && enabled )

@@ -2,6 +2,7 @@
 using AutoMapper;
 using LSoftware.Metrics.Abstractions;
 using Microsoft.Extensions.Options;
+using Smarthome.Api.Diagnostics.Meters;
 using Smarthome.Api.Repositories.Locations;
 using Smarthome.Api.Repositories.WeatherReport;
 using Smarthome.Api.Repositories.WeatherReport.Api;
@@ -68,8 +69,8 @@ namespace Smarthome.Api.Monitoring.WeatherData
 				if ( CancellationTokenSource.IsCancellationRequested )
 					return;
 
-				var weatherReportData = Mapper.Map<WeatherReportData>( response.ValueSuccess! );
-				WeatherLogger.SendInstant( weatherReportData );
+				var weatherReport = response.ValueSuccess!;
+				WeatherMeter.Update( weatherReport, location.City );
 			}
 		}
 
