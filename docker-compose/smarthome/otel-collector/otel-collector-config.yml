@@ -7,10 +7,6 @@ receivers:
         endpoint: "0.0.0.0:4318"
 
 processors:
-  memory_limiter:
-    check_internal: 1s
-    limit_percentage: 50
-    spike_limit_percentage: 30
   batch:
 
 exporters:
@@ -28,14 +24,14 @@ service:
     traces:
       receivers:
         - otlp
-      processors: [memory_limiter, batch]
+      processors: [batch]
       exporters:
         - debug
         - otlp
     metrics:
       receivers:
         - otlp
-      processors: [memory_limiter, batch]
+      processors: [batch]
       exporters:
         - debug
         - prometheus
