@@ -70,7 +70,7 @@ namespace Smarthome.Api.Monitoring.WeatherData
 					return;
 
 				var weatherReport = response.ValueSuccess!;
-				WeatherMeter.Update( weatherReport, location.City );
+				WeatherMeter.Update( weatherReport, weatherReport.Location );
 			}
 		}
 
