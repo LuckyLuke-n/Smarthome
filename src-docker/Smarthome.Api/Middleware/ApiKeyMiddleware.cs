@@ -14,6 +14,12 @@
 
 		public async Task Invoke( HttpContext context )
 		{
+			if (string.Equals(context.Request.Path, "/api/status/version" ) )
+			{
+				await _next( context );
+				return;
+			}
+
 			if ( !context.Request.Headers.TryGetValue( ApiKeyName, out var extractedApiKey ) )
 			{
 				context.Response.StatusCode = 401;
