@@ -47,13 +47,13 @@ else
 }
 
 # build the container
-docker build --platform=linux/arm64 -t luckyluke4411/smarthomeapi:$fullVersionString -f src-docker\Smarthome.Api\Dockerfile .
+docker build --platform=linux/arm64 -t luckyluke4411/ambientcollector:$fullVersionString -f src-docker\Smarthome.AmbientCollector.Api\Dockerfile .
 
 # push if requested
 if ( $pushToDockerHub -eq "y" )
 {
     Write-Output("Pushing to DockerHub...")
-    docker push luckyluke4411/smarthomeapi:$fullVersionString
+    docker push luckyluke4411/ambientcollector:$fullVersionString
     Write-Output("Done.")
 }
 else
