@@ -3,6 +3,7 @@ services:
   emqx:
     image: emqx/emqx:latest
     container_name: emqx
+    restart: always
     ports:
       - "1883:1883"
       - "18083:18083"

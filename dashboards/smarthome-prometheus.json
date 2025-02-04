@@ -1,0 +1,2413 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 21,
+        "panels": [],
+        "title": "Current values",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 40,
+            "min": 10,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 21
+                },
+                {
+                  "color": "red",
+                  "value": 25
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 13,
+          "x": 0,
+          "y": 1
+        },
+        "id": 4,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "living room",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "Living room",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "living room",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bathroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Bathroom",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bathroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bathroom"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bedroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Bedroom",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bedroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bedroom"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Temperature",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "eebzn0o1gtatcd"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 50,
+            "min": -25,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 15
+                },
+                {
+                  "color": "red",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 7,
+          "x": 13,
+          "y": 1
+        },
+        "id": 6,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "actual",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "eebzn0o1gtatcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_temperature_degC{location=\"$geographic_location\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temperature",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "apparent",
+            "datasource": {
+              "type": "prometheus",
+              "uid": "eebzn0o1gtatcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_temperatureApparent_degC{location=\"munich germany\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Temperature apparent",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temperature appearant",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "TemperatureApparent"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Temperature in $geographic_location",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "P93578DF493C08FA3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 1
+        },
+        "id": 11,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "P93578DF493C08FA3"
+            },
+            "fields": [
+              {
+                "jsonPath": "$"
+              }
+            ],
+            "method": "GET",
+            "queryParams": "",
+            "refId": "A",
+            "urlPath": ""
+          }
+        ],
+        "title": "Smarthome version",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "P9D6465F4E84C3FCF"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 3
+        },
+        "id": 13,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "P9D6465F4E84C3FCF"
+            },
+            "fields": [
+              {
+                "jsonPath": "$"
+              }
+            ],
+            "method": "GET",
+            "queryParams": "",
+            "refId": "A",
+            "urlPath": ""
+          }
+        ],
+        "title": "Prometheus health",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "P081EDFFC5A585CC0"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "[\\s\\S]*",
+                  "result": {
+                    "index": 0,
+                    "text": "Ok"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 5
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "P081EDFFC5A585CC0"
+            },
+            "fields": [
+              {
+                "jsonPath": "$"
+              }
+            ],
+            "method": "GET",
+            "queryParams": "",
+            "refId": "A",
+            "urlPath": ""
+          },
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "P081EDFFC5A585CC0"
+            },
+            "fields": [
+              {
+                "jsonPath": ""
+              }
+            ],
+            "hide": false,
+            "method": "GET",
+            "queryParams": "",
+            "refId": "B",
+            "urlPath": ""
+          }
+        ],
+        "title": "EMQX health",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 30
+                },
+                {
+                  "color": "red",
+                  "value": 50
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 13,
+          "x": 0,
+          "y": 7
+        },
+        "id": 3,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "living room",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_humidity_percent{location=\"Living room\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "Living room",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "living rom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bathroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_humidity_percent{location=\"Bathroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Bathroom",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bathroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bathroom"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bedroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_humidity_percent{location=\"Bedroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Bedroom",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bedroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bedroom"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Humidity",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 30
+                },
+                {
+                  "color": "red",
+                  "value": 50
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 13,
+          "y": 7
+        },
+        "id": 8,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_humidity_percent{location=\"munich germany\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temp",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Humidity in $geographic_location",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 25,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 7
+                },
+                {
+                  "color": "orange",
+                  "value": 14
+                },
+                {
+                  "color": "red",
+                  "value": 18
+                }
+              ]
+            },
+            "unit": "velocityms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 3,
+          "x": 17,
+          "y": 7
+        },
+        "id": 10,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_windSpeed_meters_per_second{location=\"munich germany\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temp",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "WindSpeed"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Wind speed in $geographic_location",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "from": -100,
+                  "result": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "ok"
+                  },
+                  "to": 100
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "color": "red",
+                    "index": 1,
+                    "text": "offline"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 7
+        },
+        "id": 14,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "Living room",
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
+            "range": true,
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              },
+              {
+                "condition": "AND",
+                "key": "time",
+                "operator": "=",
+                "value": "time - 5m"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Living room sensor",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 25,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 1000
+                },
+                {
+                  "color": "red",
+                  "value": 1020
+                }
+              ]
+            },
+            "unit": "pressurehpa"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 3,
+          "x": 17,
+          "y": 9
+        },
+        "id": 15,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_pressure_hPa{location=\"$geographic_location\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temp",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "PressureSurfaceLevel"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Pressure in $geographic_location",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "from": -100,
+                  "result": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "ok"
+                  },
+                  "to": 100
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "color": "red",
+                    "index": 1,
+                    "text": "offline"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 9
+        },
+        "id": 22,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "Bathroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Bathroom') AND time > now() - 1m",
+            "range": true,
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              },
+              {
+                "condition": "AND",
+                "key": "time",
+                "operator": "=",
+                "value": "time - 5m"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Bathroom sensor",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 2.5
+                },
+                {
+                  "color": "red",
+                  "value": 7.5
+                }
+              ]
+            },
+            "unit": "mm/h"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 3,
+          "x": 17,
+          "y": 11
+        },
+        "id": 17,
+        "options": {
+          "colorMode": "background_solid",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_rainIntensity_mm_per_hour{location=\"$geographic_location\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temp",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "RainIntensity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Rain intensity in $geographic_location",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "from": -100,
+                  "result": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "ok"
+                  },
+                  "to": 100
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "color": "red",
+                    "index": 1,
+                    "text": "offline"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 11
+        },
+        "id": 23,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "Bedroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Bedroom') AND time > now() - 1m",
+            "range": true,
+            "rawQuery": true,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              },
+              {
+                "condition": "AND",
+                "key": "time",
+                "operator": "=",
+                "value": "time - 5m"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Bedroom sensor",
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 13
+        },
+        "id": 20,
+        "panels": [],
+        "title": "Time series",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "temp in °C",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 24,
+          "x": 0,
+          "y": 14
+        },
+        "id": 1,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "living room",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "living room",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bathroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bathroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bathroom"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bedroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bedroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bedroom"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "$geographic_location",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_temperature_degC{location=\"$geographic_location\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "outside",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Temperature",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "humidity in %",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 24,
+          "x": 0,
+          "y": 19
+        },
+        "id": 5,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "alias": "living room",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_humidity_percent{location=\"Living room\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "includeNullMetadata": true,
+            "legendFormat": "Living room",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "temperature",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Living room"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bathroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_humidity_percent{location=\"Bathroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Bathroom",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bathroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bathroom"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "bedroom",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "envsensor_humidity_percent{location=\"Bedroom\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "Bedroom",
+            "measurement": "environment_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "bedroom",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=",
+                "value": "Bedroom"
+              }
+            ],
+            "useBackend": false
+          },
+          {
+            "alias": "$geographic_location",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "ae9ws8dimoutcd"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "weather_current_humidity_percent{location=\"$geographic_location\"}",
+            "fullMetaSearch": false,
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "linear"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "{{$geographic_location}}",
+            "measurement": "weather_report",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "range": true,
+            "refId": "outside",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Humidity"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Location::tag",
+                "operator": "=~",
+                "value": "/^$geographic_location$/"
+              }
+            ],
+            "useBackend": false
+          }
+        ],
+        "title": "Humidity",
+        "type": "timeseries"
+      }
+    ],
+    "preload": false,
+    "refresh": "5m",
+    "schemaVersion": 40,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "text": "München, Bayern, Deutschland",
+            "value": "München, Bayern, Deutschland"
+          },
+          "definition": "SHOW TAG VALUES FROM \"weather_report\" WITH KEY = \"Location\"",
+          "description": "The place for outside weather data.",
+          "label": "Location",
+          "name": "geographic_location",
+          "options": [],
+          "query": {
+            "query": "SHOW TAG VALUES FROM \"weather_report\" WITH KEY = \"Location\"",
+            "refId": "InfluxVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "sort": 1,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Smarthome-influx",
+    "uid": "fe8vn5iund69se",
+    "version": 5,
+    "weekStart": ""
+  }
