@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 4,
   "links": [],
   "panels": [
     {
@@ -96,8 +96,8 @@
         {
           "alias": "living room",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -145,8 +145,8 @@
         {
           "alias": "bathroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -195,8 +195,8 @@
         {
           "alias": "bedroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -249,7 +249,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "eebzn0o1gtatcd"
+        "uid": "P1809F7CD0C75ACF3"
       },
       "fieldConfig": {
         "defaults": {
@@ -306,102 +306,36 @@
       "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "actual",
           "datasource": {
             "type": "prometheus",
-            "uid": "eebzn0o1gtatcd"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "weather_current_temperature_degC{location=\"$geographic_location\"}",
           "fullMetaSearch": false,
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
           "includeNullMetadata": true,
+          "instant": false,
           "legendFormat": "Temperature actual",
-          "measurement": "weather_report",
-          "orderByTime": "ASC",
-          "policy": "default",
           "range": true,
-          "refId": "temperature",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "Temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Location::tag",
-              "operator": "=~",
-              "value": "/^$geographic_location$/"
-            }
-          ],
+          "refId": "actual",
           "useBackend": false
         },
         {
-          "alias": "apparent",
           "datasource": {
             "type": "prometheus",
-            "uid": "eebzn0o1gtatcd"
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "weather_current_temperatureApparent_degC{location=\"$geographic_location\"}",
           "fullMetaSearch": false,
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
           "hide": false,
           "includeNullMetadata": true,
+          "instant": false,
           "legendFormat": "Temperature apparent",
-          "measurement": "weather_report",
-          "orderByTime": "ASC",
-          "policy": "default",
           "range": true,
-          "refId": "temperature appearant",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "TemperatureApparent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Location::tag",
-              "operator": "=~",
-              "value": "/^$geographic_location$/"
-            }
-          ],
+          "refId": "apparent",
           "useBackend": false
         }
       ],
@@ -478,7 +412,7 @@
           "urlPath": ""
         }
       ],
-      "title": "Smarthome version",
+      "title": "Version",
       "type": "stat"
     },
     {
@@ -496,7 +430,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "text",
                 "value": null
               },
               {
@@ -580,7 +514,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "text",
                 "value": null
               },
               {
@@ -717,8 +651,8 @@
         {
           "alias": "living room",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -766,8 +700,8 @@
         {
           "alias": "bathroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -816,8 +750,8 @@
         {
           "alias": "bedroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -927,12 +861,12 @@
       "targets": [
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "weather_current_humidity_percent{location=\"munich germany\"}",
+          "expr": "weather_current_humidity_percent{location=\"$geographic_location\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1044,12 +978,12 @@
       "targets": [
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "weather_current_windSpeed_meters_per_second{location=\"munich germany\"}",
+          "expr": "weather_current_windSpeed_meters_per_second{location=\"$geographic_location\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1173,6 +1107,10 @@
       "targets": [
         {
           "alias": "Living room",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "envsensor_temperature_degC{location=\"Living room\"}",
@@ -1297,50 +1235,18 @@
       "targets": [
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "weather_current_pressure_hPa{location=\"$geographic_location\"}",
           "fullMetaSearch": false,
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
           "includeNullMetadata": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "measurement": "weather_report",
-          "orderByTime": "ASC",
-          "policy": "default",
           "range": true,
-          "refId": "temp",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "PressureSurfaceLevel"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Location::tag",
-              "operator": "=~",
-              "value": "/^$geographic_location$/"
-            }
-          ],
+          "refId": "A",
           "useBackend": false
         }
       ],
@@ -1554,50 +1460,18 @@
       "targets": [
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "weather_current_rainIntensity_mm_per_hour{location=\"$geographic_location\"}",
           "fullMetaSearch": false,
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
           "includeNullMetadata": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "measurement": "weather_report",
-          "orderByTime": "ASC",
-          "policy": "default",
           "range": true,
-          "refId": "temp",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "RainIntensity"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Location::tag",
-              "operator": "=~",
-              "value": "/^$geographic_location$/"
-            }
-          ],
+          "refId": "A",
           "useBackend": false
         }
       ],
@@ -1843,8 +1717,8 @@
         {
           "alias": "living room",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1898,8 +1772,8 @@
         {
           "alias": "bathroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1954,8 +1828,8 @@
         {
           "alias": "bedroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -2010,8 +1884,8 @@
         {
           "alias": "$geographic_location",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -2148,8 +2022,8 @@
         {
           "alias": "living room",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -2203,8 +2077,8 @@
         {
           "alias": "bathroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -2259,8 +2133,8 @@
         {
           "alias": "bedroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -2315,8 +2189,8 @@
         {
           "alias": "$geographic_location",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -2381,22 +2255,24 @@
     "list": [
       {
         "current": {
-          "text": "",
-          "value": ""
+          "text": "München, Bayern, Deutschland",
+          "value": "München, Bayern, Deutschland"
         },
-        "definition": "label_values(weather_current_humidity_percent{location=\"$geographic_location\"},location)",
-        "description": "The place for outside weather data.",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
+        "definition": "label_values(weather_current_temperature_degC{location=\"$geographic_location\"},location)",
         "label": "Location",
         "name": "geographic_location",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(weather_current_humidity_percent{location=\"$geographic_location\"},location)",
+          "query": "label_values(weather_current_temperature_degC{location=\"$geographic_location\"},location)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "sort": 1,
         "type": "query"
       }
     ]
@@ -2407,8 +2283,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Smarthome-influx",
+  "title": "AmbientCollector",
   "uid": "fe8vn5iund69se",
-  "version": 11,
+  "version": 4,
   "weekStart": ""
 }
