@@ -3,6 +3,7 @@ services:
   emqx:
     image: emqx/emqx:latest
     container_name: emqx
+    restart: always
     ports:
       - "1883:1883"
       - "18083:18083"
@@ -46,9 +47,46 @@ services:
     volumes:
       - mongodb:/data/db
 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  # otel-collector:
+  #   image: otel/opentelemetry-collector-contrib:latest
+  #   container_name: otel-collector
+  #   restart: always
+  #   volumes:
+  #     - ./otel-collector/otel-collector-config.yml:/etc/otel/config.yaml
+  #   command: "--config /etc/otel/config.yaml"
+  #   environment:
+  #     - JAEGER_ENDPOINT=jaeger:4317
+  #   ports:
+  #     - "8889:8889"
+  #     - "13133:13133"
+  #     - "55679:55679"
+  #     - "4317:4317" # OTLP endpoint for Jaeger
+  #   depends_on:
+  #     - jaeger
+  #     - prometheus
+
+  # jaeger:
+  #   image: jaegertracing/all-in-one:latest
+  #   container_name: jaeger
+  #   restart: always
+  #   ports:
+  #     - "16686:16686" # web ui
+
 volumes:
   emqx_data:
   emqx_logs:
   grafana:
   influxdb:
   mongodb:
+  prometheus:  

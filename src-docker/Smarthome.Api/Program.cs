@@ -1,14 +1,17 @@
+using LSoftware.Repository.MongoDb;
 using Microsoft.OpenApi.Models;
 using Smarthome.Api;
 using Smarthome.Api.Configuration;
+using Smarthome.Api.Diagnostics;
 using Smarthome.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder( args );
 
 // Environment varaibles into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
+builder.Services.Configure<MongoDbConfiguration>( builder.Configuration.GetSection( DiagnosticsConfiguration.Section ) );
 
-// logging settings
+#region Logging
 LogLevel logLevel = LogLevel.Warning;
 if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" ) ) )
 	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" )! );
@@ -19,6 +22,7 @@ builder.Services.AddLogging( loggingBuilder =>
 		loggingBuilder.SetMinimumLevel( logLevel );
 	} );
 builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
+#endregion
 
 builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ), typeof( WeatherReportMappingProfile ) )
 	.AddMyServices( builder.Configuration );
@@ -43,10 +47,12 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
+builder.Services.AddHealthChecks();
+builder.AddOpenTelemetry();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseMiddleware<ApiKeyMiddleware>();
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 if ( app.Environment.IsDevelopment() )
 {
@@ -55,7 +61,10 @@ if ( app.Environment.IsDevelopment() )
 }
 
 app.UseHttpsRedirection();
+app.UseHealthChecks( "/health" );
 
+// Configure the HTTP request pipeline.
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

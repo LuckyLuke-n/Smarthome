@@ -1,9 +1,11 @@
 ﻿using LSoftware.Communication.Abstractions.MessageBus;
 using LSoftware.Metrics.Abstractions;
+using Smarthome.Api.Diagnostics.Meters;
 using Smarthome.Api.Monitoring.MessageBus.Helpers;
 using Smarthome.Api.Repositories.Devices;
 using Smarthome.Core.DomainObjects;
 using System.Collections.Concurrent;
+using System.Diagnostics.Metrics;
 using System.Text.Json;
 using System.Threading.Tasks.Dataflow;
 
@@ -48,10 +50,10 @@ namespace Smarthome.Api.Monitoring.MessageBus
 				try
 				{				
 					var container = await MetricsBuffer.ReceiveAsync( CancellationTokenSource.Token ).ConfigureAwait( false );
+					var payload = container.Payload;
 					if ( DevicesCache.TryGetValue( container.Topic, out var cacheItem ) && !cacheItem.IsExpired )
 					{
-						EnvironmentSensorData data = new( container.Payload, cacheItem.Value );
-						SensorDataLogger.SendBuffered( data );
+						EnvironmentMeter.Update( payload.Temperature, payload.Humidity, payload.Pressure, cacheItem.Value.Location, cacheItem.Value.Hardware.Model );
 					}
 					else
 					{
@@ -65,8 +67,7 @@ namespace Smarthome.Api.Monitoring.MessageBus
 
 						DeviceCacheItem newItem = new( response.ValueSuccess! );
 						DevicesCache.AddOrUpdate( container.Topic, newItem, ( key, value ) => newItem );
-						EnvironmentSensorData data = new( container.Payload, newItem.Value );
-						SensorDataLogger.SendBuffered( data );
+						EnvironmentMeter.Update( payload.Temperature, payload.Humidity, payload.Pressure, newItem.Value.Location, newItem.Value.Hardware.Model );
 					}
 				}
 				catch ( Exception ex )
