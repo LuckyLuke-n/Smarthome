@@ -7,6 +7,8 @@
     <UserSecretsId>47fd3584-fe35-4d8d-b5f9-9ff9c8f6bbd2</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+	<AssemblyName>AmbientCollector</AssemblyName>
+	<RootNamespace>Smarthome.AmbientCollector.Api</RootNamespace>
     <Version />
   </PropertyGroup>
 

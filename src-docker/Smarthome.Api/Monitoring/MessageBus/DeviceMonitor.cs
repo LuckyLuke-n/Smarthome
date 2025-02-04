@@ -1,15 +1,15 @@
 ﻿using LSoftware.Communication.Abstractions.MessageBus;
 using LSoftware.Metrics.Abstractions;
-using Smarthome.Api.Diagnostics.Meters;
-using Smarthome.Api.Monitoring.MessageBus.Helpers;
-using Smarthome.Api.Repositories.Devices;
+using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
+using Smarthome.AmbientCollector.Api.Monitoring.MessageBus.Helpers;
+using Smarthome.AmbientCollector.Api.Repositories.Devices;
 using Smarthome.Core.DomainObjects;
 using System.Collections.Concurrent;
 using System.Diagnostics.Metrics;
 using System.Text.Json;
 using System.Threading.Tasks.Dataflow;
 
-namespace Smarthome.Api.Monitoring.MessageBus
+namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 {
 	public class DeviceMonitor : IHostedService
 	{

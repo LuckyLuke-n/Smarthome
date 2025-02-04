@@ -1,10 +1,10 @@
-﻿using Smarthome.Api.Repositories.Devices;
-using Smarthome.Api.Repositories.WeatherReport;
-using Smarthome.Api.Repositories.WeatherReport.Api;
+﻿using Smarthome.AmbientCollector.Api.Repositories.Devices;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;
 using LSoftware.Repository.Extensions;
-using Smarthome.Api.Repositories.Locations;
+using Smarthome.AmbientCollector.Api.Repositories.Locations;
 
-namespace Smarthome.Api.Repositories
+namespace Smarthome.AmbientCollector.Api.Repositories
 {
 	public static class ServiceCollectionExtensions
 	{

@@ -1,7 +1,7 @@
 ﻿using LSoftware.Repository.Abstractions;
 using Smarthome.Core.DomainObjects;
 
-namespace Smarthome.Api.Repositories.Devices
+namespace Smarthome.AmbientCollector.Api.Repositories.Devices
 {
 	public interface IDeviceRepository
 	{

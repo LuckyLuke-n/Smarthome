@@ -1,7 +1,7 @@
 ﻿using LSoftware.Repository.Abstractions;
 using Smarthome.Core.DomainObjects;
 
-namespace Smarthome.Api.Repositories.Locations
+namespace Smarthome.AmbientCollector.Api.Repositories.Locations
 {
 	public interface ILocationRepository
 	{

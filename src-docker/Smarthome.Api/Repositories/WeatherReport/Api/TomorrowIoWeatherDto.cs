@@ -1,4 +1,4 @@
-﻿namespace Smarthome.Api.Repositories.WeatherReport.Api
+﻿namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api
 {
 	[Serializable]
 	public class TomorrowIoWeatherDto

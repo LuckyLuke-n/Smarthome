@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Smarthome.Api.Monitoring.MessageBus
+namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 {
 	[Serializable]
 	public class Payload

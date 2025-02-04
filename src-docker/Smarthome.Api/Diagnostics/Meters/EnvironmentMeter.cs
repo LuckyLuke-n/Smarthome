@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
 
-namespace Smarthome.Api.Diagnostics.Meters
+namespace Smarthome.AmbientCollector.Api.Diagnostics.Meters
 {
 	public static class EnvironmentMeter
 	{

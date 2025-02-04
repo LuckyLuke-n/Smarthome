@@ -2,7 +2,7 @@
 using InfluxDB.Client.Writes;
 using LSoftware.Metrics.Abstractions;
 
-namespace Smarthome.Api.Monitoring.WeatherData
+namespace Smarthome.AmbientCollector.Api.Monitoring.WeatherData
 {
 	public class WeatherReportData : IMetricsObject
 	{

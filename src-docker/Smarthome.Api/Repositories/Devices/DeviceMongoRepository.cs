@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using Smarthome.Core.DomainObjects;
 using System.Net;
 
-namespace Smarthome.Api.Repositories.Devices
+namespace Smarthome.AmbientCollector.Api.Repositories.Devices
 {
 	public class DeviceMongoRepository : MongoDbRepository<Device>, IDeviceRepository
 	{

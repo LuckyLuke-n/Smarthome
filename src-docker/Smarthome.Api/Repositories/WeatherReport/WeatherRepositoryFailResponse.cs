@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Smarthome.Api.Repositories.WeatherReport
+namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport
 {
 	public class WeatherRepositoryFailResponse
 	{

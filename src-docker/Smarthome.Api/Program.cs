@@ -1,9 +1,9 @@
 using LSoftware.Repository.MongoDb;
 using Microsoft.OpenApi.Models;
-using Smarthome.Api;
-using Smarthome.Api.Configuration;
-using Smarthome.Api.Diagnostics;
-using Smarthome.Api.Middleware;
+using Smarthome.AmbientCollector.Api;
+using Smarthome.AmbientCollector.Api.Configuration;
+using Smarthome.AmbientCollector.Api.Diagnostics;
+using Smarthome.AmbientCollector.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder( args );
 

@@ -4,12 +4,12 @@ using LSoftware.Metrics.Extensions;
 using LSoftware.Metrics.InfluxDb.Configuration;
 using LSoftware.Repository.MongoDb;
 using MongoDB.Driver;
-using Smarthome.Api.Configuration;
-using Smarthome.Api.Monitoring.MessageBus;
-using Smarthome.Api.Monitoring.WeatherData;
-using Smarthome.Api.Repositories;
+using Smarthome.AmbientCollector.Api.Configuration;
+using Smarthome.AmbientCollector.Api.Monitoring.MessageBus;
+using Smarthome.AmbientCollector.Api.Monitoring.WeatherData;
+using Smarthome.AmbientCollector.Api.Repositories;
 
-namespace Smarthome.Api
+namespace Smarthome.AmbientCollector.Api
 {
 	public static class ServiceCollectionExtensions
 	{

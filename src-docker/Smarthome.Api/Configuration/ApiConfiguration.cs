@@ -1,4 +1,4 @@
-﻿namespace Smarthome.Api.Configuration
+﻿namespace Smarthome.AmbientCollector.Api.Configuration
 {
 	public class HealthEndpoint
 	{

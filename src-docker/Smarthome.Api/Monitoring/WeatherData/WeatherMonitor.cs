@@ -2,12 +2,12 @@
 using AutoMapper;
 using LSoftware.Metrics.Abstractions;
 using Microsoft.Extensions.Options;
-using Smarthome.Api.Diagnostics.Meters;
-using Smarthome.Api.Repositories.Locations;
-using Smarthome.Api.Repositories.WeatherReport;
-using Smarthome.Api.Repositories.WeatherReport.Api;
+using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
+using Smarthome.AmbientCollector.Api.Repositories.Locations;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;
 
-namespace Smarthome.Api.Monitoring.WeatherData
+namespace Smarthome.AmbientCollector.Api.Monitoring.WeatherData
 {
 	public class WeatherMonitor : IHostedService
 	{

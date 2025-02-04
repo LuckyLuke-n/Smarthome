@@ -1,6 +1,6 @@
 ﻿using Smarthome.Core.DomainObjects;
 
-namespace Smarthome.Api.Repositories.WeatherReport
+namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport
 {
 	public interface IWeatherRepository
 	{

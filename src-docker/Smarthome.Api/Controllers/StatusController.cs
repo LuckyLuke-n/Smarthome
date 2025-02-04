@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Smarthome.Api.Controllers
+namespace Smarthome.AmbientCollector.Api.Controllers
 {
 	[Route( "api/[controller]" )]
 	[ApiController]

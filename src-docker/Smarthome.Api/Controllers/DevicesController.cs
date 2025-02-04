@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Smarthome.Api.Repositories.Devices;
+using Smarthome.AmbientCollector.Api.Repositories.Devices;
 using Smarthome.Core.DomainObjects;
 using Smarthome.Core.Models;
 using System.Net;
 
-namespace Smarthome.Api.Controllers
+namespace Smarthome.AmbientCollector.Api.Controllers
 {
 	[Route( "api/[controller]" )]
 	[ApiController]

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Smarthome.Api.Monitoring.WeatherData;
-using Smarthome.Api.Repositories.WeatherReport;
+using Smarthome.AmbientCollector.Api.Monitoring.WeatherData;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport;
 
-namespace Smarthome.Api.Configuration
+namespace Smarthome.AmbientCollector.Api.Configuration
 {
 	public class WeatherReportMappingProfile : Profile
 	{

@@ -1,4 +1,4 @@
-﻿namespace Smarthome.Api.Middleware
+﻿namespace Smarthome.AmbientCollector.Api.Middleware
 {
 	public class ApiKeyMiddleware
 	{

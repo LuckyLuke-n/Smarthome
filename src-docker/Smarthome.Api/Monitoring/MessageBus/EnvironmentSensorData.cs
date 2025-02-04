@@ -4,7 +4,7 @@ using LSoftware.Metrics.Abstractions;
 using Smarthome.Core.DomainObjects;
 using System.Globalization;
 
-namespace Smarthome.Api.Monitoring.MessageBus
+namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 {
 	public class EnvironmentSensorData : IMetricsObject
 	{

@@ -1,6 +1,6 @@
 ﻿using Smarthome.Core.DomainObjects;
 
-namespace Smarthome.Api.Monitoring.MessageBus.Helpers
+namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus.Helpers
 {
 	internal class DeviceCacheItem
 	{

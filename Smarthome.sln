@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.Api", "src-docker\Smarthome.Api\Smarthome.Api.csproj", "{8ED210EE-128D-479A-A40E-632E5546B2F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.AmbientCollector.Api", "src-docker\Smarthome.Api\Smarthome.AmbientCollector.Api.csproj", "{8ED210EE-128D-479A-A40E-632E5546B2F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.Core", "src-dotnet\Smarthome.Core\Smarthome.Core.csproj", "{F22C0273-E1A6-49E7-8CDC-7DC65B8E3C21}"
 EndProject

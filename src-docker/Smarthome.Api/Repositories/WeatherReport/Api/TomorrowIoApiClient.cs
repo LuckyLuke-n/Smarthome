@@ -3,7 +3,7 @@ using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Smarthome.Api.Repositories.WeatherReport.Api
+namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api
 {
 	public class TomorrowIoApiClient : IWeatherRepository
 	{

@@ -1,4 +1,4 @@
-﻿namespace Smarthome.Api.Diagnostics
+﻿namespace Smarthome.AmbientCollector.Api.Diagnostics
 {
 	public class DiagnosticsConfiguration
 	{

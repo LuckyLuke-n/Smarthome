@@ -1,7 +1,7 @@
-﻿using Smarthome.Api.Repositories.WeatherReport;
+﻿using Smarthome.AmbientCollector.Api.Repositories.WeatherReport;
 using System.Diagnostics.Metrics;
 
-namespace Smarthome.Api.Diagnostics.Meters
+namespace Smarthome.AmbientCollector.Api.Diagnostics.Meters
 {
 	public static class WeatherMeter
 	{

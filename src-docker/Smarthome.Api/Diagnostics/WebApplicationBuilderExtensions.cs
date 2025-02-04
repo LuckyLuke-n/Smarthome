@@ -1,16 +1,16 @@
 ﻿using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using Smarthome.Api.Diagnostics.Meters;
+using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 using System.Reflection;
 
-namespace Smarthome.Api.Diagnostics
+namespace Smarthome.AmbientCollector.Api.Diagnostics
 {
 	public static class WebApplicationBuilderExtensions
 	{
 		public static WebApplicationBuilder AddOpenTelemetry( this WebApplicationBuilder builder )
 		{
-			const string serviceName = "Smarthome.Api";
+			const string serviceName = "Smarthome.AmbientCollector.Api";
 
 			builder.Services.AddOpenTelemetry()
 				.ConfigureResource( resource =>

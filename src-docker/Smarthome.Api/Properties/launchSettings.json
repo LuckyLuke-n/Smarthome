@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Smarthome.Api": {
+    "Smarthome.AmbientCollector.Api": {
       "commandName": "Project",
       "launchBrowser": false,
       "environmentVariables": {

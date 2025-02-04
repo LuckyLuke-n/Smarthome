@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using Smarthome.Core.DomainObjects;
 using System.Net;
 
-namespace Smarthome.Api.Repositories.Locations
+namespace Smarthome.AmbientCollector.Api.Repositories.Locations
 {
 	public class LocationMongoRepository : MongoDbRepository<Location>, ILocationRepository
 	{
