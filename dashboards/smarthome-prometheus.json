@@ -316,7 +316,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "Temperature actual",
+          "legendFormat": "actual",
           "range": true,
           "refId": "actual",
           "useBackend": false
@@ -333,7 +333,7 @@
           "hide": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "Temperature apparent",
+          "legendFormat": "apparent",
           "range": true,
           "refId": "apparent",
           "useBackend": false
@@ -1113,6 +1113,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
+          "exemplar": false,
           "expr": "envsensor_temperature_degC{location=\"Living room\"}",
           "fullMetaSearch": false,
           "groupBy": [
@@ -1130,12 +1131,13 @@
             }
           ],
           "includeNullMetadata": true,
+          "instant": true,
           "legendFormat": "__auto",
           "measurement": "environment_sensor",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
-          "range": true,
+          "range": false,
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1331,67 +1333,22 @@
       "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "Bathroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
+          "exemplar": false,
           "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
           "fullMetaSearch": false,
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
           "hide": false,
           "includeNullMetadata": true,
+          "instant": true,
+          "interval": "",
           "legendFormat": "__auto",
-          "measurement": "environment_sensor",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Bathroom') AND time > now() - 1m",
-          "range": true,
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "Temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Location::tag",
-              "operator": "=",
-              "value": "Living room"
-            },
-            {
-              "condition": "AND",
-              "key": "time",
-              "operator": "=",
-              "value": "time - 5m"
-            }
-          ],
+          "range": false,
+          "refId": "A",
           "useBackend": false
         }
       ],
@@ -1556,67 +1513,21 @@
       "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "Bedroom",
           "datasource": {
-            "type": "influxdb",
-            "uid": "ae9ws8dimoutcd"
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
+          "exemplar": false,
           "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
           "fullMetaSearch": false,
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
           "hide": false,
           "includeNullMetadata": true,
+          "instant": true,
           "legendFormat": "__auto",
-          "measurement": "environment_sensor",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Bedroom') AND time > now() - 1m",
-          "range": true,
-          "rawQuery": true,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "Temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "Location::tag",
-              "operator": "=",
-              "value": "Living room"
-            },
-            {
-              "condition": "AND",
-              "key": "time",
-              "operator": "=",
-              "value": "time - 5m"
-            }
-          ],
+          "range": false,
+          "refId": "A",
           "useBackend": false
         }
       ],
@@ -2285,6 +2196,6 @@
   "timezone": "browser",
   "title": "AmbientCollector",
   "uid": "fe8vn5iund69se",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
