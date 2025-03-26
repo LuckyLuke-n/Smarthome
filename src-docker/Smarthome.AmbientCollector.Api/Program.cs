@@ -24,7 +24,7 @@ builder.Services.AddLogging( loggingBuilder =>
 builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
 #endregion
 
-builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ), typeof( WeatherReportMappingProfile ) )
+builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ) )
 	.AddMyServices( builder.Configuration );
 
 builder.Services.AddControllers();
