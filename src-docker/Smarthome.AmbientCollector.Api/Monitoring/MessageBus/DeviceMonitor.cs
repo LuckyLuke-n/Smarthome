@@ -1,13 +1,11 @@
-﻿using LSoftware.Communication.Abstractions.MessageBus;
-using LSoftware.Metrics.Abstractions;
+﻿using System.Collections.Concurrent;
+using System.Text.Json;
+using System.Threading.Tasks.Dataflow;
+using LSoftware.Communication.Abstractions.MessageBus;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 using Smarthome.AmbientCollector.Api.Monitoring.MessageBus.Helpers;
 using Smarthome.AmbientCollector.Api.Repositories.Devices;
 using Smarthome.Core.DomainObjects;
-using System.Collections.Concurrent;
-using System.Diagnostics.Metrics;
-using System.Text.Json;
-using System.Threading.Tasks.Dataflow;
 
 namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 {
@@ -15,7 +13,6 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 	{
 		private IConnectionHandler ConnectionHandler { get; }
 		private IDeviceRepository DeviceRepository { get; }
-		private IMetricsLogger<EnvironmentSensorData> SensorDataLogger { get; }
 		private ILogger<DeviceMonitor> Logger { get; }
 
 		private BufferBlock<PayloadContainer> MetricsBuffer { get; } = new();
@@ -27,12 +24,10 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 
 		public DeviceMonitor( IConnectionHandler connectionHandler,
 			IDeviceRepository deviceRepository,
-			IMetricsLogger<EnvironmentSensorData> payloadLogger,
 			ILogger<DeviceMonitor> logger )
 		{
 			ConnectionHandler = connectionHandler;
 			DeviceRepository = deviceRepository;
-			SensorDataLogger = payloadLogger;
 			Logger = logger;
 			DevicesTimer = new( CrawlDeviceRepositoryAsync, null, int.MaxValue, int.MaxValue );
 		}
