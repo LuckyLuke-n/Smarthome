@@ -60,8 +60,12 @@
                 "value": 21
               },
               {
+                "color": "orange",
+                "value": 24
+              },
+              {
                 "color": "red",
-                "value": 25
+                "value": 27
               }
             ]
           },
@@ -1041,6 +1045,16 @@
           "mappings": [
             {
               "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "offline"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
                 "from": -100,
                 "result": {
                   "color": "green",
@@ -1050,17 +1064,6 @@
                 "to": 100
               },
               "type": "range"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "red",
-                  "index": 1,
-                  "text": "offline"
-                }
-              },
-              "type": "special"
             }
           ],
           "thresholds": {
@@ -1112,9 +1115,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+          "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[5m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1268,6 +1271,16 @@
           "mappings": [
             {
               "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "offline"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
                 "from": -100,
                 "result": {
                   "color": "green",
@@ -1277,17 +1290,6 @@
                 "to": 100
               },
               "type": "range"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "red",
-                  "index": 1,
-                  "text": "offline"
-                }
-              },
-              "type": "special"
             }
           ],
           "thresholds": {
@@ -1296,10 +1298,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1338,9 +1336,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+          "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[5m])",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1448,6 +1446,16 @@
           "mappings": [
             {
               "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "offline"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
                 "from": -100,
                 "result": {
                   "color": "green",
@@ -1457,17 +1465,6 @@
                 "to": 100
               },
               "type": "range"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "red",
-                  "index": 1,
-                  "text": "offline"
-                }
-              },
-              "type": "special"
             }
           ],
           "thresholds": {
@@ -1476,10 +1473,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1518,9 +1511,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+          "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[5m])",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2196,6 +2189,6 @@
   "timezone": "browser",
   "title": "AmbientCollector",
   "uid": "fe8vn5iund69se",
-  "version": 6,
+  "version": 8,
   "weekStart": ""
 }
