@@ -1,7 +1,4 @@
-﻿using InfluxDB.Client;
-using LSoftware.Communication.Extensions;
-using LSoftware.Metrics.Extensions;
-using LSoftware.Metrics.InfluxDb.Configuration;
+﻿using LSoftware.Communication.Extensions;
 using LSoftware.Repository.MongoDb;
 using MongoDB.Driver;
 using Smarthome.AmbientCollector.Api.Configuration;
@@ -23,18 +20,9 @@ namespace Smarthome.AmbientCollector.Api
 				return new MongoClient( settings );
 			} );
 
-			services.AddSingleton<InfluxDBClient>( sp =>
-			{
-				var url = Environment.GetEnvironmentVariable( InfluxDbConfiguration.UrlEnvVar );
-				var token = Environment.GetEnvironmentVariable( InfluxDbConfiguration.TokenEnvVar );
-
-				return new( url, token );
-			} );
-
 			services.AddRepositoryServices( configuration );
 			services.AddWeatherRepositoryServices( configuration );
 			services.AddMqttCommunication( configuration );
-			services.AddMetricsLogging( configuration );
 
 			services.AddHostedService<DeviceMonitor>();
 			services.AddHostedService<WeatherMonitor>();
