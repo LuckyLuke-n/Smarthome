@@ -1117,7 +1117,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[5m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[15m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1338,7 +1338,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[5m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[15m])",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1513,7 +1513,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[5m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[15m])",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2189,6 +2189,6 @@
   "timezone": "browser",
   "title": "AmbientCollector",
   "uid": "fe8vn5iund69se",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
