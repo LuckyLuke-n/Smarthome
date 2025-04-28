@@ -1,9 +1,9 @@
 #!/bin/bash
 
-push_to_docker_hub="y"
+push_to_docker_hub="n"
 
 # Set location
-cd /path/to/your/project/Smarthome
+cd /home/ludwig/Sources/LuckyLuke-n/Smarthome
 
 # Tag
 tag=$(git describe --tags | cut -d '-' -f 1)

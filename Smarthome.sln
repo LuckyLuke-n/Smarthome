@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Repository.Extens
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Repository.MongoDb", "src-dotnet\LSoftware.Repository.MongoDb\LSoftware.Repository.MongoDb.csproj", "{CF3A54FF-2CBF-4FCA-9F20-CF2B83035A29}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1399A2A0-AB9F-4F44-BE69-A0AFF64E7742}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
