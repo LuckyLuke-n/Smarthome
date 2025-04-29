@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Abs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Mqtt", "src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj", "{EC355649-ACCC-4E79-B7D9-6CA4D8A1F495}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metrics", "Metrics", "{DB37C53A-7E25-4FE8-AC25-E1BBC743685D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Communication.Extensions", "src-dotnet\LSoftware.Communication.Extensions\LSoftware.Communication.Extensions.csproj", "{2FC0247A-6EE5-4EDC-84AC-9C15DF1E0912}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{3637493A-94EF-48A2-B5FB-EFA554D86E3C}"
