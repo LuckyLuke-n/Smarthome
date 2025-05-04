@@ -6,7 +6,7 @@
 		/// Creates a new subscriber or returns the existing one for that connection.
 		/// </summary>
 		/// <returns>Returns the <see cref="ISubscriber"/>.</returns>
-		Task<ISubscriber> GetSubscriber( string topic, CancellationToken cancellationToken = default );
+		Task<ISubscriber> GetSubscriberAsync( string topic, CancellationToken cancellationToken = default );
 		/// <summary>
 		/// Disposes the actual client when all instances are stopped.
 		/// </summary>

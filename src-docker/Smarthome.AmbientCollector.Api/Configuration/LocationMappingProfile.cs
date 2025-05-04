@@ -4,9 +4,9 @@ using Smarthome.Core.Models;
 
 namespace Smarthome.AmbientCollector.Api.Configuration
 {
-	public class LocationeMappingProfile : Profile
+	public class LocationMappingProfile : Profile
 	{
-		public LocationeMappingProfile()
+		public LocationMappingProfile()
 		{
 			CreateMap<GetLocationResponseDto, Location>().ReverseMap();
 
