@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Text.Json;
-using System.Threading.Tasks.Dataflow;
+﻿using System.Text.Json;
 using LSoftware.Communication.Abstractions.MessageBus;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 
@@ -10,11 +8,7 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 	{
 		private IConnectionHandler ConnectionHandler { get; }
 		private ILogger<DeviceMonitor> Logger { get; }
-
-		private BufferBlock<Environmentsensor> MetricsBuffer { get; } = new();
-
-		private CancellationTokenSource CancellationTokenSource { get; } = new();
-		private ConcurrentDictionary<string, ISubscriber> Sources { get; } = [];
+		private ISubscriber Subscriber { get; set; } = null!;
 
 		public DeviceMonitor( IConnectionHandler connectionHandler,
 			ILogger<DeviceMonitor> logger )
@@ -25,27 +19,16 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 
 		public async Task StartAsync( CancellationToken cancellationToken )
 		{
-			var subscriber = await ConnectionHandler.GetSubscriber( "environmentsensor", CancellationTokenSource.Token ).ConfigureAwait( false );
-			subscriber.RegisterCallback( Received );
-			await Task.Run( WorkOnMetricsBufferAsync, cancellationToken ).ConfigureAwait( false );
+			Subscriber = await ConnectionHandler.GetSubscriberAsync( "environmentsensor", cancellationToken ).ConfigureAwait( false );
+			Subscriber.RegisterCallback( Received );
 		}
 
-		private async Task WorkOnMetricsBufferAsync()
+		public async Task StopAsync(CancellationToken cancellationToken)
 		{
-			while ( !CancellationTokenSource.IsCancellationRequested )
-			{
-				try
-				{				
-					var payload = await MetricsBuffer.ReceiveAsync( CancellationTokenSource.Token ).ConfigureAwait( false );
-					EnvironmentMeter.Update( payload.Temperature, payload.Humidity, payload.Pressure, payload.Location, payload.Sensor );
-				}
-				catch ( Exception ex )
-				{
-					Logger.LogInformation( ex, "MetricsBuffer was cancelled." );
-				}
-			}
+			ConnectionHandler.Dispose();
+			await Task.CompletedTask.ConfigureAwait( false );
 		}
-		
+
 		private void Received( string topic, string data )
 		{
 			try
@@ -58,18 +41,12 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 					return;
 				}
 				
-				MetricsBuffer.Post( payload );
+				EnvironmentMeter.Update( payload.Temperature, payload.Humidity, payload.Pressure, payload.Location, payload.Sensor );
 			}
 			catch ( JsonException ex )
 			{
 				Logger.LogWarning( ex, "Could not deserialize for {Topic}", topic );
 			}
-		}
-
-		public async Task StopAsync( CancellationToken cancellationToken )
-		{
-			await CancellationTokenSource.CancelAsync().ConfigureAwait( false );
-			ConnectionHandler.Dispose();
 		}
 	}
 }

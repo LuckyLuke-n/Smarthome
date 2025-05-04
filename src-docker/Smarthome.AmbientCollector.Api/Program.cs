@@ -23,8 +23,8 @@ builder.Services.AddLogging( loggingBuilder =>
 builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
 #endregion
 
-builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ) )
-	.AddMyServices( builder.Configuration );
+builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
+builder.Services.AddMyServices( builder.Configuration );
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

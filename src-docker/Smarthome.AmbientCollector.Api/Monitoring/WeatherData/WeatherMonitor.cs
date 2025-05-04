@@ -13,20 +13,17 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.WeatherData
 		private Timer WeatherApiTimer { get; }
 		private IWeatherRepository WeatherRepository { get; }
 		private ILocationRepository LocationRepository { get; }
-		private IMapper Mapper { get; }
 		private ILogger<WeatherMonitor> Logger { get; }
 		private int ApiRefreshRateInMinutes { get; }
 
 		public WeatherMonitor(IWeatherRepository weatherRepository,
 			ILocationRepository locationRepository,
-			IMapper mapper,
 			IOptions<WeatherApiConfiguration> weatherApiOptions,
 			ILogger<WeatherMonitor> logger )
 		{
 			WeatherApiTimer = new( TriggerWeatherTimerActionsAsync, null, int.MaxValue, int.MaxValue );
 			WeatherRepository = weatherRepository;
 			LocationRepository = locationRepository;
-			Mapper = mapper;
 			Logger = logger;
 			ApiRefreshRateInMinutes = weatherApiOptions.Value.IntervalInMinutes;
 		}

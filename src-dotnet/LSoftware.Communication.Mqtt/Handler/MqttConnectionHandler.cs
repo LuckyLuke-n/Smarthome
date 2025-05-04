@@ -26,7 +26,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 				Logger.LogError( "MqttConfiguration is missing." );
 		}
 
-		public async Task<ISubscriber> GetSubscriber( string topic, CancellationToken cancellationToken = default )
+		public async Task<ISubscriber> GetSubscriberAsync( string topic, CancellationToken cancellationToken = default )
 		{
 			lock ( Lock )
 			{
