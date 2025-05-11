@@ -18,9 +18,4 @@
 	</PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LSoftware.Metrics.Abstractions\LSoftware.Metrics.Abstractions.csproj" />
-    <ProjectReference Include="..\LSoftware.Metrics.InfluxDb\LSoftware.Metrics.InfluxDb.csproj" />
-  </ItemGroup>
-
 </Project>

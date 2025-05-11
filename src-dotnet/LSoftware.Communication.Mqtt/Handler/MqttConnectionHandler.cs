@@ -8,7 +8,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 {
 	public class MqttConnectionHandler : IConnectionHandler
 	{
-		private bool disposedValue;
+		private bool _disposedValue;
 
 		private ConcurrentDictionary<string, MqttClientHandler> Clients { get; set; } = [];
 		private MqttConfiguration MqttConfiguration { get; }
@@ -26,7 +26,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 				Logger.LogError( "MqttConfiguration is missing." );
 		}
 
-		public async Task<ISubscriber> GetSubscriber( string topic, CancellationToken cancellationToken = default )
+		public async Task<ISubscriber> GetSubscriberAsync( string topic, CancellationToken cancellationToken = default )
 		{
 			lock ( Lock )
 			{
@@ -68,7 +68,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 		protected virtual void Dispose( bool disposing )
 		{
-			if ( !disposedValue )
+			if ( !_disposedValue )
 			{
 				if ( disposing )
 				{
@@ -76,7 +76,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 						client.Dispose();
 				}
 
-				disposedValue = true;
+				_disposedValue = true;
 			}
 		}
 

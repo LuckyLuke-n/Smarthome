@@ -3,7 +3,7 @@
 namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 {
 	[Serializable]
-	public class Payload
+	public class Environmentsensor
 	{
 		[JsonPropertyName("timestamp")]
 		public string Timestamp { get; set; } = string.Empty;
@@ -16,5 +16,11 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 
 		[JsonPropertyName( "humidity" )]
 		public double Humidity { get; set; }
+		
+		[JsonPropertyName("location")]
+		public string Location { get; set; } = string.Empty;
+		
+		[JsonPropertyName("sensor")]
+		public string Sensor { get; set; } = string.Empty;
 	}
 }

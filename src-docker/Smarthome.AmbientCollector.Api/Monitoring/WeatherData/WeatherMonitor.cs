@@ -1,6 +1,4 @@
-﻿
-using AutoMapper;
-using LSoftware.Metrics.Abstractions;
+﻿using AutoMapper;
 using Microsoft.Extensions.Options;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 using Smarthome.AmbientCollector.Api.Repositories.Locations;
@@ -13,25 +11,19 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.WeatherData
 	{
 		private CancellationTokenSource CancellationTokenSource { get; } = new();
 		private Timer WeatherApiTimer { get; }
-		private IMetricsLogger<WeatherReportData> WeatherLogger { get; }
 		private IWeatherRepository WeatherRepository { get; }
 		private ILocationRepository LocationRepository { get; }
-		private IMapper Mapper { get; }
 		private ILogger<WeatherMonitor> Logger { get; }
 		private int ApiRefreshRateInMinutes { get; }
 
-		public WeatherMonitor( IMetricsLogger<WeatherReportData> weatherLogger,
-			IWeatherRepository weatherRepository,
+		public WeatherMonitor(IWeatherRepository weatherRepository,
 			ILocationRepository locationRepository,
-			IMapper mapper,
 			IOptions<WeatherApiConfiguration> weatherApiOptions,
 			ILogger<WeatherMonitor> logger )
 		{
 			WeatherApiTimer = new( TriggerWeatherTimerActionsAsync, null, int.MaxValue, int.MaxValue );
-			WeatherLogger = weatherLogger;
 			WeatherRepository = weatherRepository;
 			LocationRepository = locationRepository;
-			Mapper = mapper;
 			Logger = logger;
 			ApiRefreshRateInMinutes = weatherApiOptions.Value.IntervalInMinutes;
 		}

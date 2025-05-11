@@ -3,11 +3,10 @@ using Microsoft.OpenApi.Models;
 using Smarthome.AmbientCollector.Api;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
-using Smarthome.AmbientCollector.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder( args );
 
-// Environment varaibles into configuration provider
+// Environment variables into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 builder.Services.Configure<MongoDbConfiguration>( builder.Configuration.GetSection( DiagnosticsConfiguration.Section ) );
 
@@ -24,8 +23,8 @@ builder.Services.AddLogging( loggingBuilder =>
 builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
 #endregion
 
-builder.Services.AddAutoMapper( typeof( DeviceMappingProfile ), typeof( WeatherReportMappingProfile ) )
-	.AddMyServices( builder.Configuration );
+builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
+builder.Services.AddMyServices( builder.Configuration );
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -64,7 +63,7 @@ app.UseHttpsRedirection();
 app.UseHealthChecks( "/health" );
 
 // Configure the HTTP request pipeline.
-app.UseMiddleware<ApiKeyMiddleware>();
+// app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

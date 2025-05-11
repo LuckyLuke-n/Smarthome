@@ -15,7 +15,7 @@ namespace LSoftware.Communication.Extensions
 
 			services.AddTransient<MqttClientHandler>();
 			services.AddTransient<Func<MqttClientHandler>>( serviceProvider =>
-				() => serviceProvider.GetService<MqttClientHandler>() );
+				() => serviceProvider.GetService<MqttClientHandler>()! );
 
 			services.AddSingleton<IConnectionHandler, MqttConnectionHandler>();
 
