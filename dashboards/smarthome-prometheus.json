@@ -52,8 +52,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -95,7 +94,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "living room",
@@ -105,7 +104,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+          "expr": "envsensor_temperature_degC{location=\"living room\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -154,7 +153,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+          "expr": "envsensor_temperature_degC{location=\"bathroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -204,7 +203,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+          "expr": "envsensor_temperature_degC{location=\"bedroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -268,8 +267,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -307,7 +305,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -364,8 +362,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -403,7 +400,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "living room",
@@ -413,7 +410,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_humidity_percent{location=\"Living room\"}",
+          "expr": "envsensor_humidity_percent{location=\"living room\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -462,7 +459,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_humidity_percent{location=\"Bathroom\"}",
+          "expr": "envsensor_humidity_percent{location=\"bathroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -512,7 +509,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_humidity_percent{location=\"Bedroom\"}",
+          "expr": "envsensor_humidity_percent{location=\"bedroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -575,8 +572,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -614,7 +610,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -686,8 +682,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "yellow",
@@ -731,7 +726,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -803,8 +798,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -844,7 +838,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -905,8 +899,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -941,7 +934,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "Living room",
@@ -952,7 +945,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[60m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"living room\"}[60m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1017,7 +1010,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[60m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"bedroom\"}[60m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1083,7 +1076,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[60m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"bathroom\"}[60m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1145,7 +1138,7 @@
       "type": "stat"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1153,618 +1146,617 @@
         "y": 15
       },
       "id": 20,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "temp in °C",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 7,
-            "w": 24,
-            "x": 0,
-            "y": 17
-          },
-          "id": 1,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "11.5.1",
-          "targets": [
-            {
-              "alias": "living room",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "envsensor_temperature_degC{location=\"Living room\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "includeNullMetadata": true,
-              "legendFormat": "Living room",
-              "measurement": "environment_sensor",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "living room",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Temperature"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=",
-                  "value": "Living room"
-                }
-              ],
-              "useBackend": false
-            },
-            {
-              "alias": "bathroom",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "includeNullMetadata": true,
-              "legendFormat": "Bathroom",
-              "measurement": "environment_sensor",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "bathroom",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Temperature"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=",
-                  "value": "Bathroom"
-                }
-              ],
-              "useBackend": false
-            },
-            {
-              "alias": "bedroom",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "includeNullMetadata": true,
-              "legendFormat": "Bedroom",
-              "measurement": "environment_sensor",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "bedroom",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Temperature"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=",
-                  "value": "Bedroom"
-                }
-              ],
-              "useBackend": false
-            },
-            {
-              "alias": "$geographic_location",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "weather_current_temperature_degC{location=\"$geographic_location\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "includeNullMetadata": true,
-              "legendFormat": "$geographic_location",
-              "measurement": "weather_report",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "outside",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Temperature"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=~",
-                  "value": "/^$geographic_location$/"
-                }
-              ],
-              "useBackend": false
-            }
-          ],
-          "title": "Temperature",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "humidity in %",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 7,
-            "w": 24,
-            "x": 0,
-            "y": 24
-          },
-          "id": 5,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "11.5.1",
-          "targets": [
-            {
-              "alias": "living room",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "envsensor_humidity_percent{location=\"Living room\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "includeNullMetadata": true,
-              "legendFormat": "Living room",
-              "measurement": "environment_sensor",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "temperature",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Humidity"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=",
-                  "value": "Living room"
-                }
-              ],
-              "useBackend": false
-            },
-            {
-              "alias": "bathroom",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "envsensor_humidity_percent{location=\"Bathroom\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "includeNullMetadata": true,
-              "legendFormat": "Bathroom",
-              "measurement": "environment_sensor",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "bathroom",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Humidity"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=",
-                  "value": "Bathroom"
-                }
-              ],
-              "useBackend": false
-            },
-            {
-              "alias": "bedroom",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "envsensor_humidity_percent{location=\"Bedroom\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "previous"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "includeNullMetadata": true,
-              "legendFormat": "Bedroom",
-              "measurement": "environment_sensor",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "bedroom",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Humidity"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=",
-                  "value": "Bedroom"
-                }
-              ],
-              "useBackend": false
-            },
-            {
-              "alias": "$geographic_location",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "weather_current_humidity_percent{location=\"$geographic_location\"}",
-              "fullMetaSearch": false,
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "linear"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "hide": false,
-              "includeNullMetadata": true,
-              "legendFormat": "$geographic_location",
-              "measurement": "weather_report",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "range": true,
-              "refId": "outside",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "Humidity"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "Location::tag",
-                  "operator": "=~",
-                  "value": "/^$geographic_location$/"
-                }
-              ],
-              "useBackend": false
-            }
-          ],
-          "title": "Humidity",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "Time series",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "temp in °C",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "alias": "living room",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "envsensor_temperature_degC{location=\"living room\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "includeNullMetadata": true,
+          "legendFormat": "Living room",
+          "measurement": "environment_sensor",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "living room",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=",
+              "value": "Living room"
+            }
+          ],
+          "useBackend": false
+        },
+        {
+          "alias": "bathroom",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "envsensor_temperature_degC{location=\"bathroom\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "Bathroom",
+          "measurement": "environment_sensor",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "bathroom",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=",
+              "value": "Bathroom"
+            }
+          ],
+          "useBackend": false
+        },
+        {
+          "alias": "bedroom",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "envsensor_temperature_degC{location=\"bedroom\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "Bedroom",
+          "measurement": "environment_sensor",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "bedroom",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=",
+              "value": "Bedroom"
+            }
+          ],
+          "useBackend": false
+        },
+        {
+          "alias": "$geographic_location",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "weather_current_temperature_degC{location=\"$geographic_location\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "$geographic_location",
+          "measurement": "weather_report",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "outside",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ],
+          "useBackend": false
+        }
+      ],
+      "title": "Temperature",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "humidity in %",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "alias": "living room",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "envsensor_humidity_percent{location=\"living room\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "includeNullMetadata": true,
+          "legendFormat": "Living room",
+          "measurement": "environment_sensor",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "temperature",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=",
+              "value": "Living room"
+            }
+          ],
+          "useBackend": false
+        },
+        {
+          "alias": "bathroom",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "envsensor_humidity_percent{location=\"bathroom\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "Bathroom",
+          "measurement": "environment_sensor",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "bathroom",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=",
+              "value": "Bathroom"
+            }
+          ],
+          "useBackend": false
+        },
+        {
+          "alias": "bedroom",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "envsensor_humidity_percent{location=\"bedroom\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "Bedroom",
+          "measurement": "environment_sensor",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "bedroom",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=",
+              "value": "Bedroom"
+            }
+          ],
+          "useBackend": false
+        },
+        {
+          "alias": "$geographic_location",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "weather_current_humidity_percent{location=\"$geographic_location\"}",
+          "fullMetaSearch": false,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "linear"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "$geographic_location",
+          "measurement": "weather_report",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "outside",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Location::tag",
+              "operator": "=~",
+              "value": "/^$geographic_location$/"
+            }
+          ],
+          "useBackend": false
+        }
+      ],
+      "title": "Humidity",
+      "type": "timeseries"
     },
     {
       "collapsed": true,
@@ -1772,7 +1764,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 30
       },
       "id": 24,
       "panels": [
@@ -1806,7 +1798,7 @@
             "h": 2,
             "w": 5,
             "x": 0,
-            "y": 16
+            "y": 31
           },
           "id": 11,
           "options": {
@@ -1826,7 +1818,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -1901,7 +1893,7 @@
             "h": 2,
             "w": 5,
             "x": 5,
-            "y": 16
+            "y": 31
           },
           "id": 14,
           "options": {
@@ -1921,7 +1913,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "alias": "Living room",
@@ -1932,7 +1924,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[60m])",
+              "expr": "delta(envsensor_temperature_degC{location=\"living room\"}[60m])",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -2022,7 +2014,7 @@
             "h": 2,
             "w": 5,
             "x": 0,
-            "y": 32
+            "y": 33
           },
           "id": 13,
           "options": {
@@ -2042,7 +2034,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -2113,7 +2105,7 @@
             "h": 2,
             "w": 5,
             "x": 5,
-            "y": 32
+            "y": 33
           },
           "id": 22,
           "options": {
@@ -2133,7 +2125,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "datasource": {
@@ -2143,7 +2135,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[60m])",
+              "expr": "delta(envsensor_temperature_degC{location=\"bathroom\"}[60m])",
               "fullMetaSearch": false,
               "hide": false,
               "includeNullMetadata": true,
@@ -2199,7 +2191,7 @@
             "h": 2,
             "w": 5,
             "x": 0,
-            "y": 34
+            "y": 35
           },
           "id": 12,
           "options": {
@@ -2219,7 +2211,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -2307,7 +2299,7 @@
             "h": 2,
             "w": 5,
             "x": 5,
-            "y": 34
+            "y": 35
           },
           "id": 23,
           "options": {
@@ -2327,7 +2319,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "datasource": {
@@ -2337,7 +2329,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[60m])",
+              "expr": "delta(envsensor_temperature_degC{location=\"bedroom\"}[60m])",
               "fullMetaSearch": false,
               "hide": false,
               "includeNullMetadata": true,
@@ -2358,7 +2350,7 @@
   ],
   "preload": false,
   "refresh": "5m",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
@@ -2394,6 +2386,5 @@
   "timezone": "browser",
   "title": "AmbientCollector",
   "uid": "fe8vn5iund69se",
-  "version": 14,
-  "weekStart": ""
+  "version": 15
 }
