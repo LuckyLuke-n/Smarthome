@@ -2,7 +2,7 @@ name: Build and Push Docker image (multi-arch for Raspberry Pi)
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build-and-push:
