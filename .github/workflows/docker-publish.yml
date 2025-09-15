@@ -26,8 +26,8 @@ jobs:
       - name: Build and push multi-arch image
         uses: docker/build-push-action@v4
         with:
-          context: .src-docker/Smarthome.AmbientCollector.Api
-          file: .src-docker/Smarthome.AmbientCollector.Api/Dockerfile
+          context: src-docker/Smarthome.AmbientCollector.Api
+          file: src-docker/Smarthome.AmbientCollector.Api/Dockerfile
           push: true
           platforms: linux/arm/v7,linux/arm64,linux/amd64
           tags: |
