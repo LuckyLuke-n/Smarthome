@@ -23,4 +23,4 @@ jobs:
       run: echo "latest_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
     - name: Build the Docker image
-      run: docker build . --file src-docker\Smarthome.AmbientCollector.Api\Dockerfile --tag lucky-luke4411/ambientcollector:${{ env.latest_tag }}
+      run: docker build . --file src-docker/Smarthome.AmbientCollector.Api/Dockerfile --tag lucky-luke4411/ambientcollector:${{ env.latest_tag }}
