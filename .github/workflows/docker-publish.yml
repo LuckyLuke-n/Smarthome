@@ -24,3 +24,9 @@ jobs:
 
     - name: Build the Docker image
       run: docker build . --file src-docker/Smarthome.AmbientCollector.Api/Dockerfile --tag lucky-luke4411/ambientcollector:${{ env.latest_tag }}
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    - name: Push the Docker image
+      run: docker push lucky-luke4411/ambientcollector:${{ env.latest_tag }}
