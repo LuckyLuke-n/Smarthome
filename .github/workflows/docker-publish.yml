@@ -41,5 +41,5 @@ jobs:
           file: src-docker/Smarthome.AmbientCollector.Api/Dockerfile
           push: true
           tags: |
-            lucky-luke4411/ambientcollector:latest
-            lucky-luke4411/ambientcollector:${{ env.latest_tag }}
+            luckyluke4411/ambientcollector:latest
+            luckyluke4411/ambientcollector:${{ env.latest_tag }}
