@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: [ "master" ]
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+  
+    - name: Fetch tags
+      run: git fetch --tags
+
+    - name: Get latest tag
+      id: get_latest_tag
+      run: echo "latest_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build Docker image
+      run: docker build . --file src-docker/Smarthome.AmbientCollector.Api/Dockerfile --tag lucky-luke4411/ambientcollector:${{ env.latest_tag }}
+
+    - name: Push Docker image
+      if: github.event_name == 'push'  # Only run this step on push events
+      run: docker push lucky-luke4411/ambientcollector:${{ env.latest_tag }}

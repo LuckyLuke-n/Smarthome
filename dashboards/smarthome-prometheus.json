@@ -52,8 +52,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -95,7 +94,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "living room",
@@ -105,7 +104,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+          "expr": "envsensor_temperature_degC{location=\"living room\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -154,7 +153,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+          "expr": "envsensor_temperature_degC{location=\"bathroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -204,7 +203,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+          "expr": "envsensor_temperature_degC{location=\"bedroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -268,8 +267,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -307,7 +305,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -364,8 +362,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -403,7 +400,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "living room",
@@ -413,7 +410,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_humidity_percent{location=\"Living room\"}",
+          "expr": "envsensor_humidity_percent{location=\"living room\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -462,7 +459,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_humidity_percent{location=\"Bathroom\"}",
+          "expr": "envsensor_humidity_percent{location=\"bathroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -512,7 +509,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "envsensor_humidity_percent{location=\"Bedroom\"}",
+          "expr": "envsensor_humidity_percent{location=\"bedroom\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -575,8 +572,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -614,7 +610,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -686,8 +682,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "yellow",
@@ -731,7 +726,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -803,8 +798,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               },
               {
                 "color": "green",
@@ -844,7 +838,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -905,8 +899,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -941,7 +934,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "Living room",
@@ -952,7 +945,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[60m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"living room\"}[60m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1017,7 +1010,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[60m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"bathroom\"}[60m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1083,7 +1076,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[60m])",
+          "expr": "delta(envsensor_temperature_degC{location=\"bedroom\"}[60m])",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1213,7 +1206,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 16
           },
           "id": 1,
           "options": {
@@ -1229,7 +1222,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "alias": "living room",
@@ -1239,7 +1232,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "envsensor_temperature_degC{location=\"Living room\"}",
+              "expr": "envsensor_temperature_degC{location=\"living room\"}",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -1294,7 +1287,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "envsensor_temperature_degC{location=\"Bathroom\"}",
+              "expr": "envsensor_temperature_degC{location=\"bathroom\"}",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -1350,7 +1343,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "envsensor_temperature_degC{location=\"Bedroom\"}",
+              "expr": "envsensor_temperature_degC{location=\"bedroom\"}",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -1517,7 +1510,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 24
+            "y": 23
           },
           "id": 5,
           "options": {
@@ -1533,7 +1526,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "alias": "living room",
@@ -1543,7 +1536,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "envsensor_humidity_percent{location=\"Living room\"}",
+              "expr": "envsensor_humidity_percent{location=\"living room\"}",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -1598,7 +1591,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "envsensor_humidity_percent{location=\"Bathroom\"}",
+              "expr": "envsensor_humidity_percent{location=\"bathroom\"}",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -1654,7 +1647,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "envsensor_humidity_percent{location=\"Bedroom\"}",
+              "expr": "envsensor_humidity_percent{location=\"bedroom\"}",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -1761,6 +1754,107 @@
           ],
           "title": "Humidity",
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "rain intensity in L/h",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 67,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 30
+          },
+          "id": 26,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.0.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P1809F7CD0C75ACF3"
+              },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "weather_current_rainIntensity_mm_per_hour{location=~\"$geographic_location\"}",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "$geographic_location",
+              "range": true,
+              "refId": "A",
+              "useBackend": false
+            }
+          ],
+          "title": "Rain intensity",
+          "type": "timeseries"
         }
       ],
       "title": "Time series",
@@ -1806,7 +1900,7 @@
             "h": 2,
             "w": 5,
             "x": 0,
-            "y": 16
+            "y": 44
           },
           "id": 11,
           "options": {
@@ -1826,7 +1920,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -1901,7 +1995,7 @@
             "h": 2,
             "w": 5,
             "x": 5,
-            "y": 16
+            "y": 44
           },
           "id": 14,
           "options": {
@@ -1921,7 +2015,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "alias": "Living room",
@@ -1932,7 +2026,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "delta(envsensor_temperature_degC{location=\"Living room\"}[60m])",
+              "expr": "delta(envsensor_temperature_degC{location=\"living room\"}[60m])",
               "fullMetaSearch": false,
               "groupBy": [
                 {
@@ -2022,7 +2116,7 @@
             "h": 2,
             "w": 5,
             "x": 0,
-            "y": 32
+            "y": 46
           },
           "id": 13,
           "options": {
@@ -2042,7 +2136,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -2113,7 +2207,7 @@
             "h": 2,
             "w": 5,
             "x": 5,
-            "y": 32
+            "y": 46
           },
           "id": 22,
           "options": {
@@ -2133,7 +2227,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "datasource": {
@@ -2143,7 +2237,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "delta(envsensor_temperature_degC{location=\"Bathroom\"}[60m])",
+              "expr": "delta(envsensor_temperature_degC{location=\"bathroom\"}[60m])",
               "fullMetaSearch": false,
               "hide": false,
               "includeNullMetadata": true,
@@ -2199,7 +2293,7 @@
             "h": 2,
             "w": 5,
             "x": 0,
-            "y": 34
+            "y": 48
           },
           "id": 12,
           "options": {
@@ -2219,7 +2313,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -2307,7 +2401,7 @@
             "h": 2,
             "w": 5,
             "x": 5,
-            "y": 34
+            "y": 48
           },
           "id": 23,
           "options": {
@@ -2327,7 +2421,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.5.1",
+          "pluginVersion": "12.0.0",
           "targets": [
             {
               "datasource": {
@@ -2337,7 +2431,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "delta(envsensor_temperature_degC{location=\"Bedroom\"}[60m])",
+              "expr": "delta(envsensor_temperature_degC{location=\"bedroom\"}[60m])",
               "fullMetaSearch": false,
               "hide": false,
               "includeNullMetadata": true,
@@ -2358,7 +2452,7 @@
   ],
   "preload": false,
   "refresh": "5m",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
@@ -2394,6 +2488,5 @@
   "timezone": "browser",
   "title": "AmbientCollector",
   "uid": "fe8vn5iund69se",
-  "version": 14,
-  "weekStart": ""
+  "version": 17
 }
