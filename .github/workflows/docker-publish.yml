@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   pull_request:
     branches: [ "master" ]
+  push:
+    branches: [ "master" ]
 
 jobs:
 
@@ -35,6 +37,7 @@ jobs:
     #   run: docker push lucky-luke4411/ambientcollector:${{ env.latest_tag }}
 
     - name: Build and push Docker image
+      if: github.event_name == 'push'
       uses: docker/build-push-action@v4
       with:
           context: .
