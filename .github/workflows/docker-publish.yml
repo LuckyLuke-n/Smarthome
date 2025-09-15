@@ -1,8 +1,6 @@
 name: Docker Image CI
 
 on:
-  pull_request:
-    branches: [ "master" ]
   push:
     branches: [ "master" ]
 
@@ -30,9 +28,12 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Build Docker image
-      run: docker build . --file src-docker/Smarthome.AmbientCollector.Api/Dockerfile --tag lucky-luke4411/ambientcollector:${{ env.latest_tag }}
-
-    - name: Push Docker image
-      if: github.event_name == 'push'  # Only run this step on push events
-      run: docker push lucky-luke4411/ambientcollector:${{ env.latest_tag }}
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+          context: .
+          file: src-docker/Smarthome.AmbientCollector.Api/Dockerfile
+          push: true
+          tags: |
+            luckyluke4411/ambientcollector:latest
+            luckyluke4411/ambientcollector:${{ env.latest_tag }}
