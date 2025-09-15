@@ -36,13 +36,9 @@ jobs:
     # - name: Push the Docker image
     #   run: docker push lucky-luke4411/ambientcollector:${{ env.latest_tag }}
 
-    - name: Build and push Docker image
-      if: github.event_name == 'push'
-      uses: docker/build-push-action@v4
-      with:
-          context: .
-          file: src-docker/Smarthome.AmbientCollector.Api/Dockerfile
-          push: true
-          tags: |
-            luckyluke4411/ambientcollector:latest
-            luckyluke4411/ambientcollector:${{ env.latest_tag }}
+    - name: Build Docker image
+      run: docker build . --file src-docker/Smarthome.AmbientCollector.Api/Dockerfile --tag lucky-luke4411/ambientcollector:${{ env.latest_tag }}
+
+    - name: Push Docker image
+      if: github.event_name == 'push'  # Only run this step on push events
+      run: docker push lucky-luke4411/ambientcollector:${{ env.latest_tag }}
