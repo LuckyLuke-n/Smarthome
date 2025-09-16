@@ -3,6 +3,6 @@
 	public static class ServiceConstants
 	{
 		public static string Name => "AmbientCollector";
-		public static string Version => "1.1.4";
+		public static string Version => "1.1.5";
 	}
 }
