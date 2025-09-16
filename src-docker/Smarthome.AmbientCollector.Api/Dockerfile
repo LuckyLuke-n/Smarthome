@@ -9,7 +9,7 @@ EXPOSE 8081
 
 
 # This stage is used to build the service project
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-noble-arm64v8 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src-docker/Smarthome.AmbientCollector.Api/Smarthome.AmbientCollector.Api.csproj", "src-docker/Smarthome.AmbientCollector.Api/"]
