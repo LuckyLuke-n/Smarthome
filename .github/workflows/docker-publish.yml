@@ -47,5 +47,5 @@ jobs:
           push: true
           platforms: linux/arm64
           tags: |
-            luckyluke4411/ambientcollector:latest-test
+            luckyluke4411/ambientcollector:latest
             luckyluke4411/ambientcollector:${{ env.latest_tag }}
