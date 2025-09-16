@@ -1,10 +1,8 @@
 name: Docker Image CI
 
 on:
-#   push:
-#     branches: [ "master" ]
-    pull_request:
-      branches: ["develop"]
+  push:
+    branches: [ "master" ]
 
 jobs:
 
@@ -50,4 +48,4 @@ jobs:
           platforms: linux/arm64
           tags: |
             luckyluke4411/ambientcollector:latest-test
-            luckyluke4411/ambientcollector:${{ env.latest_tag }}-test
+            luckyluke4411/ambientcollector:${{ env.latest_tag }}
