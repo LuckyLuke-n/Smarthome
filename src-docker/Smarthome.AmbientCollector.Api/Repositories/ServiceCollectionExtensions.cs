@@ -1,4 +1,6 @@
 ﻿using LSoftware.Repository.Extensions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Smarthome.AmbientCollector.Api.Repositories.Locations;
 using Smarthome.AmbientCollector.Api.Repositories.WeatherReport;
 using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;

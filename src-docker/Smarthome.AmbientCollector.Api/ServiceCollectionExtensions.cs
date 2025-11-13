@@ -1,5 +1,8 @@
-﻿using LSoftware.Communication.Extensions;
+﻿using System;
+using LSoftware.Communication.Extensions;
 using LSoftware.Repository.MongoDb;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Monitoring.MessageBus;

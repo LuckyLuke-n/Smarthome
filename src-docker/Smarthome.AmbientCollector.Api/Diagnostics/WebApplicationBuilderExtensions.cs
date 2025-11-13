@@ -1,8 +1,12 @@
-﻿using OpenTelemetry.Metrics;
+﻿using System;
+using System.Collections.Generic;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 using System.Reflection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Smarthome.AmbientCollector.Api.Diagnostics
 {

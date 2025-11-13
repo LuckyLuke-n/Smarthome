@@ -1,10 +1,18 @@
+using System;
 using LSoftware.Repository.MongoDb;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Smarthome.AmbientCollector.Api;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
 
 var builder = WebApplication.CreateBuilder( args );
+
+builder.AddServiceDefaults();
 
 // Environment variables into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
@@ -50,6 +58,8 @@ builder.Services.AddHealthChecks();
 builder.AddOpenTelemetry();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
 

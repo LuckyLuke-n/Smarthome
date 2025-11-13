@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /src-docker/Smarthome.Api/Properties/launchSettings.json
 /src-docker/Smarthome.Api/Properties/launchSettings.json
 /src-docker/Smarthome.Api/Properties/launchSetting.json
+/src-dotnet/Smarthome.AppHost/data
