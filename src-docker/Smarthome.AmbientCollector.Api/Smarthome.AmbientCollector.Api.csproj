@@ -32,4 +32,10 @@
     <ProjectReference Include="..\..\src-dotnet\Smarthome.ServiceDefaults\Smarthome.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+  </ItemGroup>
+
 </Project>
