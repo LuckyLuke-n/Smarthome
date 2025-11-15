@@ -7,7 +7,7 @@ var mongo = builder.AddMongoDB("smarthome-mongo")
 
 var emqx = builder.AddContainer("smarthome-emqx", "emqx/emqx")
     .WithBindMount("data/emqx", "/opt/emqx/data")
-    .WithEndpoint(port: 1883, targetPort: 1883, scheme:"mqtt")  // MQTT standard port
+    .WithEndpoint(port: 1883, targetPort: 1883, scheme:"tcp")  // MQTT standard port
     .WithEndpoint(port: 18083, targetPort: 18083, scheme:"http")  // EMQX dashboard port
     .WithLifetime(ContainerLifetime.Persistent);
 
