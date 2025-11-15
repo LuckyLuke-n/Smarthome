@@ -26,14 +26,6 @@ var ambientcollector = builder.AddProject<Smarthome_AmbientCollector_Api>("ambie
     .WithEnvironment("SMARTHOME_Mqtt__UseTls", "false")
     .WithEnvironment("SMARTHOME_WeatherApi__Endpoint", "https://api.tomorrow.io/v4/weather/realtime")
     .WithEnvironment("SMARTHOME_WeatherApi__ApiKey", "key")
-    .WithEnvironment("SMARTHOME_WeatherApi__RefreshIntervalInMinutes", "5")
-    .WithEnvironment("SMARTHOME_Diagnostics__TracingEnabled", "true")
-    .WithEnvironment("SMARTHOME_Diagnostics__OtlpEndpoint", "http://localhost:4317");
-
-var prometheus = builder.AddContainer("ambientcollector-prometheus", "prom/prometheus")
-    .WithBindMount(source: "data/prometheus", target: "/prometheus")
-    .WithBindMount(source: "devops/prometheus/prometheus.yml", target: "/etc/prometheus/prometheus.yml")
-    .WithArgs("--config.file=/etc/prometheus/prometheus.yml")
-    .WaitFor(ambientcollector);
+    .WithEnvironment("SMARTHOME_WeatherApi__RefreshIntervalInMinutes", "5");
 
 builder.Build().Run();

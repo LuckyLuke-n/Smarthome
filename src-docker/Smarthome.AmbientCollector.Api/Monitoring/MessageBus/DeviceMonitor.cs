@@ -1,5 +1,9 @@
 ﻿using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using LSoftware.Communication.Abstractions.MessageBus;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 
 namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus

@@ -1,10 +1,4 @@
-using System;
 using LSoftware.Repository.MongoDb;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Smarthome.AmbientCollector.Api;
 using Smarthome.AmbientCollector.Api.Configuration;
@@ -18,18 +12,10 @@ builder.AddServiceDefaults();
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
 builder.Services.Configure<MongoDbConfiguration>( builder.Configuration.GetSection( DiagnosticsConfiguration.Section ) );
 
-#region Logging
-LogLevel logLevel = LogLevel.Warning;
-if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" ) ) )
-	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" )! );
+builder.Services.AddLogging();
+builder.Logging.ClearProviders();
 
-builder.Services.AddLogging( loggingBuilder =>
-	{
-		loggingBuilder.AddConsole();
-		loggingBuilder.SetMinimumLevel( logLevel );
-	} );
-builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
-#endregion
+builder.Services.AddAmbientCollectorOpenTelemetry();
 
 builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
 builder.Services.AddMyServices( builder.Configuration );
@@ -54,14 +40,10 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
-builder.Services.AddHealthChecks();
-builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
-
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 if ( app.Environment.IsDevelopment() )
 {
@@ -70,7 +52,6 @@ if ( app.Environment.IsDevelopment() )
 }
 
 app.UseHttpsRedirection();
-app.UseHealthChecks( "/health" );
 
 // Configure the HTTP request pipeline.
 // app.UseMiddleware<ApiKeyMiddleware>();
