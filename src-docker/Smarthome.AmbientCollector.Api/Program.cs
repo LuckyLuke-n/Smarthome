@@ -1,15 +1,17 @@
+using LSoftware.Communication.Mqtt.Configuration;
 using LSoftware.Repository.MongoDb;
 using Microsoft.OpenApi.Models;
 using Smarthome.AmbientCollector.Api;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;
 
 var builder = WebApplication.CreateBuilder( args );
 
 builder.AddServiceDefaults();
 
 // Environment variables into configuration provider
-builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
+builder.Services.Configure<MqttConfiguration>( builder.Configuration.GetSection( MqttConfiguration.Section ) );
 
 builder.Services.AddLogging();
 builder.Logging.ClearProviders();

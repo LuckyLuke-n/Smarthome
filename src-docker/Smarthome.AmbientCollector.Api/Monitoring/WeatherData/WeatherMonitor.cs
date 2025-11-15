@@ -30,7 +30,7 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.WeatherData
 			WeatherRepository = weatherRepository;
 			LocationRepository = locationRepository;
 			Logger = logger;
-			ApiRefreshRateInMinutes = weatherApiOptions.Value.IntervalInMinutes;
+			ApiRefreshRateInMinutes = weatherApiOptions.Value.RefreshIntervalInMinutes;
 		}
 
 		private async void TriggerWeatherTimerActionsAsync( object? state )

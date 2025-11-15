@@ -15,14 +15,9 @@ var ambientcollector = builder.AddProject<Smarthome_AmbientCollector_Api>("ambie
     .WaitFor(mongo)
     .WaitFor(emqx)
     .WithReference(mongo)
-    .WithEnvironment("SMARTHOME_Api__Key", "secret")
-    .WithEnvironment("SMARTHOME_Mqtt__Host", "localhost")
-    .WithEnvironment("SMARTHOME_Mqtt__Port", "1883")
-    .WithEnvironment("SMARTHOME_Mqtt__Username", "admin")
-    .WithEnvironment("SMARTHOME_Mqtt__Password", "smarthome")
-    .WithEnvironment("SMARTHOME_Mqtt__UseTls", "false")
-    .WithEnvironment("SMARTHOME_WeatherApi__Endpoint", "https://api.tomorrow.io/v4/weather/realtime")
-    .WithEnvironment("SMARTHOME_WeatherApi__ApiKey", "key")
-    .WithEnvironment("SMARTHOME_WeatherApi__RefreshIntervalInMinutes", "5");
+    .WithEnvironment("ConnectionStrings__smarthome-mqtt", "mqtt://admin:public@localhost:1883")
+    .WithEnvironment("WeatherApi__Endpoint", "https://api.tomorrow.io/v4/weather/realtime")
+    .WithEnvironment("WeatherApi__ApiKey", "key")
+    .WithEnvironment("WeatherApi__RefreshIntervalInMinutes", "5");
 
 builder.Build().Run();
