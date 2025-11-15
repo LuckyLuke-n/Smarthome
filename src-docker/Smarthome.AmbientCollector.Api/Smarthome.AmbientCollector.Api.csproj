@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>47fd3584-fe35-4d8d-b5f9-9ff9c8f6bbd2</UserSecretsId>
@@ -15,22 +15,21 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.11.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
-    <PackageReference Include="RabbitMQ.Client.OpenTelemetry" Version="1.0.0-rc.1" />
-	<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.14.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Smarthome.ServiceDefaults\Smarthome.ServiceDefaults.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Extensions\LSoftware.Communication.Extensions.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj" />
-    <ProjectReference Include="..\..\src-dotnet\LSoftware.Repository.Extensions\LSoftware.Repository.Extensions.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Repository.MongoDb\LSoftware.Repository.MongoDb.csproj" />
     <ProjectReference Include="..\..\src-dotnet\Smarthome.Core\Smarthome.Core.csproj" />
+    <ProjectReference Include="..\..\src-dotnet\Smarthome.ServiceDefaults\Smarthome.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

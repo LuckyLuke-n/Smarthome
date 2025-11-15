@@ -48,7 +48,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 			// Create MQTT client options
 			var mqttClientOptions = new MqttClientOptionsBuilder()
-				.WithTcpServer( MqttConfiguration.Host, int.Parse( MqttConfiguration.Port ) )
+				.WithTcpServer( MqttConfiguration.Host, MqttConfiguration.Port )
 				.WithCredentials( MqttConfiguration.Username, MqttConfiguration.Password ) // Set username and password
 				.WithClientId( $"Smarthome.Api-{Guid.NewGuid()}" )
 				.WithProtocolVersion( MqttProtocolVersion.V311 )

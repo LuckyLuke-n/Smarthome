@@ -1,5 +1,8 @@
-﻿using LSoftware.Communication.Extensions;
+﻿using System;
+using LSoftware.Communication.Extensions;
 using LSoftware.Repository.MongoDb;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Monitoring.MessageBus;
@@ -13,14 +16,7 @@ namespace Smarthome.AmbientCollector.Api
 		public static IServiceCollection AddMyServices( this IServiceCollection services, IConfiguration configuration )
 		{
 			services.Configure<ApiConfiguration>( configuration.GetSection( ApiConfiguration.Section ) );
-
-			services.AddSingleton<IMongoClient, MongoClient>( sp =>
-			{
-				var settings = MongoClientSettings.FromConnectionString( Environment.GetEnvironmentVariable( MongoDbConfiguration.ConnectionStringEnvVar ) );
-				return new MongoClient( settings );
-			} );
-
-			services.AddRepositoryServices( configuration );
+			
 			services.AddWeatherRepositoryServices( configuration );
 			services.AddMqttCommunication( configuration );
 

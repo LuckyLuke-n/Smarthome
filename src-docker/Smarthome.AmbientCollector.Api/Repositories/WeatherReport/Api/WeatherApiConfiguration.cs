@@ -6,8 +6,6 @@
 
 		public string Endpoint { get; set; } = string.Empty;
 		public string ApiKey { get; set; } = string.Empty;
-		public string RefreshIntervalInMinutes {  get; set; } = string.Empty;
-
-		public int IntervalInMinutes => int.Parse( RefreshIntervalInMinutes );
+		public int RefreshIntervalInMinutes {  get; set; }
 	}
 }

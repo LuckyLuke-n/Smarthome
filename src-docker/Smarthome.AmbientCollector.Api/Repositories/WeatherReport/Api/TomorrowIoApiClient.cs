@@ -18,7 +18,7 @@ namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api
 			Logger = logger;
 
 			if ( string.IsNullOrEmpty( WeatherApiConfiguration.Endpoint ) )
-				Logger.LogWarning( "Weather api confguration url not set." );
+				Logger.LogWarning( "Weather api configuration url not set." );
 		}
 
 		public async Task<WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( Core.DomainObjects.Location location, CancellationToken cancellationToken )
@@ -28,14 +28,9 @@ namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api
 
 			var response = await client.GetAsync( $"?location={location.City}&apikey={WeatherApiConfiguration.ApiKey}", cancellationToken ).ConfigureAwait( false );
 
-			if ( response is null || !response.IsSuccessStatusCode )
+			if ( !response.IsSuccessStatusCode )
 			{
-				string errorContent;
-				if ( response is null )
-					errorContent = "unknown";
-				else
-					errorContent = await response.Content.ReadAsStringAsync( cancellationToken ).ConfigureAwait( false );
-
+				string errorContent = await response.Content.ReadAsStringAsync( cancellationToken ).ConfigureAwait( false );
 				return WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateFail( new() { StatusCode = response?.StatusCode ?? HttpStatusCode.InternalServerError, Message = errorContent } );
 			}
 
