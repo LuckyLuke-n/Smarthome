@@ -19,6 +19,7 @@ COPY ["src-dotnet/LSoftware.Communication.Abstractions/LSoftware.Communication.A
 COPY ["src-dotnet/LSoftware.Repository.Abstractions/LSoftware.Repository.Abstractions.csproj", "src-dotnet/LSoftware.Repository.Abstractions/"]
 COPY ["src-dotnet/LSoftware.Repository.MongoDb/LSoftware.Repository.MongoDb.csproj", "src-dotnet/LSoftware.Repository.MongoDb/"]
 COPY ["src-dotnet/Smarthome.Core/Smarthome.Core.csproj", "src-dotnet/Smarthome.Core/"]
+COPY ["src-dotnet/Smarthome.ServiceDefaults/Smarthome.ServiceDefaults.csproj", "src-dotnet/Smarthome.ServiceDefaults/"]
 RUN dotnet restore "./src-docker/Smarthome.AmbientCollector.Api/Smarthome.AmbientCollector.Api.csproj"
 COPY . .
 WORKDIR "/src/src-docker/Smarthome.AmbientCollector.Api"
