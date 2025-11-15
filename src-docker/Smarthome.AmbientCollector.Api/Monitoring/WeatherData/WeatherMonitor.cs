@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 using Smarthome.AmbientCollector.Api.Repositories.Locations;
@@ -25,7 +30,7 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.WeatherData
 			WeatherRepository = weatherRepository;
 			LocationRepository = locationRepository;
 			Logger = logger;
-			ApiRefreshRateInMinutes = weatherApiOptions.Value.IntervalInMinutes;
+			ApiRefreshRateInMinutes = weatherApiOptions.Value.RefreshIntervalInMinutes;
 		}
 
 		private async void TriggerWeatherTimerActionsAsync( object? state )

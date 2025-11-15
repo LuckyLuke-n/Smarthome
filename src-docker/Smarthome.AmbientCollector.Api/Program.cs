@@ -1,29 +1,25 @@
+using LSoftware.Communication.Mqtt.Configuration;
 using LSoftware.Repository.MongoDb;
 using Microsoft.OpenApi.Models;
 using Smarthome.AmbientCollector.Api;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
+using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;
 
 var builder = WebApplication.CreateBuilder( args );
 
+builder.AddServiceDefaults();
+
 // Environment variables into configuration provider
-builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
-builder.Services.Configure<MongoDbConfiguration>( builder.Configuration.GetSection( DiagnosticsConfiguration.Section ) );
+builder.Services.Configure<MqttConfiguration>( builder.Configuration.GetSection( MqttConfiguration.Section ) );
 
-#region Logging
-LogLevel logLevel = LogLevel.Warning;
-if ( !string.IsNullOrEmpty( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" ) ) )
-	logLevel = ( LogLevel )int.Parse( Environment.GetEnvironmentVariable( "SMARTHOME_Api__LogLevel" )! );
+builder.Services.AddLogging();
+builder.Logging.ClearProviders();
 
-builder.Services.AddLogging( loggingBuilder =>
-	{
-		loggingBuilder.AddConsole();
-		loggingBuilder.SetMinimumLevel( logLevel );
-	} );
-builder.Logging.AddFilter( "System.Net.Http.HttpClient", logLevel );
-#endregion
+builder.Services.AddAmbientCollectorOpenTelemetry();
 
 builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
+builder.AddRepositories();
 builder.Services.AddMyServices( builder.Configuration );
 
 builder.Services.AddControllers();
@@ -46,12 +42,10 @@ builder.Services.AddSwaggerGen( options =>
 	} );
 } );
 
-builder.Services.AddHealthChecks();
-builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
+app.MapDefaultEndpoints();
 
 if ( app.Environment.IsDevelopment() )
 {
@@ -60,7 +54,6 @@ if ( app.Environment.IsDevelopment() )
 }
 
 app.UseHttpsRedirection();
-app.UseHealthChecks( "/health" );
 
 // Configure the HTTP request pipeline.
 // app.UseMiddleware<ApiKeyMiddleware>();

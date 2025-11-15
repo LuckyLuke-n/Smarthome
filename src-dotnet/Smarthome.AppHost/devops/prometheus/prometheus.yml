@@ -5,4 +5,4 @@ global:
 scrape_configs:
   - job_name: 'smarthome.api'
     static_configs:
-      - targets: ['unix:///var/run/docker.sock:29984']
+      - targets: ['http://localhost:29984']

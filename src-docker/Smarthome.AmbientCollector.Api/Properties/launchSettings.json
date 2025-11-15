@@ -6,20 +6,7 @@
       "launchBrowser": false,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SMARTHOME_Api__LogLevel": "3",
-        "SMARTHOME_Api__Key": "secret",
-        "SMARTHOME_MongoDb__ConnectionString": "mongodb://localhost:27017",
-        "SMARTHOME_Mqtt__Host": "localhost",
-        "SMARTHOME_Mqtt__Port": "1883",
-        "SMARTHOME_Mqtt__Username": "admin",
-        "SMARTHOME_Mqtt__Password": "public",
-        "SMARTHOME_Mqtt__UseTls": "false",
-        "SMARTHOME_WeatherApi__Endpoint": "https://api.tomorrow.io/v4/weather/realtime",
-        "SMARTHOME_WeatherApi__ApiKey": "key",
-        "SMARTHOME_WeatherApi__RefreshIntervalInMinutes": "5",
-        "SMARTHOME_Diagnostics__TracingEnabled": "true",
-        "SMARTHOME_Diagnostics__OtlpEndpoint": "http://localhost:4317"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:29983;http://localhost:29984"
     },
@@ -28,18 +15,7 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_HTTPS_PORTS": "8081",
-        "ASPNETCORE_HTTP_PORTS": "8080",
-        "SMARTHOME_Api__LogLevel": "3",
-        "SMARTHOME_Api__Key": "secret",
-        "SMARTHOME_MongoDb__ConnectionString": "mongodb://localhost:27017",
-        "SMARTHOME_Mqtt__Host": "localhost",
-        "SMARTHOME_Mqtt__Port": "1883",
-        "SMARTHOME_Mqtt__Username": "admin",
-        "SMARTHOME_Mqtt__Password": "public",
-        "SMARTHOME_Mqtt__UseTls": "false",
-        "SMARTHOME_WeatherApi__Endpoint": "https://api.tomorrow.io/v4/weather/realtime",
-        "SMARTHOME_WeatherApi__ApiKey": "key",
-        "SMARTHOME_WeatherApi__RefreshIntervalInMinutes": "5"
+        "ASPNETCORE_HTTP_PORTS": "8080"
       },
       "publishAllPorts": true,
       "useSSL": true
