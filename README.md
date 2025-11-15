@@ -9,7 +9,13 @@ Welcome to the SmartHome application! This application allows you to monitor and
 
 ## Technologies Used
 - Frontend: Grafana for visualizing and displaying the data.
-- Backend: Developed using .NET for server-side functionality.
+- Backend:
+  - Developed using .NET for server-side functionality.
+  - EMQX as a MQTT message bus
+  - MongoDB as NoSQL storage
+  - Prometheus for metrics
+  - OpenTelemetry collector
+  - NGINX as reverse proxy
 - API Integration: Utilizes the [tomorrow.io](https://tomorrow.io) API to retrieve outdoor weather data.
 - Sensors: Compatible with BME280 sensors for measuring temperature, humidity, and pressure indoors.
 
