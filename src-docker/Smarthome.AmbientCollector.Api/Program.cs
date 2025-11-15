@@ -10,7 +10,6 @@ builder.AddServiceDefaults();
 
 // Environment variables into configuration provider
 builder.Configuration.AddEnvironmentVariables( prefix: "SMARTHOME_" );
-builder.Services.Configure<MongoDbConfiguration>( builder.Configuration.GetSection( DiagnosticsConfiguration.Section ) );
 
 builder.Services.AddLogging();
 builder.Logging.ClearProviders();
@@ -18,6 +17,7 @@ builder.Logging.ClearProviders();
 builder.Services.AddAmbientCollectorOpenTelemetry();
 
 builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
+builder.AddRepositories();
 builder.Services.AddMyServices( builder.Configuration );
 
 builder.Services.AddControllers();

@@ -5,7 +5,7 @@ var mongo = builder.AddMongoDB("smarthome-mongo")
     .WithDataBindMount("data/mongo")
     .WithLifetime(ContainerLifetime.Persistent);
 
-var emqx = builder.AddContainer("ambientcollector-emqx", "emqx/emqx")
+var emqx = builder.AddContainer("smarthome-emqx", "emqx/emqx")
     .WithBindMount("data/emqx", "/opt/emqx/data")
     .WithEndpoint(port: 1883, targetPort: 1883, scheme:"mqtt")  // MQTT standard port
     .WithEndpoint(port: 18083, targetPort: 18083, scheme:"http")  // EMQX dashboard port
@@ -15,10 +15,7 @@ var ambientcollector = builder.AddProject<Smarthome_AmbientCollector_Api>("ambie
     .WaitFor(mongo)
     .WaitFor(emqx)
     .WithReference(mongo)
-    .WithEnvironment("SMARTHOME_Api__LogLevel", "3")
     .WithEnvironment("SMARTHOME_Api__Key", "secret")
-    .WithEnvironment("SMARTHOME_MongoDb__ConnectionString", "mongodb://localhost:27017")
-    .WithEnvironment("SMARTHOME_MongoDb__Database", "smarthome")
     .WithEnvironment("SMARTHOME_Mqtt__Host", "localhost")
     .WithEnvironment("SMARTHOME_Mqtt__Port", "1883")
     .WithEnvironment("SMARTHOME_Mqtt__Username", "admin")

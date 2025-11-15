@@ -16,14 +16,7 @@ namespace Smarthome.AmbientCollector.Api
 		public static IServiceCollection AddMyServices( this IServiceCollection services, IConfiguration configuration )
 		{
 			services.Configure<ApiConfiguration>( configuration.GetSection( ApiConfiguration.Section ) );
-
-			services.AddSingleton<IMongoClient, MongoClient>( sp =>
-			{
-				var settings = MongoClientSettings.FromConnectionString( Environment.GetEnvironmentVariable( MongoDbConfiguration.ConnectionStringEnvVar ) );
-				return new MongoClient( settings );
-			} );
-
-			services.AddRepositoryServices( configuration );
+			
 			services.AddWeatherRepositoryServices( configuration );
 			services.AddMqttCommunication( configuration );
 
