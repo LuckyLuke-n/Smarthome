@@ -3,16 +3,15 @@
 	public class MqttConfiguration
 	{
 		public static string Section => "Mqtt";
-		public string Host => ConnectionString.Host;
-		public int Port => ConnectionString.Port;
-		public string Username => ConnectionString.UserInfo.Split(':')[0];
-		public string Password => ConnectionString.UserInfo.Split(':')[1];
-		public bool TlsEnabled => string.Equals( ConnectionString.Scheme, "mqtts", StringComparison.InvariantCultureIgnoreCase) ? true : false;
+		public string Host => ConnectionString.Split('@')[1].Split(':')[0];
+		public int Port => Convert.ToInt32( ConnectionString.Split('@')[1].Split(':')[1] );
+		public string Username => ConnectionString.Split('@')[0].Split("//")[1].Split(':')[0];
+		public string Password => ConnectionString.Split('@')[0].Split("//")[1].Split(':')[1];
+		public bool TlsEnabled => ConnectionString.StartsWith("mqtts://");
 		
-		private Uri ConnectionString { get; } = new (Environment.GetEnvironmentVariable( "ConnectionStrings__smarthome-mqtt" ) ?? string.Empty );
-		
-		public bool IsConfigured => !string.IsNullOrEmpty( Host ) ||
-			!string.IsNullOrEmpty( Username ) ||
-			!string.IsNullOrEmpty( Password );
+		private string ConnectionString { get; } = Environment.GetEnvironmentVariable( "ConnectionStrings__smarthome-mqtt" ) ?? string.Empty;
+
+		public bool IsConfigured => !string.IsNullOrEmpty(ConnectionString)
+			&& ( ConnectionString.StartsWith("mqtts://") ||  ConnectionString.StartsWith("mqtt://") );
 	}
 }

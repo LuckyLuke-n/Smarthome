@@ -67,7 +67,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 			var result = await MqttClient.ConnectAsync( mqttClientOptions.Build(), CancellationTokenSource.Token ).ConfigureAwait( false );
 
 			if ( result.ResultCode != MqttClientConnectResultCode.Success )
-				Logger.LogError( "No connection made to mqtt broker {Host}.", MqttConfiguration.Host );
+				Logger.LogError( "No connection made to mqtt broker {Host} with reason {NoConnectionReason}.", MqttConfiguration.Host, result.ResultCode );
 			else
 				IsConnected = true;
 		}
@@ -146,7 +146,8 @@ namespace LSoftware.Communication.Mqtt.Handler
 					if ( MqttClient is not null )
 					{
 						MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
-						MqttClient.UnsubscribeAsync( Topic, CancellationTokenSource.Token ).GetAwaiter().GetResult();
+						if ( !string.IsNullOrWhiteSpace( Topic ) )
+							MqttClient.UnsubscribeAsync( Topic, CancellationTokenSource.Token ).GetAwaiter().GetResult();
 						MqttClient.DisconnectAsync();
 					}
 
