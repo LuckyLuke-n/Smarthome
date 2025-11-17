@@ -62,4 +62,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+#if !DEBUG
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+#endif
+
 await app.RunAsync().ConfigureAwait( false );

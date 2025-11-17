@@ -57,6 +57,9 @@ public static class Extensions
                 metrics.AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddRuntimeInstrumentation();
+#if !DEBUG
+                metrics.AddPrometheusExporter();
+#endif
             })
             .WithTracing(tracing =>
             {
@@ -71,8 +74,10 @@ public static class Extensions
                     //.AddGrpcClientInstrumentation()
                     .AddHttpClientInstrumentation();
             });
-
+        
+#if DEBUG
         builder.AddOpenTelemetryExporters();
+#endif
 
         return builder;
     }
