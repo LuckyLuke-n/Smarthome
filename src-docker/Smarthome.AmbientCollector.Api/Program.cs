@@ -15,6 +15,7 @@ builder.Services.Configure<MqttConfiguration>( builder.Configuration.GetSection(
 
 builder.Services.AddLogging();
 builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 builder.Services.AddAmbientCollectorOpenTelemetry();
 
@@ -60,5 +61,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+#if !DEBUG
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+#endif
 
 await app.RunAsync().ConfigureAwait( false );
