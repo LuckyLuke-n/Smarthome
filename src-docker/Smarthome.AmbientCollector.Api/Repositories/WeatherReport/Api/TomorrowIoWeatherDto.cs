@@ -42,7 +42,7 @@
 		//public double FreezingRainIntensity { get; set; }
 		//public double HailProbability { get; set; }
 		//public double HailSize { get; set; }
-		public int Humidity { get; set; }
+		public double Humidity { get; set; }
 		// public int PrecipitationProbability { get; set; }
 		public double PressureSurfaceLevel { get; set; }
 		public double RainIntensity { get; set; }
