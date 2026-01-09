@@ -8,7 +8,7 @@
 
 		public double Temperature { get; set; }
 		public double TemperatureApparent { get; set; }
-		public int Humidity { get; set; }
+		public double Humidity { get; set; }
 		public double RainIntensity { get; set; }
 		public double PressureSurfaceLevel { get; set; }
 		public double WindSpeed { get; set; }
