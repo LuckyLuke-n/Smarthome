@@ -1,5 +1,6 @@
 # Smarthome
 Welcome to the SmartHome application! This application allows you to monitor and manage the environmental conditions of your home and surrounding area. With real-time data from sensors and a third-party API, you can keep track of temperature, humidity, pressure, and more.
+<img width="1659" height="1037" alt="image" src="https://github.com/user-attachments/assets/78190206-931b-40e5-a0b1-6593567bf3c5" />
 
 ## Features
 - Indoor Monitoring: Displays real-time temperature and humidity levels measured by indoor sensors.
