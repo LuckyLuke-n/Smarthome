@@ -17,7 +17,6 @@ builder.Logging.AddConsole();
 
 builder.Services.AddAmbientCollectorOpenTelemetry();
 
-builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
 builder.AddRepositories();
 builder.Services.AddMyServices( builder.Configuration );
 
@@ -65,3 +64,5 @@ app.UseOpenTelemetryPrometheusScrapingEndpoint();
 #endif
 
 await app.RunAsync().ConfigureAwait( false );
+
+public partial class Program;

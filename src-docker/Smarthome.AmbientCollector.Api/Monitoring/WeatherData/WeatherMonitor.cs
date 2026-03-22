@@ -1,10 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 using Smarthome.AmbientCollector.Api.Repositories.Locations;
 using Smarthome.AmbientCollector.Api.Repositories.WeatherReport;
