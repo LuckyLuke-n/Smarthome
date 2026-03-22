@@ -1,10 +1,8 @@
 using LSoftware.Communication.Mqtt.Configuration;
-using LSoftware.Repository.MongoDb;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Smarthome.AmbientCollector.Api;
 using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
-using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;
 
 var builder = WebApplication.CreateBuilder( args );
 
