@@ -104,7 +104,7 @@ namespace LSoftware.Repository.MongoDb
 
 				if ( devices.Count == 0 )
 				{
-					RepositoryFailResponse fail = new() { StatusCode = HttpStatusCode.NotFound, Message = "Document cannot be delted. Document not found." };
+					RepositoryFailResponse fail = new() { StatusCode = HttpStatusCode.NotFound, Message = "Document cannot be read. Document not found." };
 					return RepositoryResponse<T, RepositoryFailResponse>.CreateFail( fail );
 				}
 
