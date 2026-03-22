@@ -1,9 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Smarthome.AmbientCollector.Api.Extensions;
 using Smarthome.AmbientCollector.Api.Repositories.Locations;
-using Smarthome.Core.DomainObjects;
 using Smarthome.Core.Models;
-using System.Net;
 
 namespace Smarthome.AmbientCollector.Api.Controllers
 {
@@ -11,13 +10,11 @@ namespace Smarthome.AmbientCollector.Api.Controllers
 	[ApiController]
 	public class LocationsController : ControllerBase
 	{
-		private IMapper Mapper { get; }
 		private ILogger<LocationsController> Logger { get; }
 		private ILocationRepository LocationRepository { get; }
 
-		public LocationsController( IMapper mapper, ILogger<LocationsController> logger, ILocationRepository locationRepository  )
+		public LocationsController( ILogger<LocationsController> logger, ILocationRepository locationRepository  )
 		{
-			Mapper = mapper;
 			Logger = logger;
 			LocationRepository = locationRepository;
 		}
@@ -28,7 +25,7 @@ namespace Smarthome.AmbientCollector.Api.Controllers
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status409Conflict )]
 		public async Task<IActionResult> AddLocation( [FromBody] CreateLocationRequestDto dto, CancellationToken cancellationToken )
 		{
-			var location = Mapper.Map<Location>( dto );
+			var location = dto.ToEntity();
 			var response = await LocationRepository.CreateAsync( location, cancellationToken );
 
 			if ( response.IsSuccess )
@@ -99,7 +96,7 @@ namespace Smarthome.AmbientCollector.Api.Controllers
 		[ProducesResponseType( typeof( ErrorResponseDto ), StatusCodes.Status404NotFound )]
 		public async Task<IActionResult> UpdateLocation( [FromRoute] Guid id, [FromBody] UpdateLocationRequestDto dto, CancellationToken cancellationToken )
 		{
-			var location = Mapper.Map<Location>( dto );
+			var location = dto.ToEntity();
 			location.Id = id.ToString();
 
 			var response = await LocationRepository.UpdateAsync( location, cancellationToken );
