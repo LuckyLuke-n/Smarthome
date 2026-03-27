@@ -26,8 +26,18 @@ namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api
 			var client = HttpClientFactory.CreateClient();
 			client.BaseAddress = new Uri( WeatherApiConfiguration.Endpoint );
 
-			var response = await client.GetAsync( $"?location={location.City}&apikey={WeatherApiConfiguration.ApiKey}", cancellationToken ).ConfigureAwait( false );
 
+			HttpResponseMessage response;
+			try
+			{
+				response = await client.GetAsync( $"?location={location.City}&apikey={WeatherApiConfiguration.ApiKey}", cancellationToken ).ConfigureAwait( false );
+			}
+			catch (Exception e)
+			{
+				Logger.LogError( e, "Error while calling tomorrow.io api." );
+				return WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>.CreateFail( new() { StatusCode = HttpStatusCode.InternalServerError, Message = e.Message } );
+			}
+			
 			if ( !response.IsSuccessStatusCode )
 			{
 				string errorContent = await response.Content.ReadAsStringAsync( cancellationToken ).ConfigureAwait( false );
