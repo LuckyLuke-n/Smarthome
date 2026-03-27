@@ -1,7 +1,6 @@
 using LSoftware.Communication.Mqtt.Configuration;
 using Microsoft.OpenApi;
 using Smarthome.AmbientCollector.Api;
-using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
 
 var builder = WebApplication.CreateBuilder( args );
@@ -58,10 +57,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-#if !DEBUG
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
-#endif
 
 await app.RunAsync().ConfigureAwait( false );
 
