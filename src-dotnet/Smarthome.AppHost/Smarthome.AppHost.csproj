@@ -1,4 +1,4 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
+<Project Sdk="Aspire.AppHost.Sdk/13.1.3">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -10,10 +10,11 @@
 
 
     <ItemGroup>
-      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.0.0" />
+      <PackageReference Include="Aspire.Hosting.AppHost" Version="13.2.0" />
+      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.2.0" />
+      <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.2.0" />
     </ItemGroup>
-
-
+    
     <ItemGroup>
       <ProjectReference Include="..\..\src-docker\Smarthome.AmbientCollector.Api\Smarthome.AmbientCollector.Api.csproj" />
     </ItemGroup>

@@ -21,14 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Repository.Abstra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSoftware.Repository.MongoDb", "src-dotnet\LSoftware.Repository.MongoDb\LSoftware.Repository.MongoDb.csproj", "{CF3A54FF-2CBF-4FCA-9F20-CF2B83035A29}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1399A2A0-AB9F-4F44-BE69-A0AFF64E7742}"
-	ProjectSection(SolutionItems) = preProject
-		compose.yaml = compose.yaml
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.AppHost", "src-dotnet\Smarthome.AppHost\Smarthome.AppHost.csproj", "{1AA44F69-F1F3-4664-B772-BBB6E2C347E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.ServiceDefaults", "src-dotnet\Smarthome.ServiceDefaults\Smarthome.ServiceDefaults.csproj", "{EDCE93D5-50D2-49E0-9CD5-48F6063601A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.AmbientCollector.Integration", "integration\Smarthome.AmbientCollector.Integration\Smarthome.AmbientCollector.Integration.csproj", "{47798648-95E5-4D73-9052-048BC7B08133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarthome.AmbientCollector.Test", "test\Smarthome.AmbientCollector.Test\Smarthome.AmbientCollector.Test.csproj", "{CCBB46D5-6B17-4E92-961F-9C5203F78ABE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +79,14 @@ Global
 		{EDCE93D5-50D2-49E0-9CD5-48F6063601A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDCE93D5-50D2-49E0-9CD5-48F6063601A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDCE93D5-50D2-49E0-9CD5-48F6063601A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47798648-95E5-4D73-9052-048BC7B08133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47798648-95E5-4D73-9052-048BC7B08133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47798648-95E5-4D73-9052-048BC7B08133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47798648-95E5-4D73-9052-048BC7B08133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCBB46D5-6B17-4E92-961F-9C5203F78ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCBB46D5-6B17-4E92-961F-9C5203F78ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCBB46D5-6B17-4E92-961F-9C5203F78ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCBB46D5-6B17-4E92-961F-9C5203F78ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

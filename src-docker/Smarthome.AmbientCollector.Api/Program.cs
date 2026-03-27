@@ -1,10 +1,7 @@
 using LSoftware.Communication.Mqtt.Configuration;
-using LSoftware.Repository.MongoDb;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Smarthome.AmbientCollector.Api;
-using Smarthome.AmbientCollector.Api.Configuration;
 using Smarthome.AmbientCollector.Api.Diagnostics;
-using Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -19,7 +16,6 @@ builder.Logging.AddConsole();
 
 builder.Services.AddAmbientCollectorOpenTelemetry();
 
-builder.Services.AddAutoMapper(typeof(LocationMappingProfile));
 builder.AddRepositories();
 builder.Services.AddMyServices( builder.Configuration );
 
@@ -62,8 +58,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-#if !DEBUG
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
-#endif
-
 await app.RunAsync().ConfigureAwait( false );
+
+public partial class Program;
