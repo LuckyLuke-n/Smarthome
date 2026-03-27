@@ -47,9 +47,9 @@ namespace Smarthome.AmbientCollector.Api.Diagnostics.Meters
                 new("sensor.model", sensorModel),
             };
 
-            TemperatureMeasurements.TryAdd(location, new Measurement<double>(temperature, tags));
-            HumidityMeasurements.TryAdd(location, new Measurement<double>(humidity, tags));
-            PressureMeasurements.TryAdd(location, new Measurement<double>(pressure, tags));
+            TemperatureMeasurements[location] = new Measurement<double>(temperature, tags);
+            HumidityMeasurements[location] = new Measurement<double>(humidity, tags);
+            PressureMeasurements[location] = new Measurement<double>(pressure, tags);
         }
 
         public static void TryRemoveSensor(string location)
