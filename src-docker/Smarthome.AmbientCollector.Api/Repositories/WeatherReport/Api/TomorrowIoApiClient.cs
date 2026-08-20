@@ -19,6 +19,9 @@ namespace Smarthome.AmbientCollector.Api.Repositories.WeatherReport.Api
 
 			if ( string.IsNullOrEmpty( WeatherApiConfiguration.Endpoint ) )
 				Logger.LogWarning( "Weather api configuration url not set." );
+
+			if ( string.IsNullOrEmpty( WeatherApiConfiguration.ApiKey ) )
+				Logger.LogWarning( "Weather api key not set." );
 		}
 
 		public async Task<WeatherRepositoryResponse<WeatherReport, WeatherRepositoryFailResponse>> GetWeatherDataAsync( Core.DomainObjects.Location location, CancellationToken cancellationToken )
