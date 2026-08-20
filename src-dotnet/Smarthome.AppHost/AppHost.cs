@@ -2,6 +2,7 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 var mongo = builder.AddMongoDB("smarthome-mongo")
+    .WithImage("mongo:7")
     .WithDataBindMount("data/mongo")
     .WithLifetime(ContainerLifetime.Persistent);
 
@@ -14,13 +15,14 @@ var rabbitmq = builder.AddRabbitMQ("smarthome-mqtt", rabbitUser, rabbitPassword)
     .WithEndpoint(port: 1883, targetPort: 1883, scheme:"mqtt")  // MQTT standard port
     .WithLifetime(ContainerLifetime.Persistent);
 
+var apiKey = builder.AddParameter("apiKey", secret: true, value: "key");
 var ambientcollector = builder.AddProject<Smarthome_AmbientCollector_Api>("ambientcollector")
     .WaitFor(mongo)
     .WaitFor(rabbitmq)
     .WithReference(mongo)
     .WithEnvironment("ConnectionStrings__smarthome-mqtt", "mqtt://guest:ZdMVWXxa15bVpxMpNesbyt@localhost:1883")
     .WithEnvironment("WeatherApi__Endpoint", "https://api.tomorrow.io/v4/weather/realtime")
-    .WithEnvironment("WeatherApi__ApiKey", "key")
+    .WithEnvironment("WeatherApi__ApiKey", apiKey)
     .WithEnvironment("WeatherApi__RefreshIntervalInMinutes", "5");
 
 builder.Build().Run();

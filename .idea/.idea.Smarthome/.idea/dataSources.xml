@@ -22,5 +22,15 @@
       <jdbc-url>mongodb://admin:XngDW4dtUF2C1aaF3TsVFg@localhost:32776/?authSource=admin&amp;authMechanism=SCRAM-SHA-256</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="smarthome-mongo" uuid="f5e7c383-79f7-434b-91ff-f406db6aaf7c">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://admin:XngDW4dtUF2C1aaF3TsVFg@localhost:20092/?authSource=admin&amp;authMechanism=SCRAM-SHA-256</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="aspireResourceId" value="smarthome-mongo-65470956" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
