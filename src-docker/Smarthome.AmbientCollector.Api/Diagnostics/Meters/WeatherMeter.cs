@@ -34,7 +34,7 @@ namespace Smarthome.AmbientCollector.Api.Diagnostics.Meters
 			TemperatureGauge.Record( weatherReport.Temperature, tags );
 			TemperatureApparentGauge.Record( weatherReport.TemperatureApparent, tags );
 			HumidityGauge.Record( weatherReport.Humidity, tags );
-			PressureGauge.Record( weatherReport.PressureSurfaceLevel, tags );
+			PressureGauge.Record( weatherReport.PressureSeaLevel, tags );
 			RainIntensityGauge.Record( weatherReport.RainIntensity, tags );
 			WindSpeedGauge.Record( weatherReport.WindSpeed, tags );
 		}

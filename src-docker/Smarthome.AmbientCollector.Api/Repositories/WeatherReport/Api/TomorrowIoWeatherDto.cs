@@ -18,6 +18,7 @@
 				Humidity = Data?.Values?.Humidity ?? 0,
 				RainIntensity = Data?.Values?.RainIntensity ?? 0,
 				PressureSurfaceLevel = Data?.Values?.PressureSurfaceLevel ?? 0,
+				PressureSeaLevel = Data?.Values?.PressureSeaLevel ?? 0,
 				WindSpeed = Data?.Values?.WindSpeed ?? 0,
 			};
 
@@ -45,6 +46,7 @@
 		public double Humidity { get; set; }
 		// public int PrecipitationProbability { get; set; }
 		public double PressureSurfaceLevel { get; set; }
+		public double PressureSeaLevel { get; set; }
 		public double RainIntensity { get; set; }
 		//public double SleetIntensity { get; set; }
 		//public double SnowIntensity { get; set; }

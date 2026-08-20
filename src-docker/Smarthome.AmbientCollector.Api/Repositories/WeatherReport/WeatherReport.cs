@@ -11,6 +11,7 @@
 		public double Humidity { get; set; }
 		public double RainIntensity { get; set; }
 		public double PressureSurfaceLevel { get; set; }
+		public double PressureSeaLevel { get; set; }
 		public double WindSpeed { get; set; }
 	}
 }
