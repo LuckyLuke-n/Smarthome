@@ -12,7 +12,7 @@ Welcome to the SmartHome application! This application allows you to monitor and
 - Frontend: Grafana for visualizing and displaying the data.
 - Backend:
   - Developed using .NET for server-side functionality.
-  - EMQX as a MQTT message bus
+  - RabbitMQ as a MQTT message bus
   - MongoDB as NoSQL storage
   - Prometheus for metrics
   - OpenTelemetry collector
