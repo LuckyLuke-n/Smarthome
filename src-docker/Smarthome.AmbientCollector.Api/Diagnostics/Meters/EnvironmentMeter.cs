@@ -20,20 +20,20 @@ namespace Smarthome.AmbientCollector.Api.Diagnostics.Meters
         {
             // Initialize the metrics
             TemperatureGauge = Meter.CreateObservableGauge<double>(
-                "envsensor.temperature",
+                "ambient.envsensor.temperature",
                 () => TemperatureMeasurements.Values,
-                "degC",
+                "Cel",
                 "Current temperature in Celsius");
             
             
             HumidityGauge = Meter.CreateObservableGauge<double>(
-                "envsensor.humidity",
+                "ambient.envsensor.humidity",
                 () => HumidityMeasurements.Values,
                 "%",
                 "Current humidity in %");
             
             PressureGauge = Meter.CreateObservableGauge<double>(
-                "envsensor.pressure",
+                "ambient.envsensor.pressure",
                 () => PressureMeasurements.Values,
                 "hPa",
                 "Current ambient pressure in hPa");

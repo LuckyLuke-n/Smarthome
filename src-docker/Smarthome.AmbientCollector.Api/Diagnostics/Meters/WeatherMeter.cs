@@ -17,12 +17,12 @@ namespace Smarthome.AmbientCollector.Api.Diagnostics.Meters
 		static WeatherMeter()
 		{
 			// Initialize the metrics
-			TemperatureGauge = Meter.CreateGauge<double>( "weather.current.temperature", "degC", "Current temperature in Celsius" );
-			TemperatureApparentGauge = Meter.CreateGauge<double>( "weather.current.temperatureApparent", "degC", "Apparent temperature in Celsius" );
-			HumidityGauge = Meter.CreateGauge<double>( "weather.current.humidity", "%", "Current humidity in %" );
-			PressureGauge = Meter.CreateGauge<double>( "weather.current.pressure", "hPa", "Current ambient pressure in hPa" );
-			RainIntensityGauge = Meter.CreateGauge<double>( "weather.current.rainIntensity", "mm/h", "Rain intensity in mm per hour." );
-			WindSpeedGauge = Meter.CreateGauge<double>( "weather.current.windSpeed", "m/s", "Wind speed in meter per second." );
+			TemperatureGauge = Meter.CreateGauge<double>( "ambient.weather.current.temperature", "Cel", "Current temperature in Celsius" );
+			TemperatureApparentGauge = Meter.CreateGauge<double>( "ambient.weather.current.temperatureApparent", "Cel", "Apparent temperature in Celsius" );
+			HumidityGauge = Meter.CreateGauge<double>( "ambient.weather.current.humidity", "%", "Current humidity in %" );
+			PressureGauge = Meter.CreateGauge<double>( "ambient.weather.current.pressure", "hPa", "Current ambient pressure in hPa" );
+			RainIntensityGauge = Meter.CreateGauge<double>( "ambient.weather.current.rainIntensity", "mm/h", "Rain intensity in mm per hour." );
+			WindSpeedGauge = Meter.CreateGauge<double>( "ambient.weather.current.windSpeed", "m/s", "Wind speed in meter per second." );
 		}
 
 		public static void Update( WeatherReport weatherReport, string location )
