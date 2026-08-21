@@ -5,8 +5,8 @@
     "name": "adx9bh7",
     "namespace": "default",
     "uid": "dKC9sasOtFR3DdZvl4qgyc1138XINZB7o2sVuhCrBVgX",
-    "resourceVersion": "2",
-    "generation": 3,
+    "resourceVersion": "7",
+    "generation": 7,
     "creationTimestamp": "2026-07-30T21:34:56Z",
     "labels": {
       "grafana.app/deprecatedInternalID": "1"
@@ -14,7 +14,7 @@
     "annotations": {
       "grafana.app/createdBy": "user:dftpak7uhx81sa",
       "grafana.app/updatedBy": "user:dftpak7uhx81sa",
-      "grafana.app/updatedTimestamp": "2026-07-30T21:44:55Z",
+      "grafana.app/updatedTimestamp": "2026-08-21T21:32:02Z",
       "grafana.app/folder": ""
     }
   },
@@ -64,7 +64,7 @@
                         "alias": "living room",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"living room\"})",
+                        "expr": "avg(ambient_envsensor_temperature_celsius{sensor_location=\"living room\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -129,7 +129,7 @@
                         "alias": "bathroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"bathroom\"})",
+                        "expr": "avg(ambient_envsensor_temperature_celsius{sensor_location=\"bathroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -194,7 +194,7 @@
                         "alias": "bedroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"bedroom\"})",
+                        "expr": "avg(ambient_envsensor_temperature_celsius{sensor_location=\"bedroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -259,7 +259,7 @@
                         "alias": "$geographic_location",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_temperature_degC{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_temperatureApparent_celsius{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -392,7 +392,7 @@
                 }
               }
             },
-            "version": "13.0.2"
+            "version": "12.3.1"
           }
         }
       },
@@ -416,7 +416,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_windSpeed_meters_per_second{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_windSpeed_meters_per_second{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -515,7 +515,7 @@
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
-                    "lastNotNull"
+                    "last"
                   ],
                   "fields": "",
                   "values": false
@@ -526,484 +526,6 @@
               }
             },
             "version": "12.3.1"
-          }
-        }
-      },
-      "panel-11": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P93578DF493C08FA3"
-                      },
-                      "group": "marcusolsson-json-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "cacheDurationSeconds": 300,
-                        "fields": [
-                          {
-                            "jsonPath": "$"
-                          }
-                        ],
-                        "method": "GET",
-                        "queryParams": "",
-                        "urlPath": ""
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 11,
-          "links": [],
-          "title": "Version",
-          "vizConfig": {
-            "group": "stat",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "text",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "colorMode": "value",
-                "graphMode": "area",
-                "justifyMode": "auto",
-                "orientation": "horizontal",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "fields": "/.*/",
-                  "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
-              }
-            },
-            "version": "13.0.2"
-          }
-        }
-      },
-      "panel-12": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "PE8B2861E1A26F262"
-                      },
-                      "group": "marcusolsson-json-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "cacheDurationSeconds": 300,
-                        "fields": [
-                          {
-                            "jsonPath": "$"
-                          }
-                        ],
-                        "method": "GET",
-                        "queryParams": "",
-                        "urlPath": ""
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                },
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "PE8B2861E1A26F262"
-                      },
-                      "group": "marcusolsson-json-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "cacheDurationSeconds": 300,
-                        "fields": [
-                          {
-                            "jsonPath": ""
-                          }
-                        ],
-                        "method": "GET",
-                        "queryParams": "",
-                        "urlPath": ""
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "B"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 12,
-          "links": [],
-          "title": "RabbitMQ health",
-          "vizConfig": {
-            "group": "stat",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "mappings": [
-                    {
-                      "options": {
-                        "pattern": "[\\s\\S]*",
-                        "result": {
-                          "index": 0,
-                          "text": "ok"
-                        }
-                      },
-                      "type": "regex"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "text",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "colorMode": "value",
-                "graphMode": "area",
-                "justifyMode": "auto",
-                "orientation": "horizontal",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "fields": "/.*/",
-                  "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
-              }
-            },
-            "version": "13.0.2"
-          }
-        }
-      },
-      "panel-13": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P9D6465F4E84C3FCF"
-                      },
-                      "group": "marcusolsson-json-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "cacheDurationSeconds": 300,
-                        "fields": [
-                          {
-                            "jsonPath": "$"
-                          }
-                        ],
-                        "method": "GET",
-                        "queryParams": "",
-                        "urlPath": ""
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 13,
-          "links": [],
-          "title": "Prometheus health",
-          "vizConfig": {
-            "group": "stat",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "text",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "colorMode": "value",
-                "graphMode": "area",
-                "justifyMode": "auto",
-                "orientation": "horizontal",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "fields": "/.*/",
-                  "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
-              }
-            },
-            "version": "13.0.2"
-          }
-        }
-      },
-      "panel-14": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P1809F7CD0C75ACF3"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "alias": "Living room",
-                        "disableTextWrap": false,
-                        "editorMode": "builder",
-                        "exemplar": false,
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"living room\"})",
-                        "fullMetaSearch": false,
-                        "groupBy": [
-                          {
-                            "params": [
-                              "10s"
-                            ],
-                            "type": "time"
-                          },
-                          {
-                            "params": [
-                              "none"
-                            ],
-                            "type": "fill"
-                          }
-                        ],
-                        "includeNullMetadata": true,
-                        "instant": true,
-                        "legendFormat": "__auto",
-                        "measurement": "environment_sensor",
-                        "orderByTime": "ASC",
-                        "policy": "default",
-                        "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
-                        "range": false,
-                        "rawQuery": true,
-                        "resultFormat": "time_series",
-                        "select": [
-                          [
-                            {
-                              "params": [
-                                "Temperature"
-                              ],
-                              "type": "field"
-                            },
-                            {
-                              "params": [],
-                              "type": "last"
-                            }
-                          ]
-                        ],
-                        "tags": [
-                          {
-                            "key": "Location::tag",
-                            "operator": "=",
-                            "value": "Living room"
-                          },
-                          {
-                            "condition": "AND",
-                            "key": "time",
-                            "operator": "=",
-                            "value": "time - 5m"
-                          }
-                        ],
-                        "useBackend": false
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 14,
-          "links": [],
-          "title": "Living room sensor",
-          "vizConfig": {
-            "group": "stat",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "mappings": [
-                    {
-                      "options": {
-                        "0": {
-                          "color": "red",
-                          "index": 1,
-                          "text": "down"
-                        }
-                      },
-                      "type": "value"
-                    },
-                    {
-                      "options": {
-                        "from": -100,
-                        "result": {
-                          "color": "green",
-                          "index": 0,
-                          "text": "ok"
-                        },
-                        "to": 100
-                      },
-                      "type": "range"
-                    },
-                    {
-                      "options": {
-                        "match": "null+nan",
-                        "result": {
-                          "color": "red",
-                          "index": 2,
-                          "text": "down"
-                        }
-                      },
-                      "type": "special"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "colorMode": "value",
-                "graphMode": "none",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "fields": "",
-                  "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
-              }
-            },
-            "version": "13.0.2"
           }
         }
       },
@@ -1027,7 +549,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_pressure_hPa{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_pressure_hPa{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "instant": false,
@@ -1090,7 +612,7 @@
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
-                    "lastNotNull"
+                    "last"
                   ],
                   "fields": "",
                   "values": false
@@ -1101,249 +623,6 @@
               }
             },
             "version": "12.3.1"
-          }
-        }
-      },
-      "panel-22": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P1809F7CD0C75ACF3"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "disableTextWrap": false,
-                        "editorMode": "builder",
-                        "exemplar": false,
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"bathroom\"})",
-                        "fullMetaSearch": false,
-                        "includeNullMetadata": true,
-                        "instant": true,
-                        "interval": "",
-                        "legendFormat": "__auto",
-                        "range": false,
-                        "useBackend": false
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 22,
-          "links": [],
-          "title": "Bathroom sensor",
-          "vizConfig": {
-            "group": "stat",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "mappings": [
-                    {
-                      "options": {
-                        "0": {
-                          "color": "red",
-                          "index": 1,
-                          "text": "down"
-                        }
-                      },
-                      "type": "value"
-                    },
-                    {
-                      "options": {
-                        "from": -100,
-                        "result": {
-                          "color": "green",
-                          "index": 0,
-                          "text": "ok"
-                        },
-                        "to": 100
-                      },
-                      "type": "range"
-                    },
-                    {
-                      "options": {
-                        "match": "null+nan",
-                        "result": {
-                          "color": "red",
-                          "index": 2,
-                          "text": "down"
-                        }
-                      },
-                      "type": "special"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "colorMode": "value",
-                "graphMode": "none",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "fields": "",
-                  "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
-              }
-            },
-            "version": "13.0.2"
-          }
-        }
-      },
-      "panel-23": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P1809F7CD0C75ACF3"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "disableTextWrap": false,
-                        "editorMode": "builder",
-                        "exemplar": false,
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"bedroom\"})",
-                        "fullMetaSearch": false,
-                        "includeNullMetadata": true,
-                        "instant": true,
-                        "legendFormat": "__auto",
-                        "range": false,
-                        "useBackend": false
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 23,
-          "links": [],
-          "title": "Bedroom sensor",
-          "vizConfig": {
-            "group": "stat",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "mappings": [
-                    {
-                      "options": {
-                        "0": {
-                          "color": "red",
-                          "index": 1,
-                          "text": "down"
-                        }
-                      },
-                      "type": "value"
-                    },
-                    {
-                      "options": {
-                        "from": -100,
-                        "result": {
-                          "color": "green",
-                          "index": 0,
-                          "text": "ok"
-                        },
-                        "to": 100
-                      },
-                      "type": "range"
-                    },
-                    {
-                      "options": {
-                        "match": "null+nan",
-                        "result": {
-                          "color": "red",
-                          "index": 2,
-                          "text": "down"
-                        }
-                      },
-                      "type": "special"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "colorMode": "value",
-                "graphMode": "none",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "fields": "",
-                  "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
-              }
-            },
-            "version": "13.0.2"
           }
         }
       },
@@ -1367,9 +646,9 @@
                       "spec": {
                         "alias": "Living room",
                         "disableTextWrap": false,
-                        "editorMode": "code",
+                        "editorMode": "builder",
                         "exemplar": false,
-                        "expr": "envsensor_temperature_degC{sensor_location=\"living room\"}",
+                        "expr": "ambient_envsensor_temperature_celsius{sensor_location=\"living room\"}",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -1428,156 +707,6 @@
                     },
                     "refId": "living room"
                   }
-                },
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P1809F7CD0C75ACF3"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "alias": "Living room",
-                        "disableTextWrap": false,
-                        "editorMode": "code",
-                        "exemplar": false,
-                        "expr": "envsensor_temperature_degC{sensor_location=\"bathroom\"}",
-                        "fullMetaSearch": false,
-                        "groupBy": [
-                          {
-                            "params": [
-                              "10s"
-                            ],
-                            "type": "time"
-                          },
-                          {
-                            "params": [
-                              "none"
-                            ],
-                            "type": "fill"
-                          }
-                        ],
-                        "includeNullMetadata": true,
-                        "instant": true,
-                        "legendFormat": "__auto",
-                        "measurement": "environment_sensor",
-                        "orderByTime": "ASC",
-                        "policy": "default",
-                        "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
-                        "range": false,
-                        "rawQuery": true,
-                        "resultFormat": "time_series",
-                        "select": [
-                          [
-                            {
-                              "params": [
-                                "Temperature"
-                              ],
-                              "type": "field"
-                            },
-                            {
-                              "params": [],
-                              "type": "last"
-                            }
-                          ]
-                        ],
-                        "tags": [
-                          {
-                            "key": "Location::tag",
-                            "operator": "=",
-                            "value": "Living room"
-                          },
-                          {
-                            "condition": "AND",
-                            "key": "time",
-                            "operator": "=",
-                            "value": "time - 5m"
-                          }
-                        ],
-                        "useBackend": false
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "bedroom"
-                  }
-                },
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P1809F7CD0C75ACF3"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "alias": "Living room",
-                        "disableTextWrap": false,
-                        "editorMode": "code",
-                        "exemplar": false,
-                        "expr": "envsensor_temperature_degC{sensor_location=\"bedroom\"}",
-                        "fullMetaSearch": false,
-                        "groupBy": [
-                          {
-                            "params": [
-                              "10s"
-                            ],
-                            "type": "time"
-                          },
-                          {
-                            "params": [
-                              "none"
-                            ],
-                            "type": "fill"
-                          }
-                        ],
-                        "includeNullMetadata": true,
-                        "instant": true,
-                        "legendFormat": "__auto",
-                        "measurement": "environment_sensor",
-                        "orderByTime": "ASC",
-                        "policy": "default",
-                        "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
-                        "range": false,
-                        "rawQuery": true,
-                        "resultFormat": "time_series",
-                        "select": [
-                          [
-                            {
-                              "params": [
-                                "Temperature"
-                              ],
-                              "type": "field"
-                            },
-                            {
-                              "params": [],
-                              "type": "last"
-                            }
-                          ]
-                        ],
-                        "tags": [
-                          {
-                            "key": "Location::tag",
-                            "operator": "=",
-                            "value": "Living room"
-                          },
-                          {
-                            "condition": "AND",
-                            "key": "time",
-                            "operator": "=",
-                            "value": "time - 5m"
-                          }
-                        ],
-                        "useBackend": false
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "bathroom"
-                  }
                 }
               ],
               "queryOptions": {},
@@ -1587,7 +716,7 @@
           "description": "",
           "id": 25,
           "links": [],
-          "title": "Sensor health",
+          "title": "Living room",
           "vizConfig": {
             "group": "stat",
             "kind": "VizConfig",
@@ -1657,7 +786,7 @@
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
-                    "lastNotNull"
+                    "last"
                   ],
                   "fields": "",
                   "values": false
@@ -1691,7 +820,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_rainIntensity_mm_per_hour{location=~\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_rainIntensity_mm_per_hour{location=~\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "instant": false,
@@ -1790,7 +919,355 @@
                 }
               }
             },
-            "version": "13.0.2"
+            "version": "12.3.1"
+          }
+        }
+      },
+      "panel-27": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "P1809F7CD0C75ACF3"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "alias": "Living room",
+                        "disableTextWrap": false,
+                        "editorMode": "builder",
+                        "exemplar": false,
+                        "expr": "ambient_envsensor_temperature_celsius{sensor_location=\"bathroom\"}",
+                        "fullMetaSearch": false,
+                        "groupBy": [
+                          {
+                            "params": [
+                              "10s"
+                            ],
+                            "type": "time"
+                          },
+                          {
+                            "params": [
+                              "none"
+                            ],
+                            "type": "fill"
+                          }
+                        ],
+                        "includeNullMetadata": true,
+                        "instant": true,
+                        "legendFormat": "__auto",
+                        "measurement": "environment_sensor",
+                        "orderByTime": "ASC",
+                        "policy": "default",
+                        "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
+                        "range": false,
+                        "rawQuery": true,
+                        "resultFormat": "time_series",
+                        "select": [
+                          [
+                            {
+                              "params": [
+                                "Temperature"
+                              ],
+                              "type": "field"
+                            },
+                            {
+                              "params": [],
+                              "type": "last"
+                            }
+                          ]
+                        ],
+                        "tags": [
+                          {
+                            "key": "Location::tag",
+                            "operator": "=",
+                            "value": "Living room"
+                          },
+                          {
+                            "condition": "AND",
+                            "key": "time",
+                            "operator": "=",
+                            "value": "time - 5m"
+                          }
+                        ],
+                        "useBackend": false
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "bedroom"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 27,
+          "links": [],
+          "title": "Bedroom",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "fixedColor": "green",
+                    "mode": "thresholds"
+                  },
+                  "mappings": [
+                    {
+                      "options": {
+                        "o": {
+                          "color": "red",
+                          "index": 2,
+                          "text": "down"
+                        }
+                      },
+                      "type": "value"
+                    },
+                    {
+                      "options": {
+                        "from": -100,
+                        "result": {
+                          "color": "green",
+                          "index": 0,
+                          "text": "ok"
+                        },
+                        "to": 100
+                      },
+                      "type": "range"
+                    },
+                    {
+                      "options": {
+                        "match": "null+nan",
+                        "result": {
+                          "color": "red",
+                          "index": 1,
+                          "text": "down"
+                        }
+                      },
+                      "type": "special"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  }
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "background_solid",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "last"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "value",
+                "wideLayout": true
+              }
+            },
+            "version": "12.3.1"
+          }
+        }
+      },
+      "panel-28": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "P1809F7CD0C75ACF3"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "alias": "Living room",
+                        "disableTextWrap": false,
+                        "editorMode": "builder",
+                        "exemplar": false,
+                        "expr": "ambient_envsensor_temperature_celsius{sensor_location=\"bedroom\"}",
+                        "fullMetaSearch": false,
+                        "groupBy": [
+                          {
+                            "params": [
+                              "10s"
+                            ],
+                            "type": "time"
+                          },
+                          {
+                            "params": [
+                              "none"
+                            ],
+                            "type": "fill"
+                          }
+                        ],
+                        "includeNullMetadata": true,
+                        "instant": true,
+                        "legendFormat": "__auto",
+                        "measurement": "environment_sensor",
+                        "orderByTime": "ASC",
+                        "policy": "default",
+                        "query": "SELECT last(\"Temperature\") FROM \"environment_sensor\" WHERE (\"Location\"::tag = 'Living room') AND time > now() - 1m",
+                        "range": false,
+                        "rawQuery": true,
+                        "resultFormat": "time_series",
+                        "select": [
+                          [
+                            {
+                              "params": [
+                                "Temperature"
+                              ],
+                              "type": "field"
+                            },
+                            {
+                              "params": [],
+                              "type": "last"
+                            }
+                          ]
+                        ],
+                        "tags": [
+                          {
+                            "key": "Location::tag",
+                            "operator": "=",
+                            "value": "Living room"
+                          },
+                          {
+                            "condition": "AND",
+                            "key": "time",
+                            "operator": "=",
+                            "value": "time - 5m"
+                          }
+                        ],
+                        "useBackend": false
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "bathroom"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 28,
+          "links": [],
+          "title": "Bathroom",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "fixedColor": "green",
+                    "mode": "thresholds"
+                  },
+                  "mappings": [
+                    {
+                      "options": {
+                        "o": {
+                          "color": "red",
+                          "index": 2,
+                          "text": "down"
+                        }
+                      },
+                      "type": "value"
+                    },
+                    {
+                      "options": {
+                        "from": -100,
+                        "result": {
+                          "color": "green",
+                          "index": 0,
+                          "text": "ok"
+                        },
+                        "to": 100
+                      },
+                      "type": "range"
+                    },
+                    {
+                      "options": {
+                        "match": "null+nan",
+                        "result": {
+                          "color": "red",
+                          "index": 1,
+                          "text": "down"
+                        }
+                      },
+                      "type": "special"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  }
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "background_solid",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "last"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "value",
+                "wideLayout": true
+              }
+            },
+            "version": "12.3.1"
           }
         }
       },
@@ -1815,7 +1292,7 @@
                         "alias": "living room",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_humidity_percent{sensor_location=\"living room\"})",
+                        "expr": "avg(ambient_envsensor_humidity_percent{sensor_location=\"living room\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -1874,7 +1351,7 @@
                         "alias": "bathroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_humidity_percent{sensor_location=\"bathroom\"})",
+                        "expr": "avg(ambient_envsensor_humidity_percent{sensor_location=\"bathroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -1933,7 +1410,7 @@
                         "alias": "bedroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_humidity_percent{sensor_location=\"bedroom\"})",
+                        "expr": "avg(ambient_envsensor_humidity_percent{sensor_location=\"bedroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2074,7 +1551,7 @@
                         "alias": "living room",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"living room\"})",
+                        "expr": "avg(ambient_envsensor_temperature_celsius{sensor_location=\"living room\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2133,7 +1610,7 @@
                         "alias": "bathroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"bathroom\"})",
+                        "expr": "avg(ambient_envsensor_temperature_celsius{sensor_location=\"bathroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2192,7 +1669,7 @@
                         "alias": "bedroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_temperature_degC{sensor_location=\"bedroom\"})",
+                        "expr": "avg(ambient_envsensor_temperature_celsius{sensor_location=\"bedroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2341,7 +1818,7 @@
                         "alias": "living room",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_humidity_percent{sensor_location=\"living room\"})",
+                        "expr": "avg(ambient_envsensor_humidity_percent{sensor_location=\"living room\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2406,7 +1883,7 @@
                         "alias": "bathroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_humidity_percent{sensor_location=\"bathroom\"})",
+                        "expr": "avg(ambient_envsensor_humidity_percent{sensor_location=\"bathroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2471,7 +1948,7 @@
                         "alias": "bedroom",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(envsensor_humidity_percent{sensor_location=\"bedroom\"})",
+                        "expr": "avg(ambient_envsensor_humidity_percent{sensor_location=\"bedroom\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2536,7 +2013,7 @@
                         "alias": "$geographic_location",
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_humidity_percent{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_humidity_percent{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -2669,7 +2146,7 @@
                 }
               }
             },
-            "version": "13.0.2"
+            "version": "12.3.1"
           }
         }
       },
@@ -2693,7 +2170,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_temperature_degC{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_temperature_celsius{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "instant": false,
@@ -2719,7 +2196,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_temperatureApparent_degC{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_temperatureApparent_celsius{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "instant": false,
@@ -2796,7 +2273,7 @@
                 "orientation": "auto",
                 "reduceOptions": {
                   "calcs": [
-                    "lastNotNull"
+                    "last"
                   ],
                   "fields": "",
                   "values": false
@@ -2835,7 +2312,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "builder",
-                        "expr": "avg(weather_current_humidity_percent{location=\"$geographic_location\"})",
+                        "expr": "avg(ambient_weather_current_humidity_percent{location=\"$geographic_location\"})",
                         "fullMetaSearch": false,
                         "groupBy": [
                           {
@@ -3026,7 +2503,7 @@
                           "kind": "ElementReference",
                           "name": "panel-10"
                         },
-                        "height": 4,
+                        "height": 3,
                         "width": 2,
                         "x": 20,
                         "y": 7
@@ -3039,7 +2516,7 @@
                           "kind": "ElementReference",
                           "name": "panel-15"
                         },
-                        "height": 4,
+                        "height": 3,
                         "width": 2,
                         "x": 22,
                         "y": 7
@@ -3052,10 +2529,36 @@
                           "kind": "ElementReference",
                           "name": "panel-25"
                         },
-                        "height": 3,
+                        "height": 2,
                         "width": 4,
                         "x": 20,
-                        "y": 11
+                        "y": 10
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-27"
+                        },
+                        "height": 2,
+                        "width": 2,
+                        "x": 20,
+                        "y": 12
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-28"
+                        },
+                        "height": 2,
+                        "width": 2,
+                        "x": 22,
+                        "y": 12
                       }
                     }
                   ]
@@ -3124,86 +2627,7 @@
               "layout": {
                 "kind": "GridLayout",
                 "spec": {
-                  "items": [
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-11"
-                        },
-                        "height": 2,
-                        "width": 5,
-                        "x": 0,
-                        "y": 0
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-14"
-                        },
-                        "height": 2,
-                        "width": 5,
-                        "x": 5,
-                        "y": 0
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-13"
-                        },
-                        "height": 2,
-                        "width": 5,
-                        "x": 0,
-                        "y": 2
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-22"
-                        },
-                        "height": 2,
-                        "width": 5,
-                        "x": 5,
-                        "y": 2
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-12"
-                        },
-                        "height": 2,
-                        "width": 5,
-                        "x": 0,
-                        "y": 4
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-23"
-                        },
-                        "height": 2,
-                        "width": 5,
-                        "x": 5,
-                        "y": 4
-                      }
-                    }
-                  ]
+                  "items": []
                 }
               },
               "title": "Health"
