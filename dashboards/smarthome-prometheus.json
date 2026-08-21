@@ -2,19 +2,19 @@
   "apiVersion": "dashboard.grafana.app/v2beta1",
   "kind": "Dashboard",
   "metadata": {
-    "name": "adx9bh7",
+    "name": "adlrshf",
     "namespace": "default",
-    "uid": "dKC9sasOtFR3DdZvl4qgyc1138XINZB7o2sVuhCrBVgX",
-    "resourceVersion": "7",
-    "generation": 7,
-    "creationTimestamp": "2026-07-30T21:34:56Z",
+    "uid": "6zyo7byypIdlkjSGXPLyIpYm6OJcHk4G7Cggwu5wl20X",
+    "resourceVersion": "1",
+    "generation": 1,
+    "creationTimestamp": "2026-08-21T21:39:08Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "1"
+      "grafana.app/deprecatedInternalID": "3"
     },
     "annotations": {
       "grafana.app/createdBy": "user:dftpak7uhx81sa",
       "grafana.app/updatedBy": "user:dftpak7uhx81sa",
-      "grafana.app/updatedTimestamp": "2026-08-21T21:32:02Z",
+      "grafana.app/updatedTimestamp": "2026-08-21T21:39:08Z",
       "grafana.app/folder": ""
     }
   },
@@ -2618,19 +2618,6 @@
                 }
               },
               "title": "Time series"
-            }
-          },
-          {
-            "kind": "RowsLayoutRow",
-            "spec": {
-              "collapse": true,
-              "layout": {
-                "kind": "GridLayout",
-                "spec": {
-                  "items": []
-                }
-              },
-              "title": "Health"
             }
           }
         ]
