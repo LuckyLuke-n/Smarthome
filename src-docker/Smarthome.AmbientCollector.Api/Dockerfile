@@ -8,7 +8,6 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src-docker/Smarthome.AmbientCollector.Api/Smarthome.AmbientCollector.Api.csproj", "src-docker/Smarthome.AmbientCollector.Api/"]
-COPY ["src-dotnet/LSoftware.Communication.Extensions/LSoftware.Communication.Extensions.csproj", "src-dotnet/LSoftware.Communication.Extensions/"]
 COPY ["src-dotnet/LSoftware.Communication.Mqtt/LSoftware.Communication.Mqtt.csproj", "src-dotnet/LSoftware.Communication.Mqtt/"]
 COPY ["src-dotnet/LSoftware.Communication.Abstractions/LSoftware.Communication.Abstractions.csproj", "src-dotnet/LSoftware.Communication.Abstractions/"]
 COPY ["src-dotnet/LSoftware.Repository.MongoDb/LSoftware.Repository.MongoDb.csproj", "src-dotnet/LSoftware.Repository.MongoDb/"]

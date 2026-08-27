@@ -1,10 +1,9 @@
-﻿using LSoftware.Communication.Abstractions.MessageBus;
+﻿using System.Text;
+using LSoftware.Communication.Abstractions.MessageBus;
 using LSoftware.Communication.Mqtt.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Formatter;
-using System.Text;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
@@ -12,9 +11,8 @@ namespace LSoftware.Communication.Mqtt.Handler
 	{
 		public IMqttClient? MqttClient { get; set; }
 		public string Topic { get; private set; } = string.Empty;
-
-
-		private MqttConfiguration MqttConfiguration { get; }
+		
+		private string ConnectionString { get; }
 		private ILogger<MqttClientHandler> Logger { get; }
 		private bool IsConnected { get; set; }
 		private MqttClientFactory MqttFactory { get; }
@@ -25,9 +23,9 @@ namespace LSoftware.Communication.Mqtt.Handler
 		private int _usageCount;
 		private bool _disposedValue;
 
-		public MqttClientHandler( IOptions<MqttConfiguration> mqttOptions, ILogger<MqttClientHandler> logger )
+		public MqttClientHandler( string connectionString, ILogger<MqttClientHandler> logger )
 		{
-			MqttConfiguration = mqttOptions.Value;
+			ConnectionString = connectionString;
 			Logger = logger;
 
 			MqttFactory = new MqttClientFactory();
@@ -39,22 +37,32 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 		/// <summary>
 		/// Connects the client to the broker. Creates the <see cref="CancellationTokenSource"/>.
+		/// <returns>Returns true if the connection was established. Otherwise false.</returns>
 		/// </summary>
-		public async Task ConnectAsync()
+		public async Task<bool> ConnectAsync()
 		{
 			CancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+			MqttConfiguration mqttConfiguration = new();
+			if ( MqttConfiguration.TryCreate( ConnectionString, out var configuration ) )
+				mqttConfiguration = configuration;
+			else
+			{
+				Logger.LogError( "Invalid or missing connection string for mqtt." );
+				return false;
+			}
 
 			MqttClient = MqttFactory.CreateMqttClient();
 
 			// Create MQTT client options
 			var mqttClientOptions = new MqttClientOptionsBuilder()
-				.WithTcpServer( MqttConfiguration.Host, MqttConfiguration.Port )
-				.WithCredentials( MqttConfiguration.Username, MqttConfiguration.Password ) // Set username and password
+				.WithTcpServer( mqttConfiguration.Host, mqttConfiguration.Port )
+				.WithCredentials( mqttConfiguration.Username, mqttConfiguration.Password ) // Set username and password
 				.WithClientId( $"Smarthome.Api-{Guid.NewGuid()}" )
 				.WithProtocolVersion( MqttProtocolVersion.V311 )
 				.WithCleanSession();
 
-			if ( MqttConfiguration.TlsEnabled )
+			if ( mqttConfiguration.TlsEnabled )
 				mqttClientOptions.WithTlsOptions( o =>
 				{
 					o.UseTls();
@@ -66,10 +74,14 @@ namespace LSoftware.Communication.Mqtt.Handler
 			MqttClient.DisconnectedAsync += MqttClient_DisconnectedAsync;
 			var result = await MqttClient.ConnectAsync( mqttClientOptions.Build(), CancellationTokenSource.Token ).ConfigureAwait( false );
 
-			if ( result.ResultCode != MqttClientConnectResultCode.Success )
-				Logger.LogError( "No connection made to mqtt broker {Host} with reason {NoConnectionReason}.", MqttConfiguration.Host, result.ResultCode );
-			else
-				IsConnected = true;
+			if (result.ResultCode != MqttClientConnectResultCode.Success)
+			{
+				Logger.LogError( "No connection made to mqtt broker '{Host}' with reason {NoConnectionReason}.", mqttConfiguration.Host, result.ResultCode );
+				return false;
+			}
+
+			IsConnected = true;
+			return true;
 		}
 
 		public void RegisterCallback( Action<string, string> callback ) => MessageReceived = callback;
