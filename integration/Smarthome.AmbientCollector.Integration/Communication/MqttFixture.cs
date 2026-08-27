@@ -21,12 +21,12 @@ public sealed class MqttFixture : IAsyncLifetime
             .Build();
     }
 
-    public async Task InitializeAsync()
+    public async ValueTask InitializeAsync()
     {
         await _mqttContainer.StartAsync();
     }
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         await _mqttContainer.DisposeAsync();
     }

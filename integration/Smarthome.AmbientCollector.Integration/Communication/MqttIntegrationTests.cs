@@ -41,7 +41,7 @@ public class MqttIntegrationTests : IClassFixture<MqttFixture>
         string? receivedMessage = null;
         var tcs = new TaskCompletionSource<string>();
 
-        var subscriber = await connectionHandler.GetSubscriberAsync(topic);
+        var subscriber = await connectionHandler.GetSubscriberAsync(topic, TestContext.Current.CancellationToken);
         subscriber.RegisterCallback((t, m) =>
         {
             receivedMessage = m;
@@ -52,7 +52,7 @@ public class MqttIntegrationTests : IClassFixture<MqttFixture>
         await PublishMessageAsync(topic, expectedMessage);
 
         // Assert
-        var completedTask = await Task.WhenAny(tcs.Task, Task.Delay(10000));
+        var completedTask = await Task.WhenAny(tcs.Task, Task.Delay(10000, TestContext.Current.CancellationToken));
         Assert.Equal(tcs.Task, completedTask);
         Assert.Equal(expectedMessage, receivedMessage);
     }
