@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src-dotnet\Smarthome.ServiceDefaults\Smarthome.ServiceDefaults.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Communication.Mqtt\LSoftware.Communication.Mqtt.csproj" />
     <ProjectReference Include="..\..\src-dotnet\LSoftware.Repository.MongoDb\LSoftware.Repository.MongoDb.csproj" />
     <ProjectReference Include="..\..\src-dotnet\Smarthome.Core\Smarthome.Core.csproj" />

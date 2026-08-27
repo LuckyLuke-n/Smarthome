@@ -14,10 +14,4 @@
     <ProjectReference Include="..\LSoftware.Repository.Abstractions\LSoftware.Repository.Abstractions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
-      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.extensions.hosting.abstractions\10.0.0\lib\net10.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
