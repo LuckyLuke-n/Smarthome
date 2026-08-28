@@ -1,11 +1,8 @@
-name: Docker Image CI
+name: Docker Build and Publish
 
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches:
-      - develop
 
 jobs:
 
