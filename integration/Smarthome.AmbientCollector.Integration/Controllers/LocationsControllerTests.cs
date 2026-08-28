@@ -52,8 +52,8 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
                 Math.Abs(l.Longitude - 13.405) <= _tolerance), It.IsAny<CancellationToken>()))
             .ReturnsAsync(RepositoryResponse<Location, RepositoryFailResponse>.CreateSuccess(createdLocation));
 
-        var response = await _client.PostAsJsonAsync("/api/locations", request);
-        var returned = await response.Content.ReadFromJsonAsync<Location>();
+        var response = await _client.PostAsJsonAsync("/api/locations", request, TestContext.Current.CancellationToken);
+        var returned = await response.Content.ReadFromJsonAsync<Location>(TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         Assert.NotNull(returned);
@@ -78,7 +78,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .ReturnsAsync(RepositoryResponse<Location, RepositoryFailResponse>.CreateFail(
                 new RepositoryFailResponse(HttpStatusCode.Conflict, "Already exists")));
 
-        var response = await _client.PostAsJsonAsync("/api/locations", request);
+        var response = await _client.PostAsJsonAsync("/api/locations", request, TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
     }
@@ -99,8 +99,8 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .Setup(x => x.ReadAsync(id, It.IsAny<CancellationToken>()))
             .ReturnsAsync(RepositoryResponse<Location, RepositoryFailResponse>.CreateSuccess(location));
 
-        var response = await _client.GetAsync($"/api/locations/{id}");
-        var returned = await response.Content.ReadFromJsonAsync<Location>();
+        var response = await _client.GetAsync($"/api/locations/{id}", TestContext.Current.CancellationToken);
+        var returned = await response.Content.ReadFromJsonAsync<Location>(TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.NotNull(returned);
@@ -120,7 +120,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .ReturnsAsync(RepositoryResponse<Location, RepositoryFailResponse>.CreateFail(
                 new RepositoryFailResponse(HttpStatusCode.NotFound, "Not found")));
 
-        var response = await _client.GetAsync($"/api/locations/{id}");
+        var response = await _client.GetAsync($"/api/locations/{id}", TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -139,8 +139,8 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
                         { Id = Guid.NewGuid().ToString(), City = "Munich", Latitude = 48.1351, Longitude = 11.5820 }
                 }));
 
-        var response = await _client.GetAsync("/api/locations");
-        var locations = await response.Content.ReadFromJsonAsync<List<Location>>();
+        var response = await _client.GetAsync("/api/locations", TestContext.Current.CancellationToken);
+        var locations = await response.Content.ReadFromJsonAsync<List<Location>>(TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.NotNull(locations);
@@ -155,7 +155,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .ReturnsAsync(RepositoryResponse<IEnumerable<Location>, RepositoryFailResponse>.CreateFail(
                 new RepositoryFailResponse(HttpStatusCode.BadRequest, "Invalid request")));
 
-        var response = await _client.GetAsync("/api/locations");
+        var response = await _client.GetAsync("/api/locations", TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
@@ -185,7 +185,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
                 Longitude = request.Longitude
             }));
 
-        var response = await _client.PutAsJsonAsync($"/api/locations/{id}", request);
+        var response = await _client.PutAsJsonAsync($"/api/locations/{id}", request, TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
@@ -206,7 +206,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .ReturnsAsync(RepositoryResponse<Location, RepositoryFailResponse>.CreateFail(
                 new RepositoryFailResponse(HttpStatusCode.NotFound, "Missing")));
 
-        var response = await _client.PutAsJsonAsync($"/api/locations/{id}", request);
+        var response = await _client.PutAsJsonAsync($"/api/locations/{id}", request, TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -220,7 +220,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .Setup(x => x.DeleteAsync(id, It.IsAny<CancellationToken>()))
             .ReturnsAsync(RepositoryResponse<RepositoryFailResponse>.CreateSuccess());
 
-        var response = await _client.DeleteAsync($"/api/locations/{id}");
+        var response = await _client.DeleteAsync($"/api/locations/{id}", TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
@@ -235,7 +235,7 @@ public class LocationsControllerTests : IClassFixture<ApiWebApplicationFactory>
             .ReturnsAsync(RepositoryResponse<RepositoryFailResponse>.CreateFail(
                 new RepositoryFailResponse(HttpStatusCode.NotFound, "Missing")));
 
-        var response = await _client.DeleteAsync($"/api/locations/{id}");
+        var response = await _client.DeleteAsync($"/api/locations/{id}", TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }

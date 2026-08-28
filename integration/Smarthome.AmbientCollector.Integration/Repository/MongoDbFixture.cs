@@ -16,12 +16,12 @@ public sealed class MongoDbFixture : IAsyncLifetime
     }
 
 
-    public async Task InitializeAsync()
+    public async ValueTask InitializeAsync()
     {
         await _mongoContainer.StartAsync();
     }
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         await _mongoContainer.DisposeAsync();
     }

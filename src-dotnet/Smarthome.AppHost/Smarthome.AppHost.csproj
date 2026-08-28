@@ -7,12 +7,11 @@
         <Nullable>enable</Nullable>
         <UserSecretsId>f0efe56e-f44d-41b7-97b3-8d02500b739d</UserSecretsId>
     </PropertyGroup>
-
-
+    
     <ItemGroup>
-      <PackageReference Include="Aspire.Hosting.AppHost" Version="13.5.1" />
-      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.5.1" />
-      <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.5.1" />
+      <PackageReference Include="Aspire.Hosting.AppHost" Version="13.5.3" />
+      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.5.3" />
+      <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.5.3" />
     </ItemGroup>
     
     <ItemGroup>
