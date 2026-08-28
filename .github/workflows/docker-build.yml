@@ -33,3 +33,13 @@ jobs:
       with:
         install: true
         buildkitd-flags: --debug
+
+    - name: Build Docker image
+      uses: docker/build-action@v7
+      with:
+          context: .
+          file: src-docker/Smarthome.AmbientCollector.Api/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            luckyluke4411/ambientcollector:${{ env.latest_tag }}-alpha
