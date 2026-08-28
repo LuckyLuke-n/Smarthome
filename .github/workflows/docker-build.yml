@@ -35,7 +35,7 @@ jobs:
         buildkitd-flags: --debug
 
     - name: Build Docker image
-      uses: docker/build-action@v7
+      uses: docker/build-action@v4
       with:
           context: .
           file: src-docker/Smarthome.AmbientCollector.Api/Dockerfile
