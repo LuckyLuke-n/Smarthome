@@ -31,10 +31,9 @@ jobs:
     - name: Set up buildx
       uses: docker/setup-buildx-action@v4
       with:
-        install: true
         buildkitd-flags: --debug
 
-    - name: Build and push Docker image
+    - name: Build image
       uses: docker/build-push-action@v7
       with:
           context: .
