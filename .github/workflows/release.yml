@@ -26,15 +26,15 @@ jobs:
 
     - name: Run Smarthome.AmbientCollector.Integration Tests
       run: |
-        dotnet test integration/Smarthome.AmbientCollector.Integration \
-          --logger "trx;LogFileName=integration-test-results.trx" \
-          --collect:"XPlat Code Coverage"
+        dotnet build integration/Smarthome.AmbientCollector.Integration \
+          -t:Test \
+          /p:TestingPlatformCommandLineArguments="--report-trx --report-trx-filename integration-test-results.trx --code-coverage"
         
     - name: Run Smarthome.AmbientCollector.Test Tests
       run: |
-        dotnet test test/Smarthome.AmbientCollector.Test \
-          --logger "trx;LogFileName=unit-test-results.trx" \
-          --collect:"XPlat Code Coverage"
+        dotnet build test/Smarthome.AmbientCollector.Test \
+          -t:Test \
+          /p:TestingPlatformCommandLineArguments="--report-trx --report-trx-filename unit-test-results.trx --code-coverage"
 
   build and push:
     needs: automated-tests
