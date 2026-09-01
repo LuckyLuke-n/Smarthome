@@ -26,7 +26,7 @@ public class MqttIntegrationTests : IClassFixture<MqttFixture>
         // Factory for MqttClientHandler
         Func<MqttClientHandler> clientFactory = () => new MqttClientHandler(_fixture.ConnectionString, clientLogger);
         
-        using var connectionHandler = new MqttConnectionHandler(logger, clientFactory);
+        await using var connectionHandler = new MqttConnectionHandler(logger, clientFactory);
         var topic = "environmentsensor";
         var expectedSensorData = new Environmentsensor
         {

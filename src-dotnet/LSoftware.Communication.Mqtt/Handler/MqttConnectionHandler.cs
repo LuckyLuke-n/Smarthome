@@ -49,11 +49,13 @@ namespace LSoftware.Communication.Mqtt.Handler
             return newClient;
         }
 
-        public void DisconnectSubscriber(ISubscriber subscriber)
+        public async Task DisconnectSubscriberAsync(ISubscriber subscriber)
         {
-            var client = subscriber as MqttClientHandler;
-            client?.DecreaseCount();
-            var disposed = client?.TryDispose() ?? false;
+            if (subscriber is not MqttClientHandler client)
+                return;
+
+            client.DecreaseCount();
+            var disposed = await client.TryDestroyAsync().ConfigureAwait(false);
 
             if (!disposed)
                 return;
@@ -67,25 +69,15 @@ namespace LSoftware.Communication.Mqtt.Handler
             }
         }
 
-        protected virtual void Dispose(bool disposing)
+        public async ValueTask DisposeAsync()
         {
             if (!_disposedValue)
             {
-                if (disposing)
-                {
-                    foreach (var client in Clients.Values)
-                        client.Dispose();
-                }
-
-                _disposedValue = true;
+                foreach (var client in Clients.Values)
+                    await client.DisposeAsync().ConfigureAwait(false);
             }
-        }
 
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            _disposedValue = true;
         }
     }
 }

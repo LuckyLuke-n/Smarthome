@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using LSoftware.Communication.Mqtt.Diagnostics.Meters;
 using OpenTelemetry.Resources;
 using Smarthome.AmbientCollector.Api.Diagnostics.Meters;
 
@@ -23,6 +24,7 @@ namespace Smarthome.AmbientCollector.Api.Diagnostics
 				.WithMetrics( meters =>
 					meters.AddMeter( EnvironmentMeter.Name )
 						.AddMeter( WeatherMeter.Name )
+						.AddMeter( MqttBrokerMeter.Name )
 					)
 				.WithLogging()
 				.WithTracing();

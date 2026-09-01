@@ -37,8 +37,7 @@ namespace Smarthome.AmbientCollector.Api.Monitoring.MessageBus
 
         public async Task StopAsync(CancellationToken cancellationToken)
         {
-            ConnectionHandler.Dispose();
-            await Task.CompletedTask.ConfigureAwait(false);
+            await ConnectionHandler.DisposeAsync().ConfigureAwait(false);
         }
 
         private async Task CheckSensorHealthAsync(CancellationToken cancellationToken)
