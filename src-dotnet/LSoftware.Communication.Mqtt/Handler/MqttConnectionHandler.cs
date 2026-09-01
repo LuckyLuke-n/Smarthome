@@ -11,7 +11,7 @@ namespace LSoftware.Communication.Mqtt.Handler
         private ConcurrentDictionary<string, MqttClientHandler> Clients { get; set; } = [];
         private ILogger<MqttConnectionHandler> Logger { get; }
         private Func<MqttClientHandler> ClientFactory { get; }
-        private static object Lock { get; } = new object();
+        private static Lock Lock { get; } = new();
 
         public MqttConnectionHandler(ILogger<MqttConnectionHandler> logger, Func<MqttClientHandler> clientFactory)
         {

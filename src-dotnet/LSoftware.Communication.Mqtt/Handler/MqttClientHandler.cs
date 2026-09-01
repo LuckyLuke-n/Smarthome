@@ -188,13 +188,14 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 				int retries = 0;
 				int maxRetries = 100;
+				int backOffMultiplier = 1;
 
 				while ( !CancellationTokenSource.Token.IsCancellationRequested )
 				{
 					if ( retries == maxRetries )
 					{
-						Logger.LogError( "Maximum retry count of 100 exhausted on mqtt broker on host '{Host}'.", MqttHost );
-						return;
+						Logger.LogWarning( "Backoff multiplier increased due to retry count of 100 exhausted on mqtt broker on host '{Host}'.", MqttHost );
+						backOffMultiplier++;
 					}
 
 					retries++;
@@ -210,7 +211,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 					// some kind of jitter for random wait between 5 and 30 seconds
 					var random = new Random();
-					var waitTimeInMilliseconds = random.Next( 5, 30 ) * 1000;
+					var waitTimeInMilliseconds = random.Next( 5, 30 ) * 1000 * backOffMultiplier;
 
 					await Task.Delay( waitTimeInMilliseconds, CancellationTokenSource.Token );
 				}
