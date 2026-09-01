@@ -16,7 +16,9 @@ Welcome to the SmartHome application! This application allows you to monitor and
   - MongoDB as NoSQL storage
   - Prometheus for metrics
   - OpenTelemetry collector
-  - NGINX as reverse proxy
+- On kubernetes cluster
+  - Traefik as reverse proxy
+  - HiveMQ as MQTT message bus
 - API Integration: Utilizes the [tomorrow.io](https://tomorrow.io) API to retrieve outdoor weather data.
 - Sensors: Compatible with BME280 sensors for measuring temperature, humidity, and pressure indoors.
 
