@@ -28,7 +28,7 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
             Longitude = 13.405
         };
 
-        var response = await repository.CreateAsync( location );
+        var response = await repository.CreateAsync( location, TestContext.Current.CancellationToken );
 
         Assert.True( response.IsSuccess );
         Assert.NotNull( response.ValueSuccess );
@@ -37,7 +37,7 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
         Assert.Equal( 52.52, response.ValueSuccess.Latitude );
         Assert.Equal( 13.405, response.ValueSuccess.Longitude );
 
-        var readBack = await repository.ReadAsync( Guid.Parse( response.ValueSuccess.Id ) );
+        var readBack = await repository.ReadAsync( Guid.Parse( response.ValueSuccess.Id ), TestContext.Current.CancellationToken );
 
         Assert.True( readBack.IsSuccess );
         Assert.NotNull( readBack.ValueSuccess );
@@ -51,10 +51,10 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
         var repository = CreateRepository();
         await CleanupAsync();
 
-        await repository.CreateAsync( new Location { City = "Berlin", Latitude = 52.52, Longitude = 13.405 } );
-        await repository.CreateAsync( new Location { City = "Munich", Latitude = 48.1351, Longitude = 11.5820 } );
+        await repository.CreateAsync( new Location { City = "Berlin", Latitude = 52.52, Longitude = 13.405 }, TestContext.Current.CancellationToken );
+        await repository.CreateAsync( new Location { City = "Munich", Latitude = 48.1351, Longitude = 11.5820 }, TestContext.Current.CancellationToken );
 
-        var response = await repository.ReadAllAsync();
+        var response = await repository.ReadAllAsync(TestContext.Current.CancellationToken);
 
         Assert.True( response.IsSuccess );
         Assert.NotNull( response.ValueSuccess );
@@ -71,7 +71,7 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
         var repository = CreateRepository();
         await CleanupAsync();
 
-        var response = await repository.ReadAsync( Guid.NewGuid() );
+        var response = await repository.ReadAsync( Guid.NewGuid(), TestContext.Current.CancellationToken );
 
         Assert.False( response.IsSuccess );
         Assert.NotNull( response.ValueFail );
@@ -88,7 +88,7 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
             City = "Hamburg",
             Latitude = 53.5511,
             Longitude = 9.9937
-        } );
+        }, TestContext.Current.CancellationToken );
 
         Assert.True( created.IsSuccess );
         Assert.NotNull( created.ValueSuccess );
@@ -98,13 +98,13 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
         locationToUpdate.Latitude = 48.7758;
         locationToUpdate.Longitude = 9.1829;
 
-        var updateResponse = await repository.UpdateAsync( locationToUpdate );
+        var updateResponse = await repository.UpdateAsync( locationToUpdate, TestContext.Current.CancellationToken );
 
         Assert.True( updateResponse.IsSuccess );
         Assert.NotNull( updateResponse.ValueSuccess );
         Assert.Equal( "Hamburg", updateResponse.ValueSuccess!.City );
 
-        var readBack = await repository.ReadAsync( Guid.Parse( locationToUpdate.Id ) );
+        var readBack = await repository.ReadAsync( Guid.Parse( locationToUpdate.Id ), TestContext.Current.CancellationToken );
 
         Assert.True( readBack.IsSuccess );
         Assert.NotNull( readBack.ValueSuccess );
@@ -125,7 +125,7 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
             City = "Nowhere",
             Latitude = 0,
             Longitude = 0
-        } );
+        }, TestContext.Current.CancellationToken );
 
         Assert.False( response.IsSuccess );
         Assert.NotNull( response.ValueFail );
@@ -142,16 +142,16 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
             City = "Cologne",
             Latitude = 50.9375,
             Longitude = 6.9603
-        } );
+        }, TestContext.Current.CancellationToken );
 
         Assert.True( created.IsSuccess );
         Assert.NotNull( created.ValueSuccess );
 
-        var deleteResponse = await repository.DeleteAsync( Guid.Parse( created.ValueSuccess!.Id ) );
+        var deleteResponse = await repository.DeleteAsync( Guid.Parse( created.ValueSuccess!.Id ), TestContext.Current.CancellationToken );
 
         Assert.True( deleteResponse.IsSuccess );
 
-        var readBack = await repository.ReadAsync( Guid.Parse( created.ValueSuccess.Id ) );
+        var readBack = await repository.ReadAsync( Guid.Parse( created.ValueSuccess.Id ), TestContext.Current.CancellationToken );
 
         Assert.False( readBack.IsSuccess );
     }
@@ -162,7 +162,7 @@ public class LocationRepositoryTests : IClassFixture<MongoDbFixture>
         var repository = CreateRepository();
         await CleanupAsync();
 
-        var response = await repository.DeleteAsync( Guid.NewGuid() );
+        var response = await repository.DeleteAsync( Guid.NewGuid(), TestContext.Current.CancellationToken );
 
         Assert.False( response.IsSuccess );
         Assert.NotNull( response.ValueFail );

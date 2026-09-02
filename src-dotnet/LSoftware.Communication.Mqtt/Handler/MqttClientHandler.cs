@@ -1,35 +1,37 @@
-﻿using LSoftware.Communication.Abstractions.MessageBus;
+﻿using System.Text;
+using LSoftware.Communication.Abstractions.MessageBus;
 using LSoftware.Communication.Mqtt.Configuration;
+using LSoftware.Communication.Mqtt.Diagnostics.Meters;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Formatter;
-using System.Text;
 
 namespace LSoftware.Communication.Mqtt.Handler
 {
-	public class MqttClientHandler : ISubscriber, IDisposable
+	public class MqttClientHandler : ISubscriber, IAsyncDisposable
 	{
 		public IMqttClient? MqttClient { get; set; }
 		public string Topic { get; private set; } = string.Empty;
-
-
-		private MqttConfiguration MqttConfiguration { get; }
+		
+		private string ConnectionString { get; }
 		private ILogger<MqttClientHandler> Logger { get; }
 		private bool IsConnected { get; set; }
 		private MqttClientFactory MqttFactory { get; }
 		private CancellationTokenSource CancellationTokenSource { get; } = new();
+		private string MqttHost { get; set; } = string.Empty;
 
 		private Action<string, string>? MessageReceived { get; set; }
 
+		private readonly SemaphoreSlim _connectionSemaphore = new( 1, 1 );
+		private string? _clientId;
 		private int _usageCount;
 		private bool _disposedValue;
+		private int _isReconnecting;
 
-		public MqttClientHandler( IOptions<MqttConfiguration> mqttOptions, ILogger<MqttClientHandler> logger )
+		public MqttClientHandler( string connectionString, ILogger<MqttClientHandler> logger )
 		{
-			MqttConfiguration = mqttOptions.Value;
+			ConnectionString = connectionString;
 			Logger = logger;
-
 			MqttFactory = new MqttClientFactory();
 		}
 
@@ -39,37 +41,76 @@ namespace LSoftware.Communication.Mqtt.Handler
 
 		/// <summary>
 		/// Connects the client to the broker. Creates the <see cref="CancellationTokenSource"/>.
+		/// <returns>Returns true if the connection was established. Otherwise false.</returns>
 		/// </summary>
-		public async Task ConnectAsync()
+		public async Task<bool> ConnectAsync()
 		{
-			CancellationTokenSource.Token.ThrowIfCancellationRequested();
-
-			MqttClient = MqttFactory.CreateMqttClient();
-
-			// Create MQTT client options
-			var mqttClientOptions = new MqttClientOptionsBuilder()
-				.WithTcpServer( MqttConfiguration.Host, MqttConfiguration.Port )
-				.WithCredentials( MqttConfiguration.Username, MqttConfiguration.Password ) // Set username and password
-				.WithClientId( $"Smarthome.Api-{Guid.NewGuid()}" )
-				.WithProtocolVersion( MqttProtocolVersion.V311 )
-				.WithCleanSession();
-
-			if ( MqttConfiguration.TlsEnabled )
-				mqttClientOptions.WithTlsOptions( o =>
+			await _connectionSemaphore.WaitAsync( CancellationTokenSource.Token ).ConfigureAwait( false );
+			try
+			{
+				if ( MqttClient is not null && MqttClient.IsConnected )
 				{
-					o.UseTls();
-				} );
+					return true;
+				}
 
+				MqttConfiguration mqttConfiguration = new();
+				if ( MqttConfiguration.TryCreate( ConnectionString, out var configuration ) )
+					mqttConfiguration = configuration;
+				else
+				{
+					Logger.LogError( "Invalid or missing connection string for mqtt." );
+					return false;
+				}
 
-			CancellationTokenSource.Token.ThrowIfCancellationRequested();
+				if ( MqttClient is null )
+				{
+					MqttClient = MqttFactory.CreateMqttClient();
+					MqttClient.DisconnectedAsync += MqttClient_DisconnectedAsync;
+					MqttClient.ApplicationMessageReceivedAsync += MqttClient_ApplicationMessageReceivedAsync;
+				}
 
-			MqttClient.DisconnectedAsync += MqttClient_DisconnectedAsync;
-			var result = await MqttClient.ConnectAsync( mqttClientOptions.Build(), CancellationTokenSource.Token ).ConfigureAwait( false );
+				_clientId ??= $"Smarthome.Api-{Guid.NewGuid()}";
 
-			if ( result.ResultCode != MqttClientConnectResultCode.Success )
-				Logger.LogError( "No connection made to mqtt broker {Host} with reason {NoConnectionReason}.", MqttConfiguration.Host, result.ResultCode );
-			else
+				// Create MQTT client options
+				MqttHost = mqttConfiguration.Host + ":" + mqttConfiguration.Port;
+				var mqttClientOptions = new MqttClientOptionsBuilder()
+					.WithTcpServer( mqttConfiguration.Host, mqttConfiguration.Port )
+					.WithCredentials( mqttConfiguration.Username, mqttConfiguration.Password ) // Set username and password
+					.WithClientId( _clientId )
+					.WithProtocolVersion( MqttProtocolVersion.V311 )
+					.WithCleanSession( false );
+
+				if ( mqttConfiguration.TlsEnabled )
+					mqttClientOptions.WithTlsOptions( o => { o.UseTls(); } );
+
+				using var timeoutCts = new CancellationTokenSource( TimeSpan.FromSeconds( 30 ) );
+				using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource( CancellationTokenSource.Token, timeoutCts.Token );
+
+				var result = await MqttClient.ConnectAsync( mqttClientOptions.Build(), linkedCts.Token ).ConfigureAwait( false );
+
+				if ( result.ResultCode != MqttClientConnectResultCode.Success )
+				{
+					Logger.LogError( "No connection made to mqtt broker '{Host}' with reason {NoConnectionReason}.", mqttConfiguration.Host, result.ResultCode );
+					return false;
+				}
+
 				IsConnected = true;
+
+				if ( !string.IsNullOrWhiteSpace( Topic ) )
+					// during a reconnect the topic will already be set and can be resubscribed to
+					await SubscribeAsync( Topic ).ConfigureAwait( false );
+
+				return true;
+			}
+			catch ( Exception ex )
+			{
+				Logger.LogError( ex, "Error while connecting to mqtt broker '{Host}'.", MqttHost );
+				return false;
+			}
+			finally
+			{
+				_connectionSemaphore.Release();
+			}
 		}
 
 		public void RegisterCallback( Action<string, string> callback ) => MessageReceived = callback;
@@ -89,16 +130,15 @@ namespace LSoftware.Communication.Mqtt.Handler
 				.Build();
 
 			await MqttClient.SubscribeAsync( mqttSubscribeOptions, CancellationTokenSource.Token ).ConfigureAwait( false );
-			MqttClient.ApplicationMessageReceivedAsync += MqttClient_ApplicationMessageReceivedAsync;
-
 		}
 
-		private async Task MqttClient_DisconnectedAsync( MqttClientDisconnectedEventArgs arg )
+		private Task MqttClient_DisconnectedAsync( MqttClientDisconnectedEventArgs arg )
 		{
+			IsConnected = false;
 			if ( arg.ClientWasConnected )
-			{
-				await ConnectAsync().ConfigureAwait( false );
-			}
+				_ = StartReconnectLoop();
+
+			return Task.CompletedTask;
 		}
 
 		private async Task MqttClient_ApplicationMessageReceivedAsync( MqttApplicationMessageReceivedEventArgs arg )
@@ -125,7 +165,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 		/// If the <see cref="_usageCount"/> is 0 the client will be disposed.
 		/// </summary>
 		/// <returns></returns>
-		public bool TryDispose()
+		public async Task<bool> TryDestroyAsync()
 		{
 			if ( _disposedValue )
 				return false;
@@ -133,36 +173,76 @@ namespace LSoftware.Communication.Mqtt.Handler
 			if ( _usageCount > 0 )
 				return false;
 
-			Dispose();
+			await DisposeAsync().ConfigureAwait(false);
 			return true;
 		}
 
-		protected virtual void Dispose( bool disposing )
+		private async Task StartReconnectLoop()
 		{
-			if ( !_disposedValue )
+			if ( Interlocked.CompareExchange( ref _isReconnecting, 1, 0 ) != 0 )
+				return;
+
+			try
 			{
-				if ( disposing )
+				Logger.LogWarning( "Starting reconnection loop for MQTT client on host '{Host}'.", MqttHost );
+
+				int retries = 0;
+				int maxRetries = 100;
+				int backOffMultiplier = 1;
+
+				while ( !CancellationTokenSource.Token.IsCancellationRequested )
 				{
-					if ( MqttClient is not null )
+					if ( retries == maxRetries )
 					{
-						MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
-						if ( !string.IsNullOrWhiteSpace( Topic ) )
-							MqttClient.UnsubscribeAsync( Topic, CancellationTokenSource.Token ).GetAwaiter().GetResult();
-						MqttClient.DisconnectAsync();
+						Logger.LogWarning( "Backoff multiplier increased due to retry count of 100 exhausted on mqtt broker on host '{Host}'.", MqttHost );
+						backOffMultiplier++;
+						retries = 0;
 					}
 
-					CancellationTokenSource.Cancel();
-				}
+					retries++;
 
-				_disposedValue = true;
+					MqttBrokerMeter.ReconnectAttempt( MqttHost );
+					var success = await ConnectAsync().ConfigureAwait( false );
+
+					if ( success )
+					{
+						Logger.LogInformation( "Successfully connected to mqtt broker on host '{Host}'.", MqttHost );
+						return;
+					}
+
+					// some kind of jitter for random wait between 5 and 30 seconds
+					var random = new Random();
+					var waitTimeInMilliseconds = random.Next( 5, 30 ) * 1000 * backOffMultiplier;
+
+					await Task.Delay( waitTimeInMilliseconds, CancellationTokenSource.Token );
+				}
+			}
+			finally
+			{
+				_isReconnecting = 0;
 			}
 		}
 
-		public void Dispose()
+		public async ValueTask DisposeAsync()
 		{
-			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-			Dispose( disposing: true );
-			GC.SuppressFinalize( this );
+			if ( !_disposedValue )
+			{
+				if ( MqttClient is not null )
+				{
+					MqttClient.ApplicationMessageReceivedAsync -= MqttClient_ApplicationMessageReceivedAsync;
+					MqttClient.DisconnectedAsync -= MqttClient_DisconnectedAsync;
+
+					if ( !string.IsNullOrWhiteSpace( Topic ) )
+						await MqttClient.UnsubscribeAsync( Topic, CancellationTokenSource.Token ).ConfigureAwait( false );
+					await MqttClient.DisconnectAsync().ConfigureAwait( false );
+					MqttClient.Dispose();
+				}
+
+				CancellationTokenSource.Cancel();
+				_connectionSemaphore.Dispose();
+
+				_disposedValue = true;
+			}
 		}
 	}
 }

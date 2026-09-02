@@ -9,9 +9,21 @@
 		public string Password => ConnectionString.Split('@')[0].Split("//")[1].Split(':')[1];
 		public bool TlsEnabled => ConnectionString.StartsWith("mqtts://");
 		
-		private string ConnectionString { get; } = Environment.GetEnvironmentVariable( "ConnectionStrings__smarthome-mqtt" ) ?? string.Empty;
+		public string ConnectionString { get; private set; } = string.Empty;
 
-		public bool IsConfigured => !string.IsNullOrEmpty(ConnectionString)
-			&& ( ConnectionString.StartsWith("mqtts://") ||  ConnectionString.StartsWith("mqtt://") );
+		public static bool TryCreate(string connectionString, out MqttConfiguration configuration )
+		{
+			configuration = new MqttConfiguration();
+
+			// check for a valid connection string
+			if (string.IsNullOrEmpty(connectionString)
+			    || (!connectionString.StartsWith("mqtts://") && !connectionString.StartsWith("mqtt://")))
+			{
+				return false;
+			}
+			
+			configuration.ConnectionString = connectionString;
+			return true;
+		}
 	}
 }

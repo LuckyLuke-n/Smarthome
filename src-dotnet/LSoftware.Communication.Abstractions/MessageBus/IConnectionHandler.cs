@@ -1,6 +1,6 @@
 ﻿namespace LSoftware.Communication.Abstractions.MessageBus
 {
-	public interface IConnectionHandler : IDisposable
+	public interface IConnectionHandler : IAsyncDisposable
 	{
 		/// <summary>
 		/// Creates a new subscriber or returns the existing one for that connection.
@@ -11,6 +11,6 @@
 		/// Disposes the actual client when all instances are stopped.
 		/// </summary>
 		/// <param name="subscriber"></param>
-		void DisconnectSubscriber( ISubscriber subscriber );
+		Task DisconnectSubscriberAsync( ISubscriber subscriber );
 	}
 }
