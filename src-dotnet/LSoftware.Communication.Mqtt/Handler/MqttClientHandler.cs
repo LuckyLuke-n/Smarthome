@@ -196,6 +196,7 @@ namespace LSoftware.Communication.Mqtt.Handler
 					{
 						Logger.LogWarning( "Backoff multiplier increased due to retry count of 100 exhausted on mqtt broker on host '{Host}'.", MqttHost );
 						backOffMultiplier++;
+						retries = 0;
 					}
 
 					retries++;
