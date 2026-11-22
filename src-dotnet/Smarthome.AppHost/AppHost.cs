@@ -16,7 +16,7 @@ var rabbitmq = builder.AddRabbitMQ("smarthome-mqtt", rabbitUser, rabbitPassword)
     .WithLifetime(ContainerLifetime.Persistent);
 
 var apiKey = builder.AddParameter("apiKey", secret: true, value: "key");
-var ambientcollector = builder.AddProject<Smarthome_AmbientCollector_Api>("ambientcollector")
+var ambientcollector = builder.AddDotnetProject("ambientcollector", "../../src-docker/Smarthome.AmbientCollector.Api")
     .WaitFor(mongo)
     .WaitFor(rabbitmq)
     .WithReference(mongo)
